@@ -2,16 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { admin } from './adminSignUp.component'
+import {pharmacy} from './pharmacySignUp.component'
 
 @NgModule({
   declarations: [
-    admin
+    pharmacy
   ],
   imports: [
     BrowserModule
   ],
   providers: [],
-  bootstrap: [admin]
+  bootstrap: [pharmacy]
 })
 export class AppModule { }
