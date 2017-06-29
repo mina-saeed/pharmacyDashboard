@@ -1,0 +1,165 @@
+
+<body class="login" >
+        <div>
+                <a class="hiddenanchor" id="signup"></a>
+                <a class="hiddenanchor" id="signin"></a>
+
+                <div class="login_wrapper" >
+                        <div class="animate form login_form">
+                                <section class="login_content">
+                                        <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)" nonvalidate>
+                                                <h1>Login Form</h1>
+                                                <div>
+                                                        <input type="text" class="form-control" id="email" name="email" #emailRef = "ngModel" placeholder="Email Address" required email ngModel />
+                
+                                                        <div [hidden]="emailRef.valid || emailRef.untouched " class="alert alert-danger">
+                                                                
+                                                                Please enter Valid email address
+                                                        
+                                                        </div>
+                                                </div>
+                                                
+                                                <div>
+                                                        <input type="password" class="form-control" id="password" name="password" #passRef ="ngModel" required placeholder="Password" required="" ngModel/>
+
+                                                        <div [hidden]="passRef.valid || passRef.untouched" class="alert alert-danger">                  please enter your password 
+                                                        </div>
+
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                
+                                                <div>
+                                                        <button [disabled]="!loginForm.form.valid" type="submit" class="btn btn-default submit" >Log in</button>
+                                                </div>
+                                                <div class="separator">
+                                                
+                                                        <p class="change_link">New to site?
+                                                                <a href="#signup" class="to_register"> Create Account </a>
+                                                        </p>
+
+                                                        <div class="clearfix"></div>
+                                                        <br />
+                                                </div>
+                                        </form>
+                                </section>
+                        </div>
+
+                <div id="register" class="animate form registration_form">
+                        <section class="login_content">
+                                <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
+                                        <h1>Create Account</h1>
+                                <div>
+                                        <input type="text" class="form-control" id="pharma_name" name="pharma_name" #pharmaName= "ngModel" placeholder="pharmacy name" required ngModel />
+                                        
+                                                <div [hidden]="pharmaName.valid || pharmaName.untouched" class="alert alert-danger">
+                                                        
+                                                        Please Enter Pharmacy name
+                                                </div>
+                                </div>
+                                <div>
+                                        <input type="text" class="form-control" id="user_name" name="user_name" #registerName= "ngModel" placeholder="Username" required ngModel />
+                    
+                                                <div [hidden]="registerName.valid || registerName.untouched" class="alert alert-danger">
+                                                        Please Enter username
+                                                </div>
+                                </div>
+
+                                <div>
+                                        <input type="password" class="form-control" #regPass="ngModel" id="reg_password" name="reg_password" placeholder="Password" required ngModel />
+                              
+                                        <div [hidden]="regPass.valid || regPass.untouched" class="alert alert-danger">
+                                                Please Enter Password
+                                        </div>
+                                </div>
+                                <div ngModelGroup="address">
+                                <div class="form-group">
+                                        <label for="name">City <span class="required">*</span></label>
+                                        
+                                        <div class="btn-group">
+
+                                                <select class="form-control"  name="city" id="city"  ngModel>
+                                                        <option value="Cairo">Cairo</option>
+                                                        <option value="Alexandria">Alexandria</option>
+                                                        <option value="Giza">Giza</option>
+                                                        <option value="Helwan">Helwan</option>
+                                                </select>
+                                        </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Location 
+                                                <span class="required">*</span>
+                                        </label>
+                                        <div class="btn-group">
+
+                                                <select class="form-control" name="location"  ngModel>
+                                                        <option value="one">One</option>
+                                                        <option value="two">Two</option>
+                                                        <option value="three">Three</option>
+                                                        <option value="four">Four</option>
+                                                        <option value="five">Five</option>
+                                                </select>
+                                        </div>
+                                       
+                                </div>
+                                
+                                <div>
+                                        <input type="text" class="form-control" id="street" name="street" #strName= "ngModel" placeholder="Street name" required ngModel />
+                                        
+                                        <div [hidden]="strName.valid || strName.untouched" class="alert alert-danger">
+                                                Please Enter Street name
+                                        </div>
+                                </div>
+                    <div class="group-control">
+                    <label class="control-label col-md-6 col-sm-6 col-xs-12" for="name">Deliver To <span class="required">*</span>
+                        </label>
+                    <div class="btn-group">
+
+                        <select class="form-control"  name="deliverTo" id="deliverTo"  ngModel>
+                            <option value="Maadi">Maadi</option>
+                            <option value="Zamalek">Zamalek</option>
+                            <option value="nasr_city">Nasr City</option>                           
+                        </select>
+                    </div>
+                    </div>
+                    </div>
+              <div>
+                <input type="text" class="form-control" id="time" name="time" #timeRef= "ngModel" placeholder="Delivery Time" required ngModel />
+                    <div [hidden]="timeRef.valid || timeRef.untouched" class="alert alert-danger">
+                    Please Enter Delivery Time
+                    </div>
+              </div>
+              <div>
+                <input type="text" class="form-control"  name="tel"  placeholder="Telephone number" required ngModel />
+
+              </div>
+              <div>
+                <input type="text" class="form-control" id="mobile" name="mobile" #mobRef= "ngModel" placeholder="Mobile No" required ngModel />
+                    <div [hidden]="mobRef.valid || mobRef.untouched" class="alert alert-danger">
+                    Please Enter Mobile Number
+                    </div>
+              </div>
+
+              <div>
+                <button class="btn btn-default submit" [disabled]="!registerForm.valid" >Submit</button>
+
+              </div>
+
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Already a member ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+                </div>
+                <div class="clearfix"></div>
+                <br />
+
+        
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
