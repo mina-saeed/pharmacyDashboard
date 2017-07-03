@@ -1,12 +1,14 @@
 import {NgModule} from '@angular/core'
 import {RouterModule ,Routes} from '@angular/router'
 
-import {login} from '../pharmacy/login.component'
-import {orders} from '../orders/orders.component'
-import {products} from '../products/products.component'
-import {newProduct} from '../products/newProduct.component'
-import {logout} from '../pharmacy/logout.component'
-import {pharmacysignupComponent} from '../pharmacySignUp.component'
+import {login} from '../pharmacy/login.component';
+import {orders} from '../orders/orders.component';
+import {products} from '../products/products.component';
+import {newProduct} from '../products/newProduct.component';
+import {logout} from '../pharmacy/logout.component';
+import {users} from '../shared/users.service';
+import {ValidateService} from '../shared/validate.service';
+import {pharmacysignupComponent} from '../pharmacySignUp.component';
 const componentRoutes: Routes =[
 	
 			{
@@ -43,8 +45,10 @@ const componentRoutes: Routes =[
 @NgModule({
 
 	imports:[
-		RouterModule.forRoot(componentRoutes)
+		RouterModule.forRoot(componentRoutes),
+		
 	],
+	providers: [users,ValidateService],
 	exports:[
 		RouterModule
 	]
