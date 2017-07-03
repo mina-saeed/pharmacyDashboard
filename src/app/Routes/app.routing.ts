@@ -30,7 +30,7 @@ const componentRoutes: Routes =[
 				component: newProduct
 			},
 			{
-				path: 'pharmacysignupComponent',
+				path: 'pharmacysignup',
 				component: pharmacysignupComponent
 			},
 			{
