@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import {HttpModule} from '@angular/http'
 import { AppComponent } from './app.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import {routes, RoutingComponents} from './Routes/app.routing'
 
 @NgModule({
@@ -12,7 +13,7 @@ import {routes, RoutingComponents} from './Routes/app.routing'
 
   ],
   imports: [
-    BrowserModule, FormsModule , HttpModule, routes
+    BrowserModule, FormsModule , HttpModule, routes,FlashMessagesModule
     ],
   providers: [],
   bootstrap: [AppComponent]

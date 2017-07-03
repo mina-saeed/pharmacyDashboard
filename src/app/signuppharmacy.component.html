@@ -24,33 +24,27 @@
           <h5>Pahrmacy Sign Up</h5>
         </div>
         <div class="widget-content nopadding">
-          <form action="#" method="get" class="form-horizontal">
+          <form (submit)="nSignupPharmacy()" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">Pharmacy Name :</label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="Pharmacy name" />
+                <input required type="text"[(ngModel)]="name" name="name"  class="span11" placeholder="Pharmacy name" />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">User Name :</label>
+              <label class="control-label">Email : </label>
               <div class="controls">
-                <input type="text" class="span11" placeholder="User name" />
+                <input required type="text" [(ngModel)]="email" name="email"  class="span11" placeholder="Email" />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Password</label>
+              <label class="control-label">Password : </label>
               <div class="controls">
-                <input type="password"  class="span11" placeholder="Enter Password"  />
+                <input required type="password" [(ngModel)]="password" name="password"   class="span11" placeholder="Enter Password"  />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Confirm Password</label>
-              <div class="controls">
-                <input type="password"  class="span11" placeholder="Confirm Password"  />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">City</label>
+              <label class="control-label">City : </label>
               <div class="controls">
                 <select >
                   <option>First option</option>
@@ -65,32 +59,11 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Location</label>
-              <div class="controls">
-                <select >
-                  <option>First option</option>
-                  <option>Second option</option>
-                  <option>Third option</option>
-                  <option>Fourth option</option>
-                  <option>Fifth option</option>
-                  <option>Sixth option</option>
-                  <option>Seventh option</option>
-                  <option>Eighth option</option>
-                </select>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Street Name</label>
-              <div class="controls">
-                <input type="text"  class="span11" placeholder="Street Name"  />
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label">Deliver To</label>
+              <label class="control-label">Location : </label>
               <div class="controls">
                 <select multiple >
                   <option>First option</option>
-                  <option selected>Second option</option>
+                  <option>Second option</option>
                   <option>Third option</option>
                   <option>Fourth option</option>
                   <option>Fifth option</option>
@@ -101,21 +74,48 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Delivery Time</label>
+              <label class="control-label">Street Name : </label>
               <div class="controls">
-                <input type="number"  class="span11" placeholder="Delivery Time"  />
+                <input required type="text"  [(ngModel)]="street" name="street" class="span11" placeholder="Street Name"  />
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Tel Number</label>
+              <label class="control-label">Deliver To : </label>
               <div class="controls">
-                <input type="text"  class="span11" placeholder="Tel Number"  />
+                <select multiple >
+                  <option>First option</option>
+                  <option >Second option</option>
+                  <option>Third option</option>
+                  <option>Fourth option</option>
+                  <option>Fifth option</option>
+                  <option>Sixth option</option>
+                  <option>Seventh option</option>
+                  <option>Eighth option</option>
+                </select>
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Mobile Number</label>
+              <label class="control-label">Delivery Time : </label>
               <div class="controls">
-                <input type="text"  class="span11" placeholder="Mobile Number"  />
+                <input required type="number" [(ngModel)]="time" name="time"  class="span11" placeholder="Delivery Time"  />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Telephone Number : </label>
+              <div class="controls">
+                <input required type="text" [(ngModel)]="telephone" name="telephone"  class="span11" placeholder="Tel Number"  />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Mobile Number : </label>
+              <div class="controls">
+                <input type="text" [(ngModel)]="mobile" name="mobile"  class="span11" placeholder="Mobile Number"  />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Logo : </label>
+              <div class="controls">
+                <input type="file" style="display:inline-block" name="logo" (change)="fileChange($event)" accept="image/*" class="span11" />
               </div>
             </div>
             <div class="form-actions">

@@ -6,6 +6,7 @@ import {orders} from '../orders/orders.component'
 import {products} from '../products/products.component'
 import {newProduct} from '../products/newProduct.component'
 import {logout} from '../pharmacy/logout.component'
+import {pharmacysignupComponent} from '../pharmacySignUp.component'
 const componentRoutes: Routes =[
 	
 			{
@@ -29,6 +30,10 @@ const componentRoutes: Routes =[
 				component: newProduct
 			},
 			{
+				path: 'pharmacysignupComponent',
+				component: pharmacysignupComponent
+			},
+			{
 				path: 'logout',
 				component: logout
 			}			
@@ -45,4 +50,4 @@ const componentRoutes: Routes =[
 	]
 })
 export class routes{}
-export const RoutingComponents =[login , logout, orders , products , newProduct]
+export const RoutingComponents =[login , logout, orders , products , newProduct,pharmacysignupComponent]
