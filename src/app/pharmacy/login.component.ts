@@ -82,5 +82,9 @@ export class login {
               });
 
 
+	}
+	createNewAccount()
+	{
+		this.router.navigate(['/pharmacysignup']);
 	}	
 } 

@@ -17,6 +17,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  
 <div class="container-fluid">
   <div class="row-fluid">
       <div class="widget-box">
@@ -59,14 +60,15 @@
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Location : </label>
+             <label class="control-label">Location : </label>
               <div class="controls">
-                <angular2-multiselect [data]="dropdownListLocation" [(ngModel)]="selectedItemsLocation" 
+                <angular2-multiselect [data]="dropdownListLocation" [(ngModel)]="selectedItemsLocation" [ngModelOptions]="{standalone: true}"
                   [settings]="dropdownSettingsLocation" 
                   (onSelect)="onItemSelectLocation($event)" 
-                  (onDeSelect)="OnItemDeSelectLocation($event)"
+                  (onDeSelect)="onItemDeSelectLocation($event)"
                   (onSelectAll)="onSelectAllLocation($event)"
                   (onDeSelectAll)="onDeSelectAllLocation($event)"></angular2-multiselect>
+                
               </div>
             </div>
             <div class="control-group">
@@ -78,12 +80,13 @@
             <div class="control-group">
               <label class="control-label">Deliver To : </label>
               <div class="controls">
-                <angular2-multiselect [data]="dropdownListDeliverTo" [(ngModel)]="selectedItemsDeliverTo" 
+                <angular2-multiselect [data]="dropdownListDeliverTo" [(ngModel)]="selectedItemsDeliverTo" [ngModelOptions]="{standalone: true}"
                   [settings]="dropdownSettingsDeliverTo" 
                   (onSelect)="onItemSelectDeliverTo($event)" 
                   (onDeSelect)="onItemDeSelectDeliverTo($event)"
                   (onSelectAll)="onSelectAllDeliverTo($event)"
                   (onDeSelectAll)="onDeSelectAllDeliverTo($event)"></angular2-multiselect>
+                
               </div>
             </div>
             <div class="control-group">
