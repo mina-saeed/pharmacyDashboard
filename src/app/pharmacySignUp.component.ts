@@ -31,9 +31,12 @@ export class pharmacysignupComponent implements OnInit{
 	SixthOption:boolean;
 	SeventhOption:boolean;
 	EighthOption:boolean;
-	dropdownList = [];
-    selectedItems = [];
-    dropdownSettings = {};
+	dropdownListLocation = [];
+    selectedItemsLocation = [];
+    dropdownSettingsLocation = {};
+	dropdownListDeliverTo = [];
+    selectedItemsDeliverTo = [];
+    dropdownSettingsDeliverTo = {};
 
 
 	
@@ -46,7 +49,7 @@ export class pharmacysignupComponent implements OnInit{
 	) {}
 ngOnInit()
 {
-		 this.dropdownList = [
+		 this.dropdownListLocation = [
                               {"id":1,"itemName":"India"},
                               {"id":2,"itemName":"Singapore"},
                               {"id":3,"itemName":"Australia"},
@@ -58,30 +61,56 @@ ngOnInit()
                               {"id":9,"itemName":"Italy"},
                               {"id":10,"itemName":"Sweden"}
                             ];
-        this.selectedItems = [
+        this.selectedItemsLocation = [
                                 {"id":2,"itemName":"Singapore"},
                                 {"id":3,"itemName":"Australia"},
                                 {"id":4,"itemName":"Canada"},
                                 {"id":5,"itemName":"South Korea"}
                             ];
-        this.dropdownSettings = { 
+        this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
-                                  text:"Select Countries",
+                                  text:"Select Locations",
                                   selectAllText:'Select All',
                                   unSelectAllText:'UnSelect All',
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
-                                };            
+                                }; 
+		this.dropdownListDeliverTo = [
+                              {"id":1,"itemName":"Nasr City"},
+                              {"id":2,"itemName":"Zamalek"},
+                              {"id":3,"itemName":"Shobra"},
+                              {"id":4,"itemName":"Masr Gedida"},
+                              {"id":5,"itemName":"Tahrir"},
+                              {"id":6,"itemName":"Mohandesen"},
+                              {"id":7,"itemName":"Tagamooh"},
+                              {"id":8,"itemName":"Ramsis"},
+                              {"id":9,"itemName":"Sheraton"},
+                              {"id":10,"itemName":"Nozha"}
+                            ];
+        this.selectedItemsDeliverTo = [
+                                {"id":2,"itemName":"Zamalek"},
+                                {"id":3,"itemName":"Shobra"},
+                                {"id":4,"itemName":"Masr Gedida"},
+                                {"id":5,"itemName":"Tahrir"}
+                            ];
+        this.dropdownSettingsDeliverTo = { 
+                                  singleSelection: false, 
+                                  text:"Select Deliver to ...",
+                                  selectAllText:'Select All',
+                                  unSelectAllText:'UnSelect All',
+                                  enableSearchFilter: true,
+                                  classes:"myclass custom-class"
+                                };                       
     
 }
 
  onItemSelect(item:any){
         console.log(item);
-        console.log(this.selectedItems);
+        console.log(this.selectedItemsLocation);
     }
     OnItemDeSelect(item:any){
         console.log(item);
-        console.log(this.selectedItems);
+        console.log(this.selectedItemsLocation);
     }
     onSelectAll(items: any){
         console.log(items);
@@ -97,39 +126,6 @@ fileChange(event)
 
 onSignupPharmacy()
 {
-
-	if (this.FirstOption)
-	{
-		this.location.location.push("FirstOption : null");
-	}
-	if (this.SecondOption)
-	{
-		this.location.location.push("SecondOption : null");
-	}
-	if (this.ThirdOption)
-	{
-		this.location.location.push("ThirdOption : null");
-	}
-	if (this.FourthOption)
-	{
-		this.location.location.push("FourthOption : null");
-	}
-	if (this.FifthOption)
-	{
-		this.location.location.push("FifthOption : null");
-	}
-	if (this.SixthOption)
-	{
-		this.location.location.push("SixthOption : null");
-	}
-	if (this.SeventhOption)
-	{
-		this.location.location.push("SeventhOption : null");
-	}
-	if (this.EighthOption)
-	{
-		this.location.location.push("EighthOption : null");
-	}
 	if (this.FirstOption)
 	{
 		this.location.deliverTo.push("FirstOption : null");
@@ -225,6 +221,13 @@ onSignupPharmacy()
 		window.scrollTo(0,0);
 		
     }
+	console.log(this.name);
+	console.log(this.email);
+	console.log(this.telephone);
+	console.log(this.mobile);
+	console.log(this.time);
+	console.log(this.location.city);
+	console.log(this.location.street);
 		
 	
 	formData.append('name', this.name.toString());
