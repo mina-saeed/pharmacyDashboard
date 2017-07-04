@@ -61,20 +61,6 @@ ngOnInit()
                               {"id":9,"itemName":"Italy"},
                               {"id":10,"itemName":"Sweden"}
                             ];
-        this.selectedItemsLocation = [
-                                {"id":2,"itemName":"Singapore"},
-                                {"id":3,"itemName":"Australia"},
-                                {"id":4,"itemName":"Canada"},
-                                {"id":5,"itemName":"South Korea"}
-                            ];
-        this.dropdownSettingsLocation = { 
-                                  singleSelection: false, 
-                                  text:"Select Locations",
-                                  selectAllText:'Select All',
-                                  unSelectAllText:'UnSelect All',
-                                  enableSearchFilter: true,
-                                  classes:"myclass custom-class"
-                                }; 
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Nasr City"},
                               {"id":2,"itemName":"Zamalek"},
@@ -87,12 +73,30 @@ ngOnInit()
                               {"id":9,"itemName":"Sheraton"},
                               {"id":10,"itemName":"Nozha"}
                             ];
-        this.selectedItemsDeliverTo = [
+        this.selectedItemsLocation = [
+                                {"id":2,"itemName":"Singapore"},
+                                {"id":3,"itemName":"Australia"},
+                                {"id":4,"itemName":"Canada"},
+                                {"id":5,"itemName":"South Korea"}
+                            ];
+		
+		this.selectedItemsDeliverTo = [
                                 {"id":2,"itemName":"Zamalek"},
                                 {"id":3,"itemName":"Shobra"},
                                 {"id":4,"itemName":"Masr Gedida"},
                                 {"id":5,"itemName":"Tahrir"}
                             ];
+							
+        this.dropdownSettingsLocation = { 
+                                  singleSelection: false, 
+                                  text:"Select Locations",
+                                  selectAllText:'Select All',
+                                  unSelectAllText:'UnSelect All',
+                                  enableSearchFilter: true,
+                                  classes:"myclass custom-class"
+                                }; 
+		
+        
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -104,7 +108,7 @@ ngOnInit()
     
 }
 
- onItemSelectLocation(item:any){
+ 	onItemSelectLocation(item:any){
         console.log(item);
         console.log(this.selectedItemsLocation);
     }
@@ -124,7 +128,7 @@ ngOnInit()
         console.log(item);
         console.log(this.selectedItemsDeliverTo);
     }
-    OnItemDeSelectDeliverTo(item:any){
+    onItemDeSelectDeliverTo(item:any){
         console.log(item);
         console.log(this.selectedItemsDeliverTo);
     }
