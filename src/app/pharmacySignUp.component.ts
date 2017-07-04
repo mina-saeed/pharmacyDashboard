@@ -95,7 +95,7 @@ ngOnInit()
                             ];
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
-                                  text:"Select Deliver to ...",
+                                  text:"Select Deliver to",
                                   selectAllText:'Select All',
                                   unSelectAllText:'UnSelect All',
                                   enableSearchFilter: true,
@@ -104,18 +104,34 @@ ngOnInit()
     
 }
 
- onItemSelect(item:any){
+ onItemSelectLocation(item:any){
         console.log(item);
         console.log(this.selectedItemsLocation);
     }
-    OnItemDeSelect(item:any){
+    OnItemDeSelectLocation(item:any){
         console.log(item);
         console.log(this.selectedItemsLocation);
     }
-    onSelectAll(items: any){
+    onSelectAllLocation(items: any){
         console.log(items);
     }
-    onDeSelectAll(items: any){
+    onDeSelectAllLocation(items: any){
+        console.log(items);
+    }
+
+
+	onItemSelectDeliverTo(item:any){
+        console.log(item);
+        console.log(this.selectedItemsDeliverTo);
+    }
+    OnItemDeSelectDeliverTo(item:any){
+        console.log(item);
+        console.log(this.selectedItemsDeliverTo);
+    }
+    onSelectAllDeliverTo(items: any){
+        console.log(items);
+    }
+    onDeSelectAllDeliverTo(items: any){
         console.log(items);
     }
 
