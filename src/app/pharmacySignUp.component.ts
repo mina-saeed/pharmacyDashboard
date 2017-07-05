@@ -148,8 +148,10 @@ fileChange(event)
     	this.logo = event.target.files;
   	}
 
-onSignupPharmacy()
+onSignupPharmacy(data:any)
 {
+
+	console.log(data);
 	if (this.FirstOption)
 	{
 		this.location.deliverTo.push("FirstOption : null");

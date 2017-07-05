@@ -25,23 +25,23 @@
           <h5>Pahrmacy Sign Up</h5>
         </div>
         <div class="widget-content nopadding">
-          <form (submit)="nSignupPharmacy()" class="form-horizontal">
+          <form  #reg="ngForm" (ngSubmit)="onSignupPharmacy(reg.value)" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">Pharmacy Name :</label>
               <div class="controls">
-                <input required type="text"[(ngModel)]="name" name="name"  class="span11" placeholder="Pharmacy name" />
+                <input required type="text" name="name"  class="span11" placeholder="Pharmacy name" ngModel />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Email : </label>
               <div class="controls">
-                <input required type="text" [(ngModel)]="email" name="email"  class="span11" placeholder="Email" />
+                <input required type="text"  name="email"  class="span11" placeholder="Email" ngModel />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Password : </label>
               <div class="controls">
-                <input required type="password" [(ngModel)]="password" name="password"   class="span11" placeholder="Enter Password"  />
+                <input required type="password"  name="password"   class="span11" placeholder="Enter Password"  ngModel />
               </div>
             </div>
             <div class="control-group">
@@ -74,7 +74,7 @@
             <div class="control-group">
               <label class="control-label">Street Name : </label>
               <div class="controls">
-                <input required type="text"  [(ngModel)]="street" name="street" class="span11" placeholder="Street Name"  />
+                <input  type="text"  name="street" class="span11" placeholder="Street Name"   ngModel />
               </div>
             </div>
             <div class="control-group">
@@ -92,19 +92,19 @@
             <div class="control-group">
               <label class="control-label">Delivery Time : </label>
               <div class="controls">
-                <input required type="number" [(ngModel)]="time" name="time"  class="span11" placeholder="Delivery Time"  />
+                <input required type="number"  name="time"  class="span11" placeholder="Delivery Time"  ngModel/>
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Telephone Number : </label>
               <div class="controls">
-                <input required type="text" [(ngModel)]="telephone" name="telephone"  class="span11" placeholder="Tel Number"  />
+                <input required type="text"  name="telephone"  class="span11" placeholder="Tel Number" ngModel />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Mobile Number : </label>
               <div class="controls">
-                <input type="text" [(ngModel)]="mobile" name="mobile"  class="span11" placeholder="Mobile Number"  />
+                <input type="text"  name="mobile"  class="span11" placeholder="Mobile Number" ngModel />
               </div>
             </div>
             <div class="control-group">
