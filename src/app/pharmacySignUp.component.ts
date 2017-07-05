@@ -237,7 +237,7 @@ onSignupPharmacy(signupForm)
 	formData.append('mobile', signupForm.mobile);
 	console.log(signupForm.mobile);
 	formData.append('password',signupForm.password.toString);
-	formData.append('time',  signupForm.time.toString());
+	formData.append('time',  signupForm.time);
 	console.log(signupForm.time);
 	formData.append('city', signupForm.city);
 	console.log(signupForm.city);
