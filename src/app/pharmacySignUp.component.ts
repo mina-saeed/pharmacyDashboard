@@ -148,85 +148,54 @@ fileChange(event)
     	this.logo = event.target.files;
   	}
 
-onSignupPharmacy()
+onSignupPharmacy(signupForm)
 {
-	if (this.FirstOption)
-	{
-		this.location.deliverTo.push("FirstOption : null");
-	}
-	if (this.SecondOption)
-	{
-		this.location.deliverTo.push("SecondOption : null");
-	}
-	if (this.ThirdOption)
-	{
-		this.location.deliverTo.push("ThirdOption : null");
-	}
-	if (this.FourthOption)
-	{
-		this.location.deliverTo.push("FourthOption : null");
-	}
-	if (this.FifthOption)
-	{
-		this.location.deliverTo.push("FifthOption : null");
-	}
-	if (this.SixthOption)
-	{
-		this.location.deliverTo.push("SixthOption : null");
-	}
-	if (this.SeventhOption)
-	{
-		this.location.deliverTo.push("SeventhOption : null");
-	}
-	if (this.EighthOption)
-	{
-		this.location.deliverTo.push("EighthOption : null");
-	}
+	
 	var formData: FormData = new FormData();
 
-    if(this.logo)
-      if (this.logo.length > 0)
+    if(signupForm.logo)
+      if (signupForm.logo.length > 0)
       {
-        let file: File = this.logo[0];
+        let file: File = signupForm.logo[0];
         formData.append('uploadFile', file, file.name);
       }
 
-	  if (!this.validateService.validateIllegal(this.name)
-      || !this.validateService.validateIllegal(this.location.street)
-	  || !this.validateService.validateIllegal(this.location.city))
+	  if (!this.validateService.validateIllegal(signupForm.name)
+      || !this.validateService.validateIllegal(signupForm.street)
+	  || !this.validateService.validateIllegal(signupForm.city))
 	   	{
 			this.FlashMessages.show("please check your inputs in the name cell, street cell or city cell , they all have to be legal characters  ", { cssClass: 'alert-warning', timeout: 5000 });
 			
       
     	}
-	 else if (!this.validateService.validatePassword(this.password))
+	 else if (!this.validateService.validatePassword(signupForm.password))
 		{
 			this.FlashMessages.show("please insert a valid Password with at least 8 characters and not more than 15 characters", { cssClass: 'alert-warning', timeout: 5000 });
 			
     
     	}
-	else if (!this.validateService.validateEmail(this.email))
+	else if (!this.validateService.validateEmail(signupForm.email))
 	 	{
 			this.FlashMessages.show('Please use a valid email', { cssClass: 'alert-danger', timeout: 3000 });
 			
 		
     	}
 	
-	else if (!this.validateService.validateTelephone(this.telephone)) 
+	else if (!this.validateService.validateTelephone(signupForm.telephone)) 
 		{
 			this.FlashMessages.show('Please use a valid Telephone number', { cssClass: 'alert-danger', timeout: 3000 });
 			
       
     	}
 	
-	else if (!this.validateService.validateMobile(this.mobile)) 
+	else if (!this.validateService.validateMobile(signupForm.mobile)) 
 		{
 			this.FlashMessages.show('Please use a valid mobile number', { cssClass: 'alert-danger', timeout: 3000 });
 			
       
     	}
 
-	else if (!this.validateService.validatePositive(this.time)) 
+	else if (!this.validateService.validatePositive(signupForm.time)) 
 		{
 			this.FlashMessages.show('Please use a valid positive time to enter', { cssClass: 'alert-danger', timeout: 3000 });
 			
@@ -259,29 +228,57 @@ onSignupPharmacy()
 
 		
 	
-	formData.append('name', this.name.toString());
-	console.log(this.name);
-	formData.append('email', this.email.toString());
-	console.log(this.email);
-	formData.append('telephone', this.telephone.toString());
-	console.log(this.telephone);
-	formData.append('mobile', this.mobile.toString());
-	console.log(this.mobile);
-	formData.append('password',this.password.toString());
-	formData.append('time',  this.time.toString());
-	console.log(this.time);
-	formData.append('city', this.location.city.toString());
-	console.log(this.location.city);
-	formData.append('street', this.location.street.toString());
-	console.log(this.location.street);
+	formData.append('name', signupForm.name);
+	console.log(signupForm.name);
+	formData.append('email', signupForm.email);
+	console.log(signupForm.email);
+	formData.append('telephone', signupForm.telephone);
+	console.log(signupForm.telephone);
+	formData.append('mobile', signupForm.mobile);
+	console.log(signupForm.mobile);
+	formData.append('password',signupForm.password.toString);
+	formData.append('time',  signupForm.time.toString());
+	console.log(signupForm.time);
+	formData.append('city', signupForm.city);
+	console.log(signupForm.city);
+	formData.append('street', signupForm.street);
+	console.log(signupForm.street);
 	formData.append('location', this.location.location.toString());
 	formData.append('deliverTo', this.location.deliverTo.toString());
 
 
-	let token = btoa(formData.toString());
+	   let date = new Date();
+ 
+ 		let h = date.getHours();
+ 		let m  = date.getMinutes();
+ 		var minutes :string='';
+ 		var hours :string='' ;
+ 		if(m<10){
+ 			minutes = '0'+''+m+'';
+ 		}else{
+ 			minutes = ''+m+'';
+ 		}
+ 
+ 		if(h<10){
+ 			hours = '0'+''+h+'';
+ 		}else{
+ 			hours = ''+h+'';
+ 		}
+ 		let date_format = hours+':'+minutes;
+ 		let token = btoa(date_format+date_format);
 
 
-	this.UserService.register(formData,token).subscribe (data =>{});
+	this.UserService.register(formData,token).subscribe (res =>{
+		if (res)
+		{
+		  return this.router.navigate(['/login']) ;  
+		}                 
+        else
+		{
+            return false;
+                     
+		}
+	});
 
 }	
 }

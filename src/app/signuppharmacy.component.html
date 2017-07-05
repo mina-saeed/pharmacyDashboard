@@ -25,23 +25,23 @@
           <h5>Pahrmacy Sign Up</h5>
         </div>
         <div class="widget-content nopadding">
-          <form (submit)="nSignupPharmacy()" class="form-horizontal">
+          <form class="form-horizontal" #signupForm="ngForm" (submit)="onSignupPharmacy(signupForm.value)" >
             <div class="control-group">
               <label class="control-label">Pharmacy Name :</label>
               <div class="controls">
-                <input required type="text"[(ngModel)]="name" name="name"  class="span11" placeholder="Pharmacy name" />
+                <input  type="text" id="name" name="name" #name= "ngModel"  class="form-control" placeholder="Pharmacy name" required ngModel  />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Email : </label>
               <div class="controls">
-                <input required type="text" [(ngModel)]="email" name="email"  class="span11" placeholder="Email" />
+                <input type="text" id="email" name="email" #email="ngModel"  class="form-control" placeholder="Email" required ngModel />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Password : </label>
               <div class="controls">
-                <input required type="password" [(ngModel)]="password" name="password"   class="span11" placeholder="Enter Password"  />
+                <input type="password" id="password" name="password" #password="ngModel"   class="form-control" placeholder="Enter Password" required ngModel  />
               </div>
             </div>
             <div class="control-group">
@@ -74,7 +74,7 @@
             <div class="control-group">
               <label class="control-label">Street Name : </label>
               <div class="controls">
-                <input required type="text"  [(ngModel)]="street" name="street" class="span11" placeholder="Street Name"  />
+                <input type="text" id="street" name="street" #street="ngModel" class="form-control" placeholder="Street Name" required ngModel />
               </div>
             </div>
             <div class="control-group">
@@ -92,25 +92,25 @@
             <div class="control-group">
               <label class="control-label">Delivery Time : </label>
               <div class="controls">
-                <input required type="number" [(ngModel)]="time" name="time"  class="span11" placeholder="Delivery Time"  />
+                <input  type="number" id="time" name="time" #time="ngModel"  class="form-control" placeholder="Delivery Time" required ngModel />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Telephone Number : </label>
               <div class="controls">
-                <input required type="text" [(ngModel)]="telephone" name="telephone"  class="span11" placeholder="Tel Number"  />
+                <input  type="text" id="telephone" name="telephone" #telephone="ngModel"  class="form-control" placeholder="Tel Number" required ngModel />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Mobile Number : </label>
               <div class="controls">
-                <input type="text" [(ngModel)]="mobile" name="mobile"  class="span11" placeholder="Mobile Number"  />
+                <input type="text" id="mobile" name="mobile" #pmobile="ngModel"  class="form-control" placeholder="Mobile Number" required ngModel  />
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Logo : </label>
               <div class="controls">
-                <input type="file" style="display:inline-block" name="logo" (change)="fileChange($event)" accept="image/*" class="span11" />
+                <input type="file" id="logo" name="logo" #plogo="ngModel" style="display:inline-block" (change)="fileChange($event)" accept="image/*" class="span11"required ngModel />
               </div>
             </div>
             <div class="form-actions">
@@ -119,7 +119,8 @@
           </form>
         </div>
       </div>
-</div></div>
+  </div>
+</div>
 
 <!--end-Footer-part--> 
 <script src="/js/jquery.min.js"></script> 
