@@ -25,23 +25,39 @@
           <h5>Pahrmacy Sign Up</h5>
         </div>
         <div class="widget-content nopadding">
+<<<<<<< HEAD
           <form  #reg="ngForm" (ngSubmit)="onSignupPharmacy(reg.value)" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">Pharmacy Name :</label>
               <div class="controls">
                 <input required type="text" name="name"  class="span11" placeholder="Pharmacy name" ngModel />
+=======
+          <form class="form-horizontal" #signupForm="ngForm" (submit)="onSignupPharmacy(signupForm.value)" >
+            <div class="control-group">
+              <label class="control-label">Pharmacy Name :</label>
+              <div class="controls">
+                <input  type="text" id="name" name="name" #name= "ngModel"  class="form-control" placeholder="Pharmacy name" required ngModel  />
+>>>>>>> 49ecd551781e1384130f4d61ae21ff605c9bfeac
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Email : </label>
               <div class="controls">
+<<<<<<< HEAD
                 <input required type="text"  name="email"  class="span11" placeholder="Email" ngModel />
+=======
+                <input type="text" id="email" name="email" #email="ngModel"  class="form-control" placeholder="Email" required ngModel />
+>>>>>>> 49ecd551781e1384130f4d61ae21ff605c9bfeac
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Password : </label>
               <div class="controls">
+<<<<<<< HEAD
                 <input required type="password"  name="password"   class="span11" placeholder="Enter Password"  ngModel />
+=======
+                <input type="password" id="password" name="password" #password="ngModel"   class="form-control" placeholder="Enter Password" required ngModel  />
+>>>>>>> 49ecd551781e1384130f4d61ae21ff605c9bfeac
               </div>
             </div>
             <div class="control-group">
@@ -74,7 +90,11 @@
             <div class="control-group">
               <label class="control-label">Street Name : </label>
               <div class="controls">
+<<<<<<< HEAD
                 <input  type="text"  name="street" class="span11" placeholder="Street Name"   ngModel />
+=======
+                <input type="text" id="street" name="street" #street="ngModel" class="form-control" placeholder="Street Name" required ngModel />
+>>>>>>> 49ecd551781e1384130f4d61ae21ff605c9bfeac
               </div>
             </div>
             <div class="control-group">
@@ -92,25 +112,37 @@
             <div class="control-group">
               <label class="control-label">Delivery Time : </label>
               <div class="controls">
+<<<<<<< HEAD
                 <input required type="number"  name="time"  class="span11" placeholder="Delivery Time"  ngModel/>
+=======
+                <input  type="number" id="time" name="time" #time="ngModel"  class="form-control" placeholder="Delivery Time" required ngModel />
+>>>>>>> 49ecd551781e1384130f4d61ae21ff605c9bfeac
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Telephone Number : </label>
               <div class="controls">
+<<<<<<< HEAD
                 <input required type="text"  name="telephone"  class="span11" placeholder="Tel Number" ngModel />
+=======
+                <input  type="text" id="telephone" name="telephone" #telephone="ngModel"  class="form-control" placeholder="Tel Number" required ngModel />
+>>>>>>> 49ecd551781e1384130f4d61ae21ff605c9bfeac
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Mobile Number : </label>
               <div class="controls">
+<<<<<<< HEAD
                 <input type="text"  name="mobile"  class="span11" placeholder="Mobile Number" ngModel />
+=======
+                <input type="text" id="mobile" name="mobile" #pmobile="ngModel"  class="form-control" placeholder="Mobile Number" required ngModel  />
+>>>>>>> 49ecd551781e1384130f4d61ae21ff605c9bfeac
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Logo : </label>
               <div class="controls">
-                <input type="file" style="display:inline-block" name="logo" (change)="fileChange($event)" accept="image/*" class="span11" />
+                <input type="file" id="logo" name="logo" #plogo="ngModel" style="display:inline-block" (change)="fileChange($event)" accept="image/*" class="span11"required ngModel />
               </div>
             </div>
             <div class="form-actions">
@@ -119,7 +151,8 @@
           </form>
         </div>
       </div>
-</div></div>
+  </div>
+</div>
 
 <!--end-Footer-part--> 
 <script src="/js/jquery.min.js"></script> 
