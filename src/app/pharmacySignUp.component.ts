@@ -7,6 +7,7 @@ import {users} from './shared/users.service';
 
 
 @Component({
+	moduleId:module.id,
 
 	selector: 'app-pharmacysignup',
 
@@ -23,17 +24,17 @@ export class pharmacysignupComponent implements OnInit{
 	telephone:String;
 	mobile:String;
 	location:location;
-	FirstOption:boolean;
-	SecondOption:boolean;
-	ThirdOption:boolean;
-	FourthOption:boolean;
-	FifthOption:boolean;
-	SixthOption:boolean;
-	SeventhOption:boolean;
-	EighthOption:boolean;
+	city:String;
+	street:String;
 	dropdownListLocation = [];
     selectedItemsLocation = [];
     dropdownSettingsLocation = {};
+	dropdownListLocationCairo = [];
+    selectedItemsLocationCairo = [];
+    dropdownSettingsLocationCairo = {};
+	dropdownListLocationGiza = [];
+    selectedItemsLocationGiza = [];
+    dropdownSettingsLocationGiza = {};
 	dropdownListDeliverTo = [];
     selectedItemsDeliverTo = [];
     dropdownSettingsDeliverTo = {};
@@ -51,43 +52,82 @@ export class pharmacysignupComponent implements OnInit{
 	) {}
 ngOnInit()
 {
-
+	console.log(this.city);
+	this.city = 'Giza';
+	if (this.city == 'Cairo')
+	{
 		 this.dropdownListLocation = [
-                              {"id":1,"itemName":"India"},
-                              {"id":2,"itemName":"Singapore"},
-                              {"id":3,"itemName":"Australia"},
-                              {"id":4,"itemName":"Canada"},
-                              {"id":5,"itemName":"South Korea"},
-                              {"id":6,"itemName":"Germany"},
-                              {"id":7,"itemName":"France"},
-                              {"id":8,"itemName":"Russia"},
-                              {"id":9,"itemName":"Italy"},
-                              {"id":10,"itemName":"Sweden"}
+                              {"id":1,"itemName":"Abbassia"},
+                              {"id":2,"itemName":"Abdeen"},
+                              {"id":3,"itemName":"Al-Matariyyah"},
+                              {"id":4,"itemName":"Ain Shams"},
+                              {"id":5,"itemName":"Azbakeya"},
+                              {"id":6,"itemName":"Bab al-Louq"},
+                              {"id":7,"itemName":"Bulaq"},
+                              {"id":8,"itemName":"Daher"},
+                              {"id":9,"itemName":"Downtown"},
+                              {"id":10,"itemName":"El-Manial"},
+							  {"id":11,"itemName":"El-Marg"},
+                              {"id":12,"itemName":"El-Quba"},
+                              {"id":13,"itemName":"El-Sakakini"},
+                              {"id":14,"itemName":"El-Tagamu El-Khames"},
+                              {"id":15,"itemName":"Elsahel"},
+                              {"id":16,"itemName":"Ezbet El-Nakhl"},
+                              {"id":17,"itemName":"Faggala"},
+                              {"id":18,"itemName":"Fustat"},
+                              {"id":19,"itemName":"Garden City"},
+                              {"id":20,"itemName":"Heliopolis"},
+							  {"id":21,"itemName":"Maadi"},
+                              {"id":22,"itemName":"Mokattam"},
+                              {"id":23,"itemName":"Old cairo"},
+                              {"id":24,"itemName":"Rhoda"},
+                              {"id":25,"itemName":"Shubra"},
+                              {"id":26,"itemName":"Shubra El-Kheima"},
+                              {"id":27,"itemName":"Zamalek"}
+                 
                             ];
 		this.dropdownListDeliverTo = [
-                              {"id":1,"itemName":"Nasr City"},
-                              {"id":2,"itemName":"Zamalek"},
-                              {"id":3,"itemName":"Shobra"},
-                              {"id":4,"itemName":"Masr Gedida"},
-                              {"id":5,"itemName":"Tahrir"},
-                              {"id":6,"itemName":"Mohandesen"},
-                              {"id":7,"itemName":"Tagamooh"},
-                              {"id":8,"itemName":"Ramsis"},
-                              {"id":9,"itemName":"Sheraton"},
-                              {"id":10,"itemName":"Nozha"}
+                              {"id":1,"itemName":"Abbassia"},
+                              {"id":2,"itemName":"Abdeen"},
+                              {"id":3,"itemName":"Al-Matariyyah"},
+                              {"id":4,"itemName":"Ain Shams"},
+                              {"id":5,"itemName":"Azbakeya"},
+                              {"id":6,"itemName":"Bab al-Louq"},
+                              {"id":7,"itemName":"Bulaq"},
+                              {"id":8,"itemName":"Daher"},
+                              {"id":9,"itemName":"Downtown"},
+                              {"id":10,"itemName":"El-Manial"},
+							  {"id":11,"itemName":"El-Marg"},
+                              {"id":12,"itemName":"El-Quba"},
+                              {"id":13,"itemName":"El-Sakakini"},
+                              {"id":14,"itemName":"El-Tagamu El-Khames"},
+                              {"id":15,"itemName":"Elsahel"},
+                              {"id":16,"itemName":"Ezbet El-Nakhl"},
+                              {"id":17,"itemName":"Faggala"},
+                              {"id":18,"itemName":"Fustat"},
+                              {"id":19,"itemName":"Garden City"},
+                              {"id":20,"itemName":"Heliopolis"},
+							  {"id":21,"itemName":"Maadi"},
+                              {"id":22,"itemName":"Mokattam"},
+                              {"id":23,"itemName":"Old cairo"},
+                              {"id":24,"itemName":"Rhoda"},
+                              {"id":25,"itemName":"Shubra"},
+                              {"id":26,"itemName":"Shubra El-Kheima"},
+                              {"id":27,"itemName":"Zamalek"}
                             ];
-        this.selectedItemsLocation = [
-                                {"id":2,"itemName":"Singapore"},
-                                {"id":3,"itemName":"Australia"},
-                                {"id":4,"itemName":"Canada"},
-                                {"id":5,"itemName":"South Korea"}
+		this.selectedItemsLocation = [
+                                {"id":27,"itemName":"Zamalek"},
+                                {"id":22,"itemName":"Mokattam"},
+                                {"id":21,"itemName":"Maadi"},
+                                {"id":4,"itemName":"Ain Shams"}
                             ];
 		
+		
 		this.selectedItemsDeliverTo = [
-                                {"id":2,"itemName":"Zamalek"},
-                                {"id":3,"itemName":"Shobra"},
-                                {"id":4,"itemName":"Masr Gedida"},
-                                {"id":5,"itemName":"Tahrir"}
+                                {"id":27,"itemName":"Zamalek"},
+                                {"id":22,"itemName":"Mokattam"},
+                                {"id":21,"itemName":"Maadi"},
+                                {"id":4,"itemName":"Ain Shams"}
                             ];
 
         this.dropdownSettingsLocation = { 
@@ -107,9 +147,193 @@ ngOnInit()
                                   unSelectAllText:'UnSelect All',
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
-                                };                       
+                                };
+	}
+	else if (this.city== 'Giza')
+	{
+		this.dropdownListLocation = [
+							  {"id":1,"itemName":"Agouza"},
+                              {"id":2,"itemName":"Dokki"},
+                              {"id":3,"itemName":"Imbaba"},
+                              {"id":4,"itemName":"Mohandessin"},
+                              {"id":5,"itemName":"Alwaraq"},
+                              {"id":6,"itemName":"Bolaq Aldakrour"},
+                              {"id":7,"itemName":"Alkitkat"},
+                              {"id":8,"itemName":"Alagoza"},
+                              {"id":9,"itemName":"Bien Alsaryaat"},
+                              {"id":10,"itemName":"Faisal"},
+							  {"id":11,"itemName":"Alharam"},
+                              {"id":12,"itemName":"Almonieb"},
+                              {"id":13,"itemName":"Osiem"},
+                              {"id":14,"itemName":"Kerdasa"},
+                              {"id":15,"itemName":"Alhawamdia"},
+                              {"id":16,"itemName":"Abo Alnomros"},
+                              {"id":17,"itemName":"Alssaf"},
+                              {"id":18,"itemName":"Albadrachine"},
+                              {"id":19,"itemName":"Alayaat"},
+                              {"id":20,"itemName":"Atfieh"},
+							  {"id":21,"itemName":"Alshiekh Zaied"},
+                              {"id":22,"itemName":"6th of October"}
+                              
+                            ];
+		this.dropdownListDeliverTo = [
+							  {"id":1,"itemName":"Agouza"},
+                              {"id":2,"itemName":"Dokki"},
+                              {"id":3,"itemName":"Imbaba"},
+                              {"id":4,"itemName":"Mohandessin"},
+                              {"id":5,"itemName":"Alwaraq"},
+                              {"id":6,"itemName":"Bolaq Aldakrour"},
+                              {"id":7,"itemName":"Alkitkat"},
+                              {"id":8,"itemName":"Alagoza"},
+                              {"id":9,"itemName":"Bien Alsaryaat"},
+                              {"id":10,"itemName":"Faisal"},
+							  {"id":11,"itemName":"Alharam"},
+                              {"id":12,"itemName":"Almonieb"},
+                              {"id":13,"itemName":"Osiem"},
+                              {"id":14,"itemName":"Kerdasa"},
+                              {"id":15,"itemName":"Alhawamdia"},
+                              {"id":16,"itemName":"Abo Alnomros"},
+                              {"id":17,"itemName":"Alssaf"},
+                              {"id":18,"itemName":"Albadrachine"},
+                              {"id":19,"itemName":"Alayaat"},
+                              {"id":20,"itemName":"Atfieh"},
+							  {"id":21,"itemName":"Alshiekh Zaied"},
+                              {"id":22,"itemName":"6th of October"}
+							
+		];
+		this.selectedItemsLocation = [
+                                {"id":11,"itemName":"Alharam"},
+                              	{"id":12,"itemName":"Almonieb"},
+                              	{"id":13,"itemName":"Osiem"},
+                            ];
+		
+		
+		this.selectedItemsDeliverTo = [
+                                {"id":11,"itemName":"Alharam"},
+                              	{"id":12,"itemName":"Almonieb"},
+                              	{"id":13,"itemName":"Osiem"},
+                            ];
+
+        this.dropdownSettingsLocation = { 
+                                  singleSelection: false, 
+                                  text:"Select Locations",
+                                  selectAllText:'Select All',
+                                  unSelectAllText:'UnSelect All',
+                                  enableSearchFilter: true,
+                                  classes:"myclass custom-class"
+                                }; 
+		
+        
+        this.dropdownSettingsDeliverTo = { 
+                                  singleSelection: false, 
+                                  text:"Select Deliver to",
+                                  selectAllText:'Select All',
+                                  unSelectAllText:'UnSelect All',
+                                  enableSearchFilter: true,
+                                  classes:"myclass custom-class"
+    
+                            };
+	}
+	else{
+		this.dropdownListLocation = [
+                              {"id":1,"itemName":"Abbassia"},
+                              {"id":2,"itemName":"Abdeen"},
+                              {"id":3,"itemName":"Al-Matariyyah"},
+                              {"id":4,"itemName":"Ain Shams"},
+                              {"id":5,"itemName":"Azbakeya"},
+                              {"id":6,"itemName":"Bab al-Louq"},
+                              {"id":7,"itemName":"Bulaq"},
+                              {"id":8,"itemName":"Daher"},
+                              {"id":9,"itemName":"Downtown"},
+                              {"id":10,"itemName":"El-Manial"},
+							  {"id":11,"itemName":"El-Marg"},
+                              {"id":12,"itemName":"El-Quba"},
+                              {"id":13,"itemName":"El-Sakakini"},
+                              {"id":14,"itemName":"El-Tagamu El-Khames"},
+                              {"id":15,"itemName":"Elsahel"},
+                              {"id":16,"itemName":"Ezbet El-Nakhl"},
+                              {"id":17,"itemName":"Faggala"},
+                              {"id":18,"itemName":"Fustat"},
+                              {"id":19,"itemName":"Garden City"},
+                              {"id":20,"itemName":"Heliopolis"},
+							  {"id":21,"itemName":"Maadi"},
+                              {"id":22,"itemName":"Mokattam"},
+                              {"id":23,"itemName":"Old cairo"},
+                              {"id":24,"itemName":"Rhoda"},
+                              {"id":25,"itemName":"Shubra"},
+                              {"id":26,"itemName":"Shubra El-Kheima"},
+                              {"id":27,"itemName":"Zamalek"}
+                 
+                            ];
+		this.dropdownListDeliverTo = [
+                              {"id":1,"itemName":"Abbassia"},
+                              {"id":2,"itemName":"Abdeen"},
+                              {"id":3,"itemName":"Al-Matariyyah"},
+                              {"id":4,"itemName":"Ain Shams"},
+                              {"id":5,"itemName":"Azbakeya"},
+                              {"id":6,"itemName":"Bab al-Louq"},
+                              {"id":7,"itemName":"Bulaq"},
+                              {"id":8,"itemName":"Daher"},
+                              {"id":9,"itemName":"Downtown"},
+                              {"id":10,"itemName":"El-Manial"},
+							  {"id":11,"itemName":"El-Marg"},
+                              {"id":12,"itemName":"El-Quba"},
+                              {"id":13,"itemName":"El-Sakakini"},
+                              {"id":14,"itemName":"El-Tagamu El-Khames"},
+                              {"id":15,"itemName":"Elsahel"},
+                              {"id":16,"itemName":"Ezbet El-Nakhl"},
+                              {"id":17,"itemName":"Faggala"},
+                              {"id":18,"itemName":"Fustat"},
+                              {"id":19,"itemName":"Garden City"},
+                              {"id":20,"itemName":"Heliopolis"},
+							  {"id":21,"itemName":"Maadi"},
+                              {"id":22,"itemName":"Mokattam"},
+                              {"id":23,"itemName":"Old cairo"},
+                              {"id":24,"itemName":"Rhoda"},
+                              {"id":25,"itemName":"Shubra"},
+                              {"id":26,"itemName":"Shubra El-Kheima"},
+                              {"id":27,"itemName":"Zamalek"}
+                            ];
+		this.selectedItemsLocation = [
+                                {"id":27,"itemName":"Zamalek"},
+                                {"id":22,"itemName":"Mokattam"},
+                                {"id":21,"itemName":"Maadi"},
+                                {"id":4,"itemName":"Ain Shams"}
+                            ];
+		
+		
+		this.selectedItemsDeliverTo = [
+                                {"id":27,"itemName":"Zamalek"},
+                                {"id":22,"itemName":"Mokattam"},
+                                {"id":21,"itemName":"Maadi"},
+                                {"id":4,"itemName":"Ain Shams"}
+                            ];
+
+        this.dropdownSettingsLocation = { 
+                                  singleSelection: false, 
+                                  text:"Select Locations",
+                                  selectAllText:'Select All',
+                                  unSelectAllText:'UnSelect All',
+                                  enableSearchFilter: true,
+                                  classes:"myclass custom-class"
+                                }; 
+		
+        
+        this.dropdownSettingsDeliverTo = { 
+                                  singleSelection: false, 
+                                  text:"Select Deliver to",
+                                  selectAllText:'Select All',
+                                  unSelectAllText:'UnSelect All',
+                                  enableSearchFilter: true,
+                                  classes:"myclass custom-class"
+                                };
+	}                    
     
 }
+
+	
+
+
 	
 
  	onItemSelectLocation(item:any){
@@ -151,40 +375,8 @@ fileChange(event)
 
 onSignupPharmacy(data:any)
 {
-
 	console.log(data);
-/*	if (this.FirstOption)
-	{
-		this.location.deliverTo.push("FirstOption : null");
-	}
-	if (this.SecondOption)
-	{
-		this.location.deliverTo.push("SecondOption : null");
-	}
-	if (this.ThirdOption)
-	{
-		this.location.deliverTo.push("ThirdOption : null");
-	}
-	if (this.FourthOption)
-	{
-		this.location.deliverTo.push("FourthOption : null");
-	}
-	if (this.FifthOption)
-	{
-		this.location.deliverTo.push("FifthOption : null");
-	}
-	if (this.SixthOption)
-	{
-		this.location.deliverTo.push("SixthOption : null");
-	}
-	if (this.SeventhOption)
-	{
-		this.location.deliverTo.push("SeventhOption : null");
-	}
-	if (this.EighthOption)
-	{
-		this.location.deliverTo.push("EighthOption : null");
-	}*/
+
 }
 /*onSignupPharmacy(signupForm)
 {

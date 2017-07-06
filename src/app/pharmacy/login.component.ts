@@ -73,8 +73,9 @@ export class login {
 
 		this.user.register(userData,  token).subscribe(res => {
                     if(res){
-                        
-                        return this.router.navigate(['/login'])                    
+						console.log(userData);
+						console.log ('hello');
+                        //return this.router.navigate(['/login'])                    
                     }else{
                         return false
                     }
