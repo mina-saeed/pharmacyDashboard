@@ -53,7 +53,7 @@
             <div class="control-group">
               <label class="control-label">City : </label>
               <div class="controls">
-                <select [value]="city" (input)="city=$event.target.value" class="span11"  name="city" ngModel >
+                <select [ngModel]="city" (ngModelChange)="onChange($event)" name="city" class="span11"  >
                   <option value="Cairo">Cairo</option>
                   <option value="Giza">Giza</option>
                   <option value="Alexandria">Alexandria</option>
