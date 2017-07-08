@@ -34,8 +34,8 @@
                                                 <div class="separator">
                                                 
                                                         <p class="change_link">New to site?
-                                                             <! <a href="#signup" class="to_register"><!Create Account </a>
-                                                                 <a href="javascript:void(0)" (click)="createNewAccount()" style="color:#fcab0e"> Create Account</a>
+                                                              <a href="#signup" class="to_register">Create Account </a>
+                                                               <!  <a href="javascript:void(0)" (click)="createNewAccount()" style="color:#fcab0e"><! Create Account</a>
                                                         </p>
 
                                                         <div class="clearfix"></div>
@@ -50,7 +50,7 @@
                                 <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm.value)">
                                         <h1>Create Account</h1>
                                 <div>
-                                        <input type="text" class="form-control" id="pharma_name" name="pharma_name" #pharmaName= "ngModel" placeholder="pharmacy name" required ngModel />
+                                        <input  type="text" class="form-control" id="name" name="ame" #name= "ngModel" placeholder="pharmacy name" required ngModel />
                                         
                                                 <div [hidden]="pharmaName.valid || pharmaName.untouched" class="alert alert-danger">
                                                         
@@ -58,7 +58,7 @@
                                                 </div>
                                 </div>
                                 <div>
-                                        <input type="text" class="form-control" id="user_name" name="user_name" #registerName= "ngModel" placeholder="Username" required ngModel />
+                                        <input type="text" class="form-control" id="eamil" name="email" #email= "ngModel" placeholder="email" required ngModel />
                     
                                                 <div [hidden]="registerName.valid || registerName.untouched" class="alert alert-danger">
                                                         Please Enter username
@@ -66,7 +66,7 @@
                                 </div>
 
                                 <div>
-                                        <input type="password" class="form-control" #regPass="ngModel" id="reg_password" name="reg_password" placeholder="Password" required ngModel />
+                                        <input type="password" class="form-control" #Password="ngModel" id="password" name="password" placeholder="Password" required ngModel />
                               
                                         <div [hidden]="regPass.valid || regPass.untouched" class="alert alert-danger">
                                                 Please Enter Password
@@ -78,12 +78,34 @@
                                         
                                         <div class="btn-group">
 
-                                                <select class="form-control"  name="city" id="city"  ngModel>
-                                                        <option value="Cairo">Cairo</option>
-                                                        <option value="Alexandria">Alexandria</option>
-                                                        <option value="Giza">Giza</option>
-                                                        <option value="Helwan">Helwan</option>
-                                                </select>
+                                                <select [ngModel]="city" (ngModelChange)="onChange($event)" name="city" class="span11"  >
+								                  <option value="Cairo">Cairo</option>
+								                  <option value="Giza">Giza</option>
+								                  <option value="Alexandria">Alexandria</option>
+								                  <option value="Suez">Suez</option>
+								                  <option value="Ismailia">Ismailia</option>
+								                  <option value="Port Said">Port Said</option>
+								                  <option value="Damietta">Damietta</option>
+								                  <option value="Sharqia">Sharqia</option>
+								                  <option value="Qaliubiya">Qaliubiya</option>
+								                  <option value="El-Beheira">El-Beheira</option>
+								                  <option value="Kafr El-Shaeikh">Kafr El-Shaeikh</option>
+								                  <option value="Gharbia">Gharbia</option>
+								                  <option value="Monofia">Monofia</option>
+								                  <option value="Qena">Qena</option>
+								                  <option value="Menia">Menia</option>
+								                  <option value="Fayoum">Fayoum</option>
+								                  <option value="Beni Swaif">Beni Swaif</option>
+								                  <option value="Sohag">Sohag</option>
+								                  <option value="Assiut">Assiut</option>
+								                  <option value="Marsa Matrouh">Marsa Matrouh</option>
+								                  <option value="New Valley">New Valley</option>
+								                  <option value="Red Sea">Red Sea</option>
+								                  <option value="Luxor">Luxor</option>
+								                  <option value="Aswan">Aswan</option>
+								                  <option value="North Sinai">North Sinai</option>
+								                  <option value="South Sinai">South Sinai</option> 
+								                </select>
                                         </div>
 
                                 </div>
@@ -93,20 +115,19 @@
                                                 <span class="required">*</span>
                                         </label>
                                         <div class="btn-group">
-
-                                                <select class="form-control" name="location"  ngModel>
-                                                        <option value="one">One</option>
-                                                        <option value="two">Two</option>
-                                                        <option value="three">Three</option>
-                                                        <option value="four">Four</option>
-                                                        <option value="five">Five</option>
-                                                </select>
+										<angular2-multiselect [data]="dropdownListLocation" [(ngModel)]="selectedItemsLocation" [ngModelOptions]="{standalone: true}"
+										                  [settings]="dropdownSettingsLocation" 
+										                  (onSelect)="onItemSelectLocation($event)" 
+										                  (onDeSelect)="onItemDeSelectLocation($event)"
+										                  (onSelectAll)="onSelectAllLocation($event)"
+										                  (onDeSelectAll)="onDeSelectAllLocation($event)"></angular2-multiselect>
+                                               
                                         </div>
                                        
                                 </div>
                                 
                                 <div>
-                                        <input type="text" class="form-control" id="street" name="street" #strName= "ngModel" placeholder="Street name" required ngModel />
+                                        <input type="text" class="form-control" id="street" name="street" #street= "ngModel" placeholder="Street name" required ngModel />
                                         
                                         <div [hidden]="strName.valid || strName.untouched" class="alert alert-danger">
                                                 Please Enter Street name
@@ -116,31 +137,37 @@
                     <label class="control-label col-md-6 col-sm-6 col-xs-12" for="name">Deliver To <span class="required">*</span>
                         </label>
                     <div class="btn-group">
-
-                        <select class="form-control"  name="deliverTo" id="deliverTo"  ngModel>
-                            <option value="Maadi">Maadi</option>
-                            <option value="Zamalek">Zamalek</option>
-                            <option value="nasr_city">Nasr City</option>                           
-                        </select>
+                    	<angular2-multiselect [data]="dropdownListDeliverTo" [(ngModel)]="selectedItemsDeliverTo" [ngModelOptions]="{standalone: true}"
+		                  [settings]="dropdownSettingsDeliverTo" 
+		                  (onSelect)="onItemSelectDeliverTo($event)" 
+		                  (onDeSelect)="onItemDeSelectDeliverTo($event)"
+		                  (onSelectAll)="onSelectAllDeliverTo($event)"
+		                  (onDeSelectAll)="onDeSelectAllDeliverTo($event)"></angular2-multiselect>
+                        
                     </div>
                     </div>
                     </div>
               <div>
-                <input type="text" class="form-control" id="time" name="time" #timeRef= "ngModel" placeholder="Delivery Time" required ngModel />
+                <input type="text" class="form-control" id="time" name="time" #time= "ngModel" placeholder="Delivery Time" required ngModel />
                     <div [hidden]="timeRef.valid || timeRef.untouched" class="alert alert-danger">
                     Please Enter Delivery Time
                     </div>
               </div>
               <div>
-                <input type="text" class="form-control"  name="tel"  placeholder="Telephone number" required ngModel />
+                <input type="text" class="form-control"  name="telephone"  placeholder="Telephone number" required ngModel />
 
               </div>
               <div>
-                <input type="text" class="form-control" id="mobile" name="mobile" #mobRef= "ngModel" placeholder="Mobile No" required ngModel />
+                <input type="text" class="form-control" id="mobile" name="mobile" #mobile= "ngModel" placeholder="Mobile No" required ngModel />
                     <div [hidden]="mobRef.valid || mobRef.untouched" class="alert alert-danger">
                     Please Enter Mobile Number
                     </div>
               </div>
+              	<label class="control-label">Logo : </label>
+              		<div class="controls">
+                <input type="file" id="logo" name="logo" #plogo="ngModel" style="display:inline-block" (change)="fileChange($event)" accept="image/*" class="span11"required ngModel />
+              </div>
+            
 
               <div>
                 <button class="btn btn-default submit" [disabled]="!registerForm.valid" >Submit</button>

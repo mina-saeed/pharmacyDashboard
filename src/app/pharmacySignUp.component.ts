@@ -27,17 +27,11 @@ export class pharmacysignupComponent implements OnInit{
 	city:String = " ";
 	street:String;
 	dropdownListLocation = [];
-    selectedItemsLocation = [];
-    dropdownSettingsLocation = {};
-	dropdownListLocationCairo = [];
-    selectedItemsLocationCairo = [];
-    dropdownSettingsLocationCairo = {};
-	dropdownListLocationGiza = [];
-    selectedItemsLocationGiza = [];
-    dropdownSettingsLocationGiza = {};
+  selectedItemsLocation = [];
+  dropdownSettingsLocation = {};
 	dropdownListDeliverTo = [];
-    selectedItemsDeliverTo = [];
-    dropdownSettingsDeliverTo = {};
+  selectedItemsDeliverTo = [];
+  dropdownSettingsDeliverTo = {};
 	options: Array<any>;
     mySelectValue: Array<string>; // Array of strings for multi select, string for single select.
 
