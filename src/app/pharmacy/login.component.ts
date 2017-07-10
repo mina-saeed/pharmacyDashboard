@@ -14,7 +14,7 @@ import {ValidateService} from '../shared/validate.service';
 
 export class login implements OnInit {
 	pharmacy: Object;
-	name:String;
+	pharmaName:String;
 	email:String;
 	password:String;
 	logo:FileList;
@@ -1880,8 +1880,140 @@ fileChange(event)
 
 
 	}
-	onRegister(userData:any){
-		console.log(userData);
+	onRegister(data:any){
+		console.log(data);
+
+    var formData: FormData = new FormData();
+
+    if(data.logo)
+      if (data.logo.length > 0)
+      {
+        let file: File = data.logo[0];
+        formData.append('uploadFile', file, file.name);
+      }
+
+	  if (!this.validateService.validateIllegal(data.name)
+      || !this.validateService.validateIllegal(data.street)
+	  || !this.validateService.validateIllegal(data.city))
+	   	{
+			this.FlashMessages.show("please check your inputs in the name cell, street cell or city cell , they all have to be legal characters  ", { cssClass: 'alert-warning', timeout: 5000 });
+			
+      
+    	}
+	 else if (!this.validateService.validatePassword(data.password))
+		{
+			this.FlashMessages.show("please insert a valid Password with at least 8 characters and not more than 15 characters", { cssClass: 'alert-warning', timeout: 5000 });
+			
+    
+    	}
+	else if (!this.validateService.validateEmail(data.email))
+	 	{
+			this.FlashMessages.show('Please use a valid email', { cssClass: 'alert-danger', timeout: 3000 });
+			
+		
+    	}
+	
+	else if (!this.validateService.validateTelephone(data.telephone)) 
+		{
+			this.FlashMessages.show('Please use a valid Telephone number', { cssClass: 'alert-danger', timeout: 3000 });
+			
+      
+    	}
+	
+	else if (!this.validateService.validateMobile(data.mobile)) 
+		{
+			this.FlashMessages.show('Please use a valid mobile number', { cssClass: 'alert-danger', timeout: 3000 });
+			
+      
+    	}
+
+	else if (!this.validateService.validatePositive(data.time)) 
+		{
+			this.FlashMessages.show('Please use a valid positive time to enter', { cssClass: 'alert-danger', timeout: 3000 });
+			
+      
+    	}
+	else if (data.location.location.length == 0)
+	 {
+		this.FlashMessages.show('Please choose at least one location!', { cssClass: 'alert-danger', timeout: 3000 });
+		
+	
+    }
+
+	else if (data.location.deliverTo.length == 0) 
+	{
+		this.FlashMessages.show('Please choose at least one deliver to!', { cssClass: 'alert-danger', timeout: 3000 });
+		
+		
+    }
+	var i;
+	
+	
+	for (i=0; i<this.selectedItemsDeliverTo.length; i++)
+	{
+		this.location.deliverTo.push(this.selectedItemsDeliverTo[i]);
+	}
+	for (i=0; i<this.selectedItemsLocation.length; i++)
+	{
+		this.location.location.push(this.selectedItemsLocation[i]);
+	}
+
+		
+	
+	formData.append('name', data.name);
+	console.log(data.name);
+	formData.append('email', data.email);
+	console.log(data.email);
+	formData.append('telephone', data.telephone);
+	console.log(data.telephone);
+	formData.append('mobile', data.mobile);
+	console.log(data.mobile);
+	formData.append('password',data.password.toString);
+	formData.append('time',  data.time);
+	console.log(data.time);
+	formData.append('city', data.city);
+	console.log(data.city);
+	formData.append('street', data.street);
+	console.log(data.street);
+	formData.append('location', data.location.location);
+	formData.append('deliverTo', data.location.deliverTo.toString());
+
+  console.log(formData);
+
+
+	  let date = new Date();
+ 
+ 		let h = date.getHours();
+ 		let m  = date.getMinutes();
+ 		var minutes :string='';
+ 		var hours :string='' ;
+ 		if(m<10){
+ 			minutes = '0'+''+m+'';
+ 		}else{
+ 			minutes = ''+m+'';
+ 		}
+ 
+ 		if(h<10){
+ 			hours = '0'+''+h+'';
+ 		}else{
+ 			hours = ''+h+'';
+ 		}
+ 		let date_format = hours+':'+minutes;
+ 		let token = btoa(date_format+date_format);
+
+
+	this.user.register(formData,token).subscribe (res =>{
+		if (res)
+		{
+		//  return this.router.navigate(['/login']) ;  
+		}                 
+        else
+		{
+            return false;
+                     
+		}
+	});
+
 	}
 
 	/*	let date = new Date()
@@ -1917,13 +2049,13 @@ fileChange(event)
               });
 
 
-	}
+	}*/
 	createNewAccount()
 	{
 		this.router.navigate(['/pharmacysignup']);
 	}	
-}*/
 }
+
 interface location
 {
 	city:String;
