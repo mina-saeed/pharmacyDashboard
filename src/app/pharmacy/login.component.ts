@@ -30,10 +30,11 @@ export class login implements OnInit {
 	dropdownListDeliverTo = [];
   selectedItemsDeliverTo = [];
   dropdownSettingsDeliverTo = {};
+
 	constructor(
 		private user: users,
 		private router: Router,
-		private FlashMessages: FlashMessagesService, 
+		private flashMessage: FlashMessagesService, 
 		private validateService: ValidateService
 		 ){}
 
@@ -1896,53 +1897,53 @@ fileChange(event)
       || !this.validateService.validateIllegal(data.street)
 	  || !this.validateService.validateIllegal(data.city))
 	   	{
-			this.FlashMessages.show("please check your inputs in the name cell, street cell or city cell , they all have to be legal characters  ", { cssClass: 'alert-warning', timeout: 5000 });
+			this.flashMessage.show("please check your inputs in the name cell, street cell or city cell , they all have to be legal characters  ", { cssClass: 'alert-warning', timeout: 5000 });
 			
       
     	}
 	 else if (!this.validateService.validatePassword(data.password))
 		{
-			this.FlashMessages.show("please insert a valid Password with at least 8 characters and not more than 15 characters", { cssClass: 'alert-warning', timeout: 5000 });
+			this.flashMessage.show("please insert a valid Password with at least 8 characters and not more than 15 characters", { cssClass: 'alert-warning', timeout: 5000 });
 			
     
     	}
 	else if (!this.validateService.validateEmail(data.email))
 	 	{
-			this.FlashMessages.show('Please use a valid email', { cssClass: 'alert-danger', timeout: 3000 });
+			this.flashMessage.show('Please use a valid email', { cssClass: 'alert-danger', timeout: 3000 });
 			
 		
     	}
 	
 	else if (!this.validateService.validateTelephone(data.telephone)) 
 		{
-			this.FlashMessages.show('Please use a valid Telephone number', { cssClass: 'alert-danger', timeout: 3000 });
+			this.flashMessage.show('Please use a valid Telephone number', { cssClass: 'alert-danger', timeout: 3000 });
 			
       
     	}
 	
 	else if (!this.validateService.validateMobile(data.mobile)) 
 		{
-			this.FlashMessages.show('Please use a valid mobile number', { cssClass: 'alert-danger', timeout: 3000 });
+			this.flashMessage.show('Please use a valid mobile number', { cssClass: 'alert-danger', timeout: 3000 });
 			
       
     	}
 
 	else if (!this.validateService.validatePositive(data.time)) 
 		{
-			this.FlashMessages.show('Please use a valid positive time to enter', { cssClass: 'alert-danger', timeout: 3000 });
+			this.flashMessage.show('Please use a valid positive time to enter', { cssClass: 'alert-danger', timeout: 3000 });
 			
       
     	}
 	else if (data.location.location.length == 0)
 	 {
-		this.FlashMessages.show('Please choose at least one location!', { cssClass: 'alert-danger', timeout: 3000 });
+		this.flashMessage.show('Please choose at least one location!', { cssClass: 'alert-danger', timeout: 3000 });
 		
 	
     }
 
 	else if (data.location.deliverTo.length == 0) 
 	{
-		this.FlashMessages.show('Please choose at least one deliver to!', { cssClass: 'alert-danger', timeout: 3000 });
+		this.flashMessage.show('Please choose at least one deliver to!', { cssClass: 'alert-danger', timeout: 3000 });
 		
 		
     }
@@ -1951,11 +1952,11 @@ fileChange(event)
 	
 	for (i=0; i<this.selectedItemsDeliverTo.length; i++)
 	{
-		this.location.deliverTo.push(this.selectedItemsDeliverTo[i]);
+		this.location.deliverTo.push(this.selectedItemsDeliverTo[i] + ':null');
 	}
 	for (i=0; i<this.selectedItemsLocation.length; i++)
 	{
-		this.location.location.push(this.selectedItemsLocation[i]);
+		this.location.location.push(this.selectedItemsLocation[i]+ ':null');
 	}
 
 		
