@@ -40,6 +40,7 @@ export class login implements OnInit {
 
 		 ngOnInit()
 {
+
 	console.log(this.city);
 	
 		this.dropdownListLocation = [
@@ -1893,7 +1894,7 @@ fileChange(event)
         formData.append('uploadFile', file, file.name);
       }
 
-	  if (!this.validateService.validateIllegal(data.name)
+	/*  if (!this.validateService.validateIllegal(data.pharmaName)
       || !this.validateService.validateIllegal(data.street)
 	  || !this.validateService.validateIllegal(data.city))
 	   	{
@@ -1946,7 +1947,7 @@ fileChange(event)
 		this.flashMessage.show('Please choose at least one deliver to!', { cssClass: 'alert-danger', timeout: 3000 });
 		
 		
-    }
+    }*/
 	var i;
 	
 	
@@ -1956,7 +1957,7 @@ fileChange(event)
 	}
 	for (i=0; i<this.selectedItemsLocation.length; i++)
 	{
-		this.location.location.push(this.selectedItemsLocation[i]+ ':null');
+		this.location.location.push(this.selectedItemsLocation[i] + 'null');
 	}
 
 		
@@ -2016,41 +2017,6 @@ fileChange(event)
 	});
 
 	}
-
-	/*	let date = new Date()
-
-		let h = date.getHours()
-		let m  = date.getMinutes()
-		var minutes :string=''
-		var hours :string='' 
-		if(m<10){
-			minutes = '0'+''+m+''
-		}else{
-			minutes = ''+m+''
-		}
-
-		if(h<10){
-			hours = '0'+''+h+''
-		}else{
-			hours = ''+h+''
-		}
-		let date_format = hours+':'+minutes
-		let token = btoa(date_format+date_format)
-
-
-		this.user.register(userData,  token).subscribe(res => {
-                    if(res){
-						console.log(userData);
-						console.log ('hello');
-                        //return this.router.navigate(['/login'])                    
-                    }else{
-                        return false
-                    }
-
-              });
-
-
-	}*/
 	createNewAccount()
 	{
 		this.router.navigate(['/pharmacysignup']);
