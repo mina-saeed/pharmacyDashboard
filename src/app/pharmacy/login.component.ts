@@ -12,6 +12,7 @@ import {ValidateService} from '../shared/validate.service';
 	providers:[users]
 })
 
+
 export class login implements OnInit {
 	pharmacy: Object;
 	pharmaName:String;
@@ -1883,10 +1884,34 @@ fileChange(event)
 
 	}
 	onRegister(data:any){
-		console.log(data);
+		//console.log(data);
 
     var formData: FormData = new FormData();
+  formData.append('name', data.pharma_name);
+  console.log(data.pharma_name);
+  formData.append('email', data.email);
+  console.log(data.email);
+  formData.append('telephone', data.telephone);
+  console.log(data.telephone);
+  formData.append('mobile', data.mobile);
+  console.log(data.mobile);
+  formData.append('password',data.password.toString);
+  formData.append('time',  data.time);
+  console.log(data.time);
+  formData.append('city', data.city);
+  console.log(data.address.city);
+  formData.append('street', data.street);
+  console.log(data.address.street);
 
+var loc = JSON.stringify(this.selectedItemsLocation)
+console.log(loc)
+var deliver = JSON.stringify(this.selectedItemsDeliverTo)
+console.log(deliver)
+/*  formData.append('location', JSON.stringify(this.selectedItemsDeliverTo));
+
+  formData.append('deliverTo', JSON.stringify(this.selectedItemsLocation));*/
+
+console.log(formData)
     if(data.logo)
       if (data.logo.length > 0)
       {
@@ -1948,10 +1973,10 @@ fileChange(event)
 		
 		
     }*/
-	var i;
-	
-	
-	for (i=0; i<this.selectedItemsDeliverTo.length; i++)
+/*	var i;
+	console.log(JSON.stringify(this.selectedItemsDeliverTo))
+	console.log(JSON.stringify(this.selectedItemsLocation))*/
+/*	for (i=0; i<this.selectedItemsDeliverTo.length; i++)
 	{
 		this.location.deliverTo.push(this.selectedItemsDeliverTo[i] + ':null');
 	}
@@ -1959,28 +1984,11 @@ fileChange(event)
 	{
 		this.location.location.push(this.selectedItemsLocation[i] + 'null');
 	}
-
+*/
 		
 	
-	formData.append('name', data.name);
-	console.log(data.name);
-	formData.append('email', data.email);
-	console.log(data.email);
-	formData.append('telephone', data.telephone);
-	console.log(data.telephone);
-	formData.append('mobile', data.mobile);
-	console.log(data.mobile);
-	formData.append('password',data.password.toString);
-	formData.append('time',  data.time);
-	console.log(data.time);
-	formData.append('city', data.city);
-	console.log(data.city);
-	formData.append('street', data.street);
-	console.log(data.street);
-	formData.append('location', data.location.location);
-	formData.append('deliverTo', data.location.deliverTo.toString());
 
-  console.log(formData);
+
 
 
 	  let date = new Date();
@@ -2004,7 +2012,7 @@ fileChange(event)
  		let token = btoa(date_format+date_format);
 
 
-	this.user.register(formData,token).subscribe (res =>{
+/*	this.user.register(formData,token).subscribe (res =>{
 		if (res)
 		{
 		//  return this.router.navigate(['/login']) ;  
@@ -2015,7 +2023,7 @@ fileChange(event)
                      
 		}
 	});
-
+*/
 	}
 	createNewAccount()
 	{
