@@ -1883,9 +1883,97 @@ fileChange(event)
 
 
 	}
-onRegister(data:any){
+
+//onRegister(data:any){
+
+	onRegister(data:any){
+		//console.log(data);
+
+  /*var formData: FormData = new FormData();
+  formData.append('name', data.pharma_name);
+  console.log(data.pharma_name);
+  formData.append('email', data.email);
+  console.log(data.email);
+  formData.append('telephone', data.telephone);
+  console.log(data.telephone);
+  formData.append('mobile', data.mobile);
+  console.log(data.mobile);
+  formData.append('password',data.password.toString);
+  formData.append('time',  data.time);
+  console.log(data.time);
+  formData.append('city', data.city);
+  console.log(data.address.city);
+  formData.append('street', data.street);
+  console.log(data.address.street);
+
+  
+
+  console.log (this.selectedItemsDeliverTo.length);
+  var i =0;
+  for ( i; i< this.selectedItemsDeliverTo.length; i++)
+  {
+    formData.append('deliverTo',this.selectedItemsDeliverTo[i].itemName  + ':null' );
+    console.log(this.selectedItemsDeliverTo[i].itemName  + ':null');
+
+  }
+
+  console.log(this.selectedItemsLocation.length);
+  var j =0;
+
+  for ( j; j< this.selectedItemsLocation.length; j++)
+  { 
+    console.log(this.selectedItemsLocation[j].itemName  + ':null');
+    formData.append('location',this.selectedItemsLocation[j].itemName + ':null');
+
+  }
+  
+ 
 
 
+
+    if(data.logo)
+      if (data.logo.length > 0)
+      {
+        let file: File = data.logo[0];
+        formData.append('uploadFile', file, file.name);
+      }*/
+
+	/*  if (!this.validateService.validateIllegal(data.pharmaName)
+      || !this.validateService.validateIllegal(data.street)
+	  || !this.validateService.validateIllegal(data.city))
+	   	{
+			this.flashMessage.show("please check your inputs in the name cell, street cell or city cell , they all have to be legal characters  ", { cssClass: 'alert-warning', timeout: 5000 });
+			
+      
+    	}
+	 else if (!this.validateService.validatePassword(data.password))
+		{
+			this.flashMessage.show("please insert a valid Password with at least 8 characters and not more than 15 characters", { cssClass: 'alert-warning', timeout: 5000 });
+			
+    
+    	}
+	else if (!this.validateService.validateEmail(data.email))
+	 	{
+			this.flashMessage.show('Please use a valid email', { cssClass: 'alert-danger', timeout: 3000 });
+			
+		
+    	}
+	
+	else if (!this.validateService.validateTelephone(data.telephone)) 
+		{
+			this.flashMessage.show('Please use a valid Telephone number', { cssClass: 'alert-danger', timeout: 3000 });
+			
+      
+    	}
+	
+	else if (!this.validateService.validateMobile(data.mobile)) 
+		{
+			this.flashMessage.show('Please use a valid mobile number', { cssClass: 'alert-danger', timeout: 3000 });
+			
+      
+    	}
+
+*/
 var location_string = JSON.stringify(this.selectedItemsLocation)
 var locationObj = JSON.parse(location_string)
 
