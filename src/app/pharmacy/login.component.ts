@@ -1886,7 +1886,7 @@ fileChange(event)
 	onRegister(data:any){
 		//console.log(data);
 
-    var formData: FormData = new FormData();
+  var formData: FormData = new FormData();
   formData.append('name', data.pharma_name);
   console.log(data.pharma_name);
   formData.append('email', data.email);
@@ -1903,15 +1903,31 @@ fileChange(event)
   formData.append('street', data.street);
   console.log(data.address.street);
 
-var loc = JSON.stringify(this.selectedItemsLocation)
-console.log(loc)
-var deliver = JSON.stringify(this.selectedItemsDeliverTo)
-console.log(deliver)
-/*  formData.append('location', JSON.stringify(this.selectedItemsDeliverTo));
+  
 
-  formData.append('deliverTo', JSON.stringify(this.selectedItemsLocation));*/
+  console.log (this.selectedItemsDeliverTo.length);
+  var i =0;
+  for ( i; i< this.selectedItemsDeliverTo.length; i++)
+  {
+    formData.append('deliverTo',this.selectedItemsDeliverTo[i].itemName  + ':null' );
+    console.log(this.selectedItemsDeliverTo[i].itemName  + ':null');
 
-console.log(formData)
+  }
+
+  console.log(this.selectedItemsLocation.length);
+  var j =0;
+
+  for ( j; j< this.selectedItemsLocation.length; j++)
+  { 
+    console.log(this.selectedItemsLocation[j].itemName  + ':null');
+    formData.append('location',this.selectedItemsLocation[j].itemName + ':null');
+
+  }
+  
+ 
+
+
+
     if(data.logo)
       if (data.logo.length > 0)
       {
