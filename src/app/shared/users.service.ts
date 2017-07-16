@@ -5,7 +5,7 @@ import { Http ,Headers ,RequestOptions,Response } from '@angular/http'
 import 'rxjs/add/operator/map'
 @Injectable()
 export class users {
-	private url = 'http://207.154.240.16:3002'
+	private url = 'http://localhost:3002'
 	constructor(private http: Http , private router: Router){
 
 	}
