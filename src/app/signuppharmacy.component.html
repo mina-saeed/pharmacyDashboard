@@ -17,6 +17,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
+  
 <div class="container-fluid">
   <div class="row-fluid">
       <div class="widget-box">
@@ -24,125 +25,123 @@
           <h5>Pahrmacy Sign Up</h5>
         </div>
         <div class="widget-content nopadding">
-          <form (submit)="nSignupPharmacy()" class="form-horizontal">
+
+          <form  #reg="ngForm" (ngSubmit)="onSignupPharmacy(reg.value)" class="form-horizontal">
             <div class="control-group">
               <label class="control-label">Pharmacy Name :</label>
               <div class="controls">
-                <input required type="text"[(ngModel)]="name" name="name"  class="span11" placeholder="Pharmacy name" />
+                <input required type="text" name="name"  class="span11" placeholder="Pharmacy name" ngModel />
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Email : </label>
               <div class="controls">
-                <input required type="text" [(ngModel)]="email" name="email"  class="span11" placeholder="Email" />
+
+                <input required type="text"  name="email"  class="span11" placeholder="Email" ngModel />
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Password : </label>
               <div class="controls">
-                <input required type="password" [(ngModel)]="password" name="password"   class="span11" placeholder="Enter Password"  />
+
+                <input required type="password"  name="password"   class="span11" placeholder="Enter Password"  ngModel />
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">City : </label>
               <div class="controls">
-                <select >
-                  <option>First option</option>
-                  <option>Second option</option>
-                  <option>Third option</option>
-                  <option>Fourth option</option>
-                  <option>Fifth option</option>
-                  <option>Sixth option</option>
-                  <option>Seventh option</option>
-                  <option>Eighth option</option>
+                <select [ngModel]="city" (ngModelChange)="onChange($event)" name="city" class="span11"  >
+                  <option value="Cairo">Cairo</option>
+                  <option value="Giza">Giza</option>
+                  <option value="Alexandria">Alexandria</option>
+                  <option value="Suez">Suez</option>
+                  <option value="Ismailia">Ismailia</option>
+                  <option value="Port Said">Port Said</option>
+                  <option value="Damietta">Damietta</option>
+                  <option value="Sharqia">Sharqia</option>
+                  <option value="Qaliubiya">Qaliubiya</option>
+                  <option value="El-Beheira">El-Beheira</option>
+                  <option value="Kafr El-Shaeikh">Kafr El-Shaeikh</option>
+                  <option value="Gharbia">Gharbia</option>
+                  <option value="Monofia">Monofia</option>
+                  <option value="Qena">Qena</option>
+                  <option value="Menia">Menia</option>
+                  <option value="Fayoum">Fayoum</option>
+                  <option value="Beni Swaif">Beni Swaif</option>
+                  <option value="Sohag">Sohag</option>
+                  <option value="Assiut">Assiut</option>
+                  <option value="Marsa Matrouh">Marsa Matrouh</option>
+                  <option value="New Valley">New Valley</option>
+                  <option value="Red Sea">Red Sea</option>
+                  <option value="Luxor">Luxor</option>
+                  <option value="Aswan">Aswan</option>
+                  <option value="North Sinai">North Sinai</option>
+                  <option value="South Sinai">South Sinai</option> 
                 </select>
               </div>
             </div>
             <div class="control-group">
-              <label class="control-label">Location : </label>
+             <label class="control-label">Location : </label>
               <div class="controls">
-                <input type="checkbox" [(ngModel)]="FirstOption" name="FirstOption"  />
-                  <label>First option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="SecondOption" name="SecondOption" />
-                  <label>Second option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="ThirdOption" name="ThirdOption"  />
-                  <label>Third option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="FourthOption" name="FourthOption"  />
-                  <label>Fourth option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="FifthOption" name="FifthOption" />
-                  <label>Fifth option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="SixthOption" name="SixthOption"  />
-                  <label>Sixth option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="SeventhOption" name="SeventhOption"  />
-                  <label>Seventh option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="EighthOption" name="EighthOption"  />
-                  <label>Eighth option</label>
+                <angular2-multiselect [data]="dropdownListLocation" [(ngModel)]="selectedItemsLocation" [ngModelOptions]="{standalone: true}"
+                  [settings]="dropdownSettingsLocation" 
+                  (onSelect)="onItemSelectLocation($event)" 
+                  (onDeSelect)="onItemDeSelectLocation($event)"
+                  (onSelectAll)="onSelectAllLocation($event)"
+                  (onDeSelectAll)="onDeSelectAllLocation($event)"></angular2-multiselect>
+                
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Street Name : </label>
               <div class="controls">
-                <input required type="text"  [(ngModel)]="street" name="street" class="span11" placeholder="Street Name"  />
+
+                <input  type="text"  name="street" class="span11" placeholder="Street Name"   ngModel />
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Deliver To : </label>
               <div class="controls">
-                <input type="checkbox" [(ngModel)]="FirstOption" name="FirstOption"  />
-                  <label>First option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="SecondOption" name="SecondOption" />
-                  <label>Second option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="ThirdOption" name="ThirdOption"  />
-                  <label>Third option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="FourthOption" name="FourthOption"  />
-                  <label>Fourth option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="FifthOption" name="FifthOption" />
-                  <label>Fifth option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="SixthOption" name="SixthOption"  />
-                  <label>Sixth option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="SeventhOption" name="SeventhOption"  />
-                  <label>Seventh option</label>
-                  <br>
-                  <input type="checkbox" [(ngModel)]="EighthOption" name="EighthOption"  />
-                  <label>Eighth option</label>
+                <angular2-multiselect [data]="dropdownListDeliverTo" [(ngModel)]="selectedItemsDeliverTo" [ngModelOptions]="{standalone: true}"
+                  [settings]="dropdownSettingsDeliverTo" 
+                  (onSelect)="onItemSelectDeliverTo($event)" 
+                  (onDeSelect)="onItemDeSelectDeliverTo($event)"
+                  (onSelectAll)="onSelectAllDeliverTo($event)"
+                  (onDeSelectAll)="onDeSelectAllDeliverTo($event)"></angular2-multiselect>
                 
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Delivery Time : </label>
               <div class="controls">
-                <input required type="number" [(ngModel)]="time" name="time"  class="span11" placeholder="Delivery Time"  />
+
+                <input required type="number"  name="time"  class="span11" placeholder="Delivery Time"  ngModel/>
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Telephone Number : </label>
               <div class="controls">
-                <input required type="text" [(ngModel)]="telephone" name="telephone"  class="span11" placeholder="Tel Number"  />
+
+                <input required type="text"  name="telephone"  class="span11" placeholder="Tel Number" ngModel />
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Mobile Number : </label>
               <div class="controls">
-                <input type="text" [(ngModel)]="mobile" name="mobile"  class="span11" placeholder="Mobile Number"  />
+                <input type="text"  name="mobile"  class="span11" placeholder="Mobile Number" ngModel />
+
               </div>
             </div>
             <div class="control-group">
               <label class="control-label">Logo : </label>
               <div class="controls">
-                <input type="file" style="display:inline-block" name="logo" (change)="fileChange($event)" accept="image/*" class="span11" />
+                <input type="file" id="logo" name="logo" #plogo="ngModel" style="display:inline-block" (change)="fileChange($event)" accept="image/*" class="span11"required ngModel />
               </div>
             </div>
             <div class="form-actions">
@@ -151,7 +150,8 @@
           </form>
         </div>
       </div>
-</div></div>
+  </div>
+</div>
 
 <!--end-Footer-part--> 
 <script src="/js/jquery.min.js"></script> 

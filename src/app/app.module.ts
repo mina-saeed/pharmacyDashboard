@@ -13,6 +13,7 @@ import {pharmacysignupComponent} from './pharmacySignUp.component';
 import {routes, RoutingComponents} from './Routes/app.routing';
 import {users} from './shared/users.service';
 import {ValidateService} from './shared/validate.service';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {ValidateService} from './shared/validate.service';
 
   ],
   imports: [
-    BrowserModule, FormsModule , HttpModule, routes,FlashMessagesModule
+    BrowserModule, FormsModule , HttpModule, routes,FlashMessagesModule, AngularMultiSelectModule
     ],
   providers: [users,ValidateService],
   bootstrap: [AppComponent]
