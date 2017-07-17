@@ -18,6 +18,7 @@ export class login implements OnInit {
 	pharmaName:String;
 	email:String;
 	password:String;
+  password2:String;
 	logo:FileList;
 	time:Number;
 	telephone:String;
@@ -1885,6 +1886,16 @@ fileChange(event)
 	}
 	onRegister(data:any){
 		//console.log(data);
+  if (!this.validateService.validatePassword(data.password)
+      || !this.validateService.validatePassword(data.password2)) {
+      console.log("please insert a valid Password with at least 8 characters and not more than 15 characters");
+      window.scrollTo(0,0);
+    }
+
+    else if (!(data.password == data.password2)) {
+      console.log('Passwords do not match!');
+      window.scrollTo(0,0);
+    }
 
   var formData: FormData = new FormData();
   formData.append('name', data.pharma_name);
@@ -1934,6 +1945,9 @@ fileChange(event)
         let file: File = data.logo[0];
         formData.append('uploadFile', file, file.name);
       }
+
+      
+
 
 	/*  if (!this.validateService.validateIllegal(data.pharmaName)
       || !this.validateService.validateIllegal(data.street)
