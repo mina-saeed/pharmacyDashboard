@@ -5,7 +5,9 @@ import { Http ,Headers ,RequestOptions,Response } from '@angular/http'
 import 'rxjs/add/operator/map'
 @Injectable()
 export class users {
-	private url = 'http://localhost:3002'
+
+	private url = 'http://146.185.148.66:3002'
+
 	constructor(private http: Http , private router: Router){
 
 	}
@@ -35,27 +37,12 @@ export class users {
 
 
         console.log(userData)
-        console.log(userData.address.city)
 
         let headers = new Headers();
             headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
             headers.append('Content-Type', 'application/json')
-            let body = {
-                name: userData.name,
-                email:userData.user_name,
-                password:userData.reg_password,
-                mobile: userData.mobile,
-                telephone: userData.tel,
-                time: userData.time,
-                location:{
-                    city: userData.address.city,
-                    location: userData.address.location,
-                    street: userData.address.street,
-                    deliverTo: userData.address.deliverTo
-                },
-                token: request_token,
-        };
-         return this.http.post(this.url + '/register', JSON.stringify(body), new RequestOptions({  headers: headers}))
+
+         return this.http.post(this.url + '/register', userData, new RequestOptions({  headers: headers}))
                 .map(res => {return res.status})
         
           }          

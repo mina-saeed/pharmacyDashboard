@@ -1884,6 +1884,9 @@ fileChange(event)
 
 
 	}
+
+//onRegister(data:any){
+
 	onRegister(data:any){
 		//console.log(data);
   if (!this.validateService.validatePassword(data.password)
@@ -1897,7 +1900,7 @@ fileChange(event)
       window.scrollTo(0,0);
     }
 
-  var formData: FormData = new FormData();
+  /*var formData: FormData = new FormData();
   formData.append('name', data.pharma_name);
   console.log(data.pharma_name);
   formData.append('email', data.email);
@@ -1944,7 +1947,7 @@ fileChange(event)
       {
         let file: File = data.logo[0];
         formData.append('uploadFile', file, file.name);
-      }
+      }*/
 
       
 
@@ -1984,42 +1987,28 @@ fileChange(event)
       
     	}
 
-	else if (!this.validateService.validatePositive(data.time)) 
-		{
-			this.flashMessage.show('Please use a valid positive time to enter', { cssClass: 'alert-danger', timeout: 3000 });
-			
-      
-    	}
-	else if (data.location.location.length == 0)
-	 {
-		this.flashMessage.show('Please choose at least one location!', { cssClass: 'alert-danger', timeout: 3000 });
-		
-	
-    }
-
-	else if (data.location.deliverTo.length == 0) 
-	{
-		this.flashMessage.show('Please choose at least one deliver to!', { cssClass: 'alert-danger', timeout: 3000 });
-		
-		
-    }*/
-/*	var i;
-	console.log(JSON.stringify(this.selectedItemsDeliverTo))
-	console.log(JSON.stringify(this.selectedItemsLocation))*/
-/*	for (i=0; i<this.selectedItemsDeliverTo.length; i++)
-	{
-		this.location.deliverTo.push(this.selectedItemsDeliverTo[i] + ':null');
-	}
-	for (i=0; i<this.selectedItemsLocation.length; i++)
-	{
-		this.location.location.push(this.selectedItemsLocation[i] + 'null');
-	}
 */
-		
-	
+var location_string = JSON.stringify(this.selectedItemsLocation)
+var locationObj = JSON.parse(location_string)
 
+var requestLocations = []
+locationObj.forEach(function(item){
+  requestLocations.push(item.itemName)
+  
 
+})
+var deliverTo_string = JSON.stringify(this.selectedItemsDeliverTo)
+var deliverToObj = JSON.parse(deliverTo_string)
 
+var requestDeliverTo = []
+deliverToObj.forEach(function(item){
+  requestDeliverTo.push(item.itemName)
+  
+})
+
+var pharmaLoaction = JSON.stringify(requestLocations)
+var deliver = JSON.stringify(requestDeliverTo)
+console.log(deliver)
 
 	  let date = new Date();
  
@@ -2041,11 +2030,25 @@ fileChange(event)
  		let date_format = hours+':'+minutes;
  		let token = btoa(date_format+date_format);
 
+    var requestBody = {
+      name: data.pharma_name,
+      email:data.email,
+      password: data.password,
+      address:{
+        city:data.address.city,
+        location: pharmaLoaction,
+        street: data.address.street,
+        deliverTo: deliver
+      },
+      deliverTime: data.time,
+      telephone: data.telephone,
+      mobile: data.mobile
+    }
 
-/*	this.user.register(formData,token).subscribe (res =>{
+	this.user.register(JSON.stringify(requestBody),token).subscribe (res =>{
 		if (res)
 		{
-		//  return this.router.navigate(['/login']) ;  
+		  return this.router.navigate(['/login']) ;  
 		}                 
         else
 		{
@@ -2053,7 +2056,7 @@ fileChange(event)
                      
 		}
 	});
-*/
+
 	}
 	createNewAccount()
 	{
