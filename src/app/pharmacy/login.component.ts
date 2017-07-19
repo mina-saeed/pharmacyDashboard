@@ -1949,9 +1949,6 @@ fileChange(event)
         formData.append('uploadFile', file, file.name);
       }*/
 
-      
-
-
 	/*  if (!this.validateService.validateIllegal(data.pharmaName)
       || !this.validateService.validateIllegal(data.street)
 	  || !this.validateService.validateIllegal(data.city))
@@ -2005,6 +2002,7 @@ deliverToObj.forEach(function(item){
   requestDeliverTo.push(item.itemName)
   
 })
+
 
 var pharmaLoaction = JSON.stringify(requestLocations)
 var deliver = JSON.stringify(requestDeliverTo)
