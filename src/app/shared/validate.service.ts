@@ -18,7 +18,7 @@ export class ValidateService {
 
   validatePassword(password) 
   {
-    const pass = /^([a-zA-Z0-9@*#]{8,15})$/;
+    const pass = /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,15}$/;
     return pass.test(password);
   }
 

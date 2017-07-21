@@ -9,6 +9,8 @@ import {logout} from '../pharmacy/logout.component';
 import {users} from '../shared/users.service';
 import {ValidateService} from '../shared/validate.service';
 import {pharmacysignupComponent} from '../pharmacySignUp.component';
+import {bar} from '../products/bar.component'; 
+import {pie} from '../products/pie.component';
 const componentRoutes: Routes =[
 	
 			{
@@ -38,7 +40,17 @@ const componentRoutes: Routes =[
 			{
 				path: 'logout',
 				component: logout
-			}			
+			},
+
+			{
+				path: 'bar',
+				component: bar
+			},
+			{
+				path: 'pie',
+				component: pie
+			}
+
 		]
 
 

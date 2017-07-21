@@ -3,6 +3,9 @@ import {Router} from '@angular/router';
 import {users} from '../shared/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {ValidateService} from '../shared/validate.service';
+import { NG_VALIDATORS,Validator,
+             Validators,AbstractControl,ValidatorFn } from '@angular/forms';
+import {EqualValidator} from '../password.match.directive';
 
 @Component({
 	moduleId:module.id,
