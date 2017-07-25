@@ -9,7 +9,9 @@ export class users {
 	
 	succ: boolean;
 	authId: any;
-  	user: any;
+	user: any;
+	email:any;
+	  
 
 	private url = 'http://146.185.148.66:3002'
 
@@ -62,8 +64,17 @@ export class users {
     		this.http.get(this.url+'/logout', new RequestOptions({  headers: headers})).map(res=>res.json).subscribe(data=>{ if(data){ return this.router.navigate([''])}})
 
     	
-		  }  
-		loggedIn() {
+		  }
+	storeUserData(id, email, username) {
+    localStorage.setItem('id', id);
+	localStorage.setItem('email', email);
+	localStorage.setItem('username', username);
+    this.authId = id;
+	this.user = username;
+	this.email = email;
+  }
+  
+	loggedIn() {
 	//return tokenNotExpired() && this.user != null;
 	//since we did not make any tokens yet , after making the tokens, we will undo commenting the first statement
 	//return tokenNotExpired() && this.user != null;
@@ -71,12 +82,6 @@ export class users {
 
   }  
 
-  storeUserData(id, email) {
-    localStorage.setItem('id', id);
-    localStorage.setItem('email', email);
-    this.authId = id;
-    this.user = email;
-  }
-
+  
  
 }
