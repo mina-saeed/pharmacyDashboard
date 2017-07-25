@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core'
 import {Router} from '@angular/router'
 import { Http ,Headers ,RequestOptions,Response } from '@angular/http'
+//import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class users {
+	user: any;
 
 	private url = 'http://146.185.148.66:3002'
 
@@ -52,5 +54,10 @@ export class users {
     		this.http.get(this.url+'/logout', new RequestOptions({  headers: headers})).map(res=>res.json).subscribe(data=>{ if(data){ return this.router.navigate([''])}})
 
     	
-      	}      	
+		  }  
+		loggedIn() {
+	//return tokenNotExpired() && this.user != null;
+	//since we did not make any tokens yet , after making the tokens, we will undo commenting the first statement
+		return this.user !=null;
+  }    	
 }

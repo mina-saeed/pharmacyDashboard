@@ -3,11 +3,18 @@ import {Router} from '@angular/router';
 import {users} from '../shared/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {ValidateService} from '../shared/validate.service';
+<<<<<<< HEAD
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import 'rxjs/add/operator/map'
 import {orderService} from '../shared/orders.service'
+=======
+import { NG_VALIDATORS,Validator,
+             Validators,AbstractControl,ValidatorFn } from '@angular/forms';
+import {EqualValidator} from '../password.match.directive';
+
+>>>>>>> b15434d41e56d271276b31fd30cef543640dcf90
 @Component({
 	moduleId:module.id,
 	selector: 'app-login',
@@ -22,6 +29,7 @@ export class login implements OnInit {
 	pharmaName:String;
 	email:String;
 	password:String;
+  password2:String;
 	logo:FileList;
 	time:Number;
 	telephone:String;
@@ -1898,6 +1906,16 @@ fileChange(event)
 
 	onRegister(data:any){
 		//console.log(data);
+  if (!this.validateService.validatePassword(data.password)
+      || !this.validateService.validatePassword(data.password2)) {
+      console.log("please insert a valid Password with at least 8 characters and not more than 15 characters");
+      window.scrollTo(0,0);
+    }
+
+    else if (!(data.password == data.password2)) {
+      console.log('Passwords do not match!');
+      window.scrollTo(0,0);
+    }
 
   /*var formData: FormData = new FormData();
   formData.append('name', data.pharma_name);
@@ -2000,6 +2018,7 @@ deliverToObj.forEach(function(item){
   requestDeliverTo.push(item.itemName)
   
 })
+
 
 var pharmaLoaction = JSON.stringify(requestLocations)
 var deliver = JSON.stringify(requestDeliverTo)
