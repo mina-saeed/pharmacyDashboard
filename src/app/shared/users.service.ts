@@ -7,12 +7,15 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class users {
 	
-	userData:any;
-	body:any;
+	succ: boolean;
+	authId: any;
+  	user: any;
 
 	private url = 'http://146.185.148.66:3002'
 
-	constructor(private http: Http , private router: Router){
+	constructor(private http: Http , private router: Router)
+	{
+		
 
 	}
 	getUser(user_email , user_password ,request_token):any {
@@ -22,10 +25,12 @@ export class users {
     		headers.append('Content-Type', 'application/json')
     		let body = {
     			email:user_email,
-			password:user_password,
-			token: request_token,
+				password:user_password,
+				token: request_token,
 		};
 		 return this.http.post(this.url + '/login', JSON.stringify(body), new RequestOptions({  headers: headers})).map(res => res.json())
+		  
+		  
     	
       	}
     register(userData  ,request_token):any {
@@ -61,6 +66,17 @@ export class users {
 		loggedIn() {
 	//return tokenNotExpired() && this.user != null;
 	//since we did not make any tokens yet , after making the tokens, we will undo commenting the first statement
-		return this.body !=null;
-  }    	
+	//return tokenNotExpired() && this.user != null;
+	return this.user !=null ;
+
+  }  
+
+  storeUserData(id, email) {
+    localStorage.setItem('id', id);
+    localStorage.setItem('email', email);
+    this.authId = id;
+    this.user = email;
+  }
+
+ 
 }

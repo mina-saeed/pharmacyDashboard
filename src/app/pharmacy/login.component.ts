@@ -1877,7 +1877,8 @@ fileChange(event)
 
 		 this.user.getUser(userData.email, userData.password , token).subscribe(data => {
     				if(data){
-    					console.log(data)
+              console.log(data)
+              this.user.storeUserData(data.id, data.email);
     					return this.router.navigate(['/orders'],data)    				
     				}else{
     					return false
