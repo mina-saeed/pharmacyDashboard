@@ -3,13 +3,17 @@ import {Router} from '@angular/router';
 import {users} from '../shared/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {ValidateService} from '../shared/validate.service';
-
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import * as io from 'socket.io-client';
+import 'rxjs/add/operator/map'
+import {orderService} from '../shared/orders.service'
 @Component({
 	moduleId:module.id,
 	selector: 'app-login',
 
 	templateUrl:'./login.component.html',
-	providers:[users]
+	providers:[users , orderService]
 })
 
 
@@ -36,13 +40,14 @@ export class login implements OnInit {
 		private user: users,
 		private router: Router,
 		private flashMessage: FlashMessagesService, 
-		private validateService: ValidateService
+		private validateService: ValidateService,
+    private orders: orderService
 		 ){}
 
 		 ngOnInit()
 {
 
-	console.log(this.city);
+	//console.log(this.city);
 	
 		this.dropdownListLocation = [
                               {"id":1,"itemName":"Abbassia"},
@@ -142,7 +147,7 @@ export class login implements OnInit {
 
 
 	onChange(newValue) {
-    console.log(newValue);
+   // console.log(newValue);
     this.city= newValue;
     if (this.city == 'Cairo')
 	{
@@ -1812,34 +1817,34 @@ else if (this.city== 'South Sinai')
     }
 
  	onItemSelectLocation(item:any){
-        console.log(item);
-        console.log(this.selectedItemsLocation);
+       // console.log(item);
+      //  console.log(this.selectedItemsLocation);
     }
     OnItemDeSelectLocation(item:any){
-        console.log(item);
-        console.log(this.selectedItemsLocation);
+     //   console.log(item);
+      //  console.log(this.selectedItemsLocation);
     }
     onSelectAllLocation(items: any){
-        console.log(items);
+     //   console.log(items);
     }
     onDeSelectAllLocation(items: any){
-        console.log(items);
+    //    console.log(items);
     }
 
 
 	onItemSelectDeliverTo(item:any){
-        console.log(item);
-        console.log(this.selectedItemsDeliverTo);
+    //    console.log(item);
+    //    console.log(this.selectedItemsDeliverTo);
     }
     onItemDeSelectDeliverTo(item:any){
-        console.log(item);
-        console.log(this.selectedItemsDeliverTo);
+    //    console.log(item);
+   //     console.log(this.selectedItemsDeliverTo);
     }
     onSelectAllDeliverTo(items: any){
-        console.log(items);
+     //   console.log(items);
     }
     onDeSelectAllDeliverTo(items: any){
-        console.log(items);
+    //    console.log(items);
     }
 
 fileChange(event) 
@@ -1873,7 +1878,12 @@ fileChange(event)
 
 		 this.user.getUser(userData.email, userData.password , token).subscribe(data => {
     				if(data){
-    					console.log(data)
+              
+                //    this.orders.sendMessage(data)
+/*                    this.socket = io(this.socketChannel);
+                    this.socket.emit('join', {email: data});*/
+    					//console.log(data)
+              document.cookie = "pharmacy="+data.email+"";
     					return this.router.navigate(['/orders'],data)    				
     				}else{
     					return false
@@ -1985,7 +1995,6 @@ locationObj.forEach(function(item){
 })
 var deliverTo_string = JSON.stringify(this.selectedItemsDeliverTo)
 var deliverToObj = JSON.parse(deliverTo_string)
-
 var requestDeliverTo = []
 deliverToObj.forEach(function(item){
   requestDeliverTo.push(item.itemName)
@@ -1994,7 +2003,7 @@ deliverToObj.forEach(function(item){
 
 var pharmaLoaction = JSON.stringify(requestLocations)
 var deliver = JSON.stringify(requestDeliverTo)
-console.log(deliver)
+
 
 	  let date = new Date();
  
@@ -2020,12 +2029,10 @@ console.log(deliver)
       name: data.pharma_name,
       email:data.email,
       password: data.password,
-      address:{
-        city:data.address.city,
-        location: pharmaLoaction,
-        street: data.address.street,
-        deliverTo: deliver
-      },
+      city:data.address.city,
+      location: pharmaLoaction,
+      street: data.address.street,
+      deliverTo: deliver,
       deliverTime: data.time,
       telephone: data.telephone,
       mobile: data.mobile

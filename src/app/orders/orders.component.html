@@ -55,6 +55,11 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
+<div *ngFor="let message of messages">
+  {{message}}
+</div>
+
+<!-- <input [(ngModel)]="message"  /><button (click)="sendMessage()">Send</button> -->
 
             <div class="clearfix"></div>
 
