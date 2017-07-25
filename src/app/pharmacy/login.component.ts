@@ -3,18 +3,15 @@ import {Router} from '@angular/router';
 import {users} from '../shared/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {ValidateService} from '../shared/validate.service';
-<<<<<<< HEAD
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import 'rxjs/add/operator/map'
 import {orderService} from '../shared/orders.service'
-=======
 import { NG_VALIDATORS,Validator,
              Validators,AbstractControl,ValidatorFn } from '@angular/forms';
 import {EqualValidator} from '../password.match.directive';
 
->>>>>>> b15434d41e56d271276b31fd30cef543640dcf90
 @Component({
 	moduleId:module.id,
 	selector: 'app-login',
