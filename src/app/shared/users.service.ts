@@ -6,7 +6,9 @@ import { Http ,Headers ,RequestOptions,Response } from '@angular/http'
 import 'rxjs/add/operator/map'
 @Injectable()
 export class users {
-	user: any;
+	
+	userData:any;
+	body:any;
 
 	private url = 'http://146.185.148.66:3002'
 
@@ -59,6 +61,6 @@ export class users {
 		loggedIn() {
 	//return tokenNotExpired() && this.user != null;
 	//since we did not make any tokens yet , after making the tokens, we will undo commenting the first statement
-		return this.user !=null;
+		return this.body !=null;
   }    	
 }
