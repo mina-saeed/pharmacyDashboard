@@ -1,5 +1,4 @@
 
-<app-sidebar></app-sidebar>  
 <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -53,12 +52,15 @@
 
                       <span class="section">Product Barcode</span>                    
                       <div class="item form-group">
+                        
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Barcode <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div>
+                           <qr-code [value]="'All QR Code data goes here!'" [size]="150"></qr-code>
+                        </div>
                           <input type="text" id="barcode" name="barcode" #barcodeRef ="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2"  placeholder="ex: 6546498499847" required ngModel>
                         </div>
-
                       </div>
                             <div [hidden]="barcodeRef.valid || barcodeRef.untouched " class="alert alert-danger">
                                 Please enter Valid barcode

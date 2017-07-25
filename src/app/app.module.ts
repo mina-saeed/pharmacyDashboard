@@ -8,15 +8,18 @@ import {login} from './pharmacy/login.component';
 import {orders} from './orders/orders.component';
 import {products} from './products/products.component';
 import {newProduct} from './products/newProduct.component';
+import {test} from './products/test'; 
 import {logout} from './pharmacy/logout.component';
 import{bar} from './products/bar.component';
 import {pie} from './products/pie.component'
 import {pharmacysignupComponent} from './pharmacySignUp.component';
 import {routes, RoutingComponents} from './Routes/app.routing';
+import {sidebar} from './sidebar/sidebar.component';
 import {users} from './shared/users.service';
 import {ValidateService} from './shared/validate.service';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ChartsModule } from 'ng2-charts';
+import { QRCodeModule } from 'angular2-qrcode';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,20 @@ import { ChartsModule } from 'ng2-charts';
       pharmacysignupComponent,
       bar,
       pie,
+      sidebar,
+      test,
     ]
 
   ],
   imports: [
-    BrowserModule, FormsModule , HttpModule, routes,FlashMessagesModule, AngularMultiSelectModule, ChartsModule
+    BrowserModule, 
+    FormsModule , 
+    HttpModule,
+    routes,
+    FlashMessagesModule,
+    AngularMultiSelectModule,
+    ChartsModule,
+    QRCodeModule,
     ],
   providers: [users,ValidateService],
   bootstrap: [AppComponent]

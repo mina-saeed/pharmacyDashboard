@@ -7,10 +7,13 @@ import {products} from '../products/products.component';
 import {newProduct} from '../products/newProduct.component';
 import {logout} from '../pharmacy/logout.component';
 import {users} from '../shared/users.service';
+
 import {ValidateService} from '../shared/validate.service';
 import {pharmacysignupComponent} from '../pharmacySignUp.component';
 import {bar} from '../products/bar.component'; 
 import {pie} from '../products/pie.component';
+import {test} from '../products/test'; 
+import {AuthGuard} from '../guards/auth.guard';
 const componentRoutes: Routes =[
 	
 			{
@@ -23,15 +26,18 @@ const componentRoutes: Routes =[
 			},
 			{
 				path:'orders',
-				component:orders
+				component:orders,
+				canActivate: [AuthGuard],
 			},
 			{
 				path: 'products',
-				component: products
+				component: products,
+				canActivate: [AuthGuard],
 			},
 			{
 				path: 'newproduct',
-				component: newProduct
+				component: newProduct,
+				canActivate: [AuthGuard],
 			},
 			{
 				path: 'pharmacysignup',
@@ -44,11 +50,17 @@ const componentRoutes: Routes =[
 
 			{
 				path: 'bar',
-				component: bar
+				component: bar,
+				canActivate: [AuthGuard],
 			},
 			{
 				path: 'pie',
-				component: pie
+				component: pie,
+				canActivate: [AuthGuard],
+			},
+			{
+				path: 'test',
+				component: test
 			}
 
 		]
