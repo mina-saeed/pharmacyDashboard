@@ -20,6 +20,7 @@ import {ValidateService} from './shared/validate.service';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import { ChartsModule } from 'ng2-charts';
 import { QRCodeModule } from 'angular2-qrcode';
+import {AuthGuard} from './guards/auth.guard'
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { QRCodeModule } from 'angular2-qrcode';
     ChartsModule,
     QRCodeModule,
     ],
-  providers: [users,ValidateService],
+  providers: [users,ValidateService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

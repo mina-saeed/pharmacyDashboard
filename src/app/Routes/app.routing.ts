@@ -7,6 +7,8 @@ import {products} from '../products/products.component';
 import {newProduct} from '../products/newProduct.component';
 import {logout} from '../pharmacy/logout.component';
 import {users} from '../shared/users.service';
+import {medicineService} from '../shared/medicines.service';
+import {productService} from '../shared/products.service';
 
 import {ValidateService} from '../shared/validate.service';
 import {pharmacysignupComponent} from '../pharmacySignUp.component';
@@ -72,7 +74,7 @@ const componentRoutes: Routes =[
 		RouterModule.forRoot(componentRoutes),
 		
 	],
-	providers: [users,ValidateService],
+	providers: [users,ValidateService,medicineService, productService],
 	exports:[
 		RouterModule
 	]
