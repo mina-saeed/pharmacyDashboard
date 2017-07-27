@@ -1890,8 +1890,11 @@ fileChange(event)
     					//console.log(data)
               document.cookie = "pharmacy="+data.email+"";
               console.log(data)
-              this.user.storeUserData(data.id, data.email);
-    					return this.router.navigate(['/orders'],data)    				
+              console.log(data.id);
+              console.log(data.username);
+              console.log(data.email);
+              this.user.storeUserData(data.id, data.email, data.username);
+    					return this.router.navigate(['orders'])    				
     				}else{
     					return false
     				}

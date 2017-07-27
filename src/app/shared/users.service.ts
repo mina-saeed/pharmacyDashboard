@@ -3,12 +3,16 @@ import {Router} from '@angular/router'
 import { Http ,Headers ,RequestOptions,Response } from '@angular/http'
 //import { tokenNotExpired } from 'angular2-jwt';
 
+import 'rxjs/add/operator/map'
+
 @Injectable()
 export class users {
 	
 	succ: boolean;
 	authId: any;
-  	user: any;
+	username: any;
+	email:any;
+	  
 
 	private url = 'http://146.185.148.66:3002'
 
@@ -61,21 +65,35 @@ export class users {
     		this.http.get(this.url+'/logout', new RequestOptions({  headers: headers})).map(res=>res.json).subscribe(data=>{ if(data){ return this.router.navigate([''])}})
 
     	
-		  }  
-		loggedIn() {
+		  }
+	storeUserData(id, email, username) {
+	console.log('store username' + username);
+	console.log('store email'+ email);
+	console.log('store id' + id);
+	this.authId = id;
+	this.username = username;
+	this.email = email;
+	console.log("this.authID" + this.authId);
+	console.log("this.email" + this.email);
+	console.log("this.username" + this.username);
+	localStorage.setItem('id', this.authId);
+	localStorage.setItem('email', this.email);
+	localStorage.setItem('username', this.username);
+    
+  }
+  
+	loggedIn() {
 	//return tokenNotExpired() && this.user != null;
 	//since we did not make any tokens yet , after making the tokens, we will undo commenting the first statement
-	//return tokenNotExpired() && this.user != null;
-	return this.user !=null ;
+
+	console.log (localStorage.getItem('username'));
+	return 	localStorage.getItem('id') != null && 
+			localStorage.getItem('email') != null &&
+			localStorage.getItem('username') !=null  ;
+			
 
   }  
 
-  storeUserData(id, email) {
-    localStorage.setItem('id', id);
-    localStorage.setItem('email', email);
-    this.authId = id;
-    this.user = email;
-  }
-
+  
  
 }
