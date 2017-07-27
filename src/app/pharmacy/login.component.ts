@@ -1889,6 +1889,8 @@ fileChange(event)
                     this.socket.emit('join', {email: data});*/
     					//console.log(data)
               document.cookie = "pharmacy="+data.email+"";
+              console.log(data)
+              this.user.storeUserData(data.id, data.email);
     					return this.router.navigate(['/orders'],data)    				
     				}else{
     					return false
