@@ -14,6 +14,7 @@ import{bar} from './products/bar.component';
 import {pie} from './products/pie.component'
 import {pharmacysignupComponent} from './pharmacySignUp.component';
 import {routes, RoutingComponents} from './Routes/app.routing';
+import {RouterModule ,Routes} from '@angular/router'
 import {sidebar} from './sidebar/sidebar.component';
 import {users} from './shared/users.service';
 import {ValidateService} from './shared/validate.service';
@@ -48,6 +49,7 @@ import {AuthGuard} from './guards/auth.guard'
     AngularMultiSelectModule,
     ChartsModule,
     QRCodeModule,
+    
     ],
   providers: [users,ValidateService,AuthGuard],
   bootstrap: [AppComponent]

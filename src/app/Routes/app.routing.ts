@@ -29,7 +29,7 @@ const componentRoutes: Routes =[
 			{
 				path:'orders',
 				component:orders,
-				canActivate: [AuthGuard],
+			    canActivate: [AuthGuard],
 			},
 			{
 				path: 'products',
