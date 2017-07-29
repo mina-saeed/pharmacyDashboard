@@ -1,4 +1,7 @@
 import {Component} from '@angular/core'
+import {sidebar} from '../sidebar/sidebar.component'
+
+
 
  @Component({
 
@@ -7,4 +10,5 @@ import {Component} from '@angular/core'
 
  })
  export class orders{
+	 
  }
