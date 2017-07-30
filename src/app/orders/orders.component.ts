@@ -11,7 +11,9 @@ import { orderService }       from '../shared/orders.service';
   messages = [];
   connection;
   message;
-  
+  ordr;
+  newOrders={};
+
   constructor(private order:orderService) {}
 
 /*  sendMessage(){
@@ -23,8 +25,9 @@ import { orderService }       from '../shared/orders.service';
     this.connection = this.order.getMessages().subscribe(message => {
       this.messages.push(message);
     })
-    this.connection = this.order.secondPriority().subscribe(message => {
-      this.messages.push(message);
+    this.connection = this.order.secondPriority().subscribe(ordr => {
+      console.log(ordr)
+      this.newOrders= ordr
     })    
     
   }

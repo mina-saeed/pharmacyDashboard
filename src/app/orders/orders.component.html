@@ -5,13 +5,10 @@
        
 
 
-           
-
             <!-- sidebar menu -->
         
             <!-- /sidebar menu -->
 
-         
 
         <!-- top navigation -->
         <div class="top_nav">
@@ -34,9 +31,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-<div *ngFor="let message of messages">
-  {{message}}
-</div>
+
 
 <!-- <input [(ngModel)]="message"  /><button (click)="sendMessage()">Send</button> -->
 
@@ -53,6 +48,7 @@
                   </div>
                   <div class="x_content">
                   <div class="row">
+
  <!--                  <div class="col-md-3 col-sm-3 col-xs-3">
                     <input type="text" id="search" placeholder="Event .... " />
                     <div id="search-list"></div>
@@ -83,28 +79,33 @@
                     <table  class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Barcode</th>
-                          <th>Name</th>
-                          <th>Description</th>
+                          <th>Order </th>
+                     <!--      <th>Location</th> -->
+<!--                           <th>Description</th>
                           <th>Category</th>
-                          <th>Milligrams </th>
-                          <th>Price</th>
+                          <th>Milligrams </th> -->
+                          <th>Action</th>
                         </tr>
                       </thead>
 
 
-<!--                       <tbody *ngFor="let medicine of allMedicines">
+
+                      <tbody *ngFor=" let message of messages">
                       
                         <tr>
 
-                          <td>{{medicine.barcode}}</td>
-                          <td>{{medicine.name.name_english}}</td>
-                          <td>{{medicine.description.english_description}}</td>
-                          <td>{{medicine.category}}</td>
-                          <td>{{medicine.milligrams}}</td>
-                          <td>{{medicine.price}}</td>
+                          <td>  {{message}}</td>
+                          <td><a href="#"> <button>Confirm </button></a></td>
                         </tr>
-                      </tbody> -->
+                      </tbody>
+                      <tbody *ngFor=" let ord of newOrders">
+                      
+                        <tr>
+                        <td>{{ord}}</td>
+                        <td><a href="#"> <button>Confirm </button></a></td>
+                        </tr>
+
+                      </tbody>                      
                     </table>
                   </div>
                 </div>

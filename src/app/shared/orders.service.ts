@@ -16,42 +16,61 @@ export class orderService {
 
 //    this.socket.emit('add-message', message);    
   }*/
-  
+onReload() {
+    let observable = new Observable(observer => {
+      this.socket = io(this.url);
+      this.socket.on('onReload', (data) => {
+
+var cookieValue = this.getCookie('pharmacy');
+    var allPharma = data.data
+    for(let i = 0;i < allPharma.length;i++){
+    if(cookieValue == data.data[i]){
+            //  console.log(data.data[0])
+
+        observer.next(data.orders);    
+      }
+    }
+      });
+
+    })     
+    return observable;
+  }  
   getMessages() {
     let observable = new Observable(observer => {
       this.socket = io(this.url);
-//this.socket.emit('join', {email: "pharma@mail.com"});
-
-
       this.socket.on('first', (data) => {
 
 var cookieValue = this.getCookie('pharmacy');
+    var allPharma = data.data
+    for(let i = 0;i < allPharma.length;i++){
+    if(cookieValue == data.data[i]){
+            //  console.log(data.data[0])
 
-    if(cookieValue == data.data[0]){
-              console.log(data)
-
-        observer.next(data);    
+        observer.next(data.orders);    
       }
+    }
       });
-/*      return () => {
-        this.socket.disconnect();
-      };  */
+
     })     
     return observable;
   }
   secondPriority() {
     let observable = new Observable(observer => {
       this.socket = io(this.url);
-//this.socket.emit('join', {email: "pharma@mail.com"});
-
 
       this.socket.on('second', (data) => {
-        console.log(data)
-        observer.next(data);    
+
+var cookieValue = this.getCookie('pharmacy');
+    var allSecondPharma = data.data
+    for(let j = 0;j<allSecondPharma.length;j++){
+    if(cookieValue == data.data[j]){
+
+
+        observer.next(data.orders);    
+      }
+    }
       });
-      return () => {
-        this.socket.disconnect();
-      };  
+
     })     
     return observable;
   }
