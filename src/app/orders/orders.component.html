@@ -1,22 +1,28 @@
-
-  <body class="nav-md">
+<body class="nav-md">
     <div class="container body">
       <div class="main_container">
-       
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="/orders" class="site_title"><i class="fa fa-paw"></i> <span>MY PHARMACY</span></a>
+            </div>
 
 
             <!-- sidebar menu -->
-        
+            <app-sidebar> </app-sidebar>
             <!-- /sidebar menu -->
 
+
+          </div>
+        </div>
 
         <!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
-<!--               <div class="nav toggle">
+              <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div> -->
+              </div>
               <ul class="nav navbar-nav navbar-right">
 
                     <li><a routerLink="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
@@ -63,14 +69,12 @@
                     </div> -->
 
 <!--                     <div class="row">
-
                         <form class="" id="date">
   
                                 <div class="input-prepend input-group">
                                   <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
                                   <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" placeholder=' 01/01/2016 - 01/25/2016' />
                                 </div>
-
                         </form>
                       </div> -->
 
@@ -94,8 +98,17 @@
                       
                         <tr>
 
+
                           <td>  {{message}}</td>
                           <td><a href="#"> <button>Confirm </button></a></td>
+
+                          <td>{{medicine.barcode}}</td>
+                          <td>{{medicine.name.name_english}}</td>
+                          <td>{{medicine.description.english_description}}</td>
+                          <td>{{medicine.category}}</td>
+                          <td>{{medicine.milligrams}}</td>
+                          <td>{{medicine.price}}</td>
+
                         </tr>
                       </tbody>
                       <tbody *ngFor=" let ord of newOrders">

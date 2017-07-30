@@ -60,10 +60,10 @@ export class users {
           }          
 	logout():any {
 
-		let headers = new Headers();
-    		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
-    		this.http.get(this.url+'/logout', new RequestOptions({  headers: headers})).map(res=>res.json).subscribe(data=>{ if(data){ return this.router.navigate([''])}})
-
+			this.authId = null;
+			this.email=null;
+			this.username=null;
+			localStorage.clear();
     	
 		  }
 	storeUserData(id, email, username) {
@@ -92,7 +92,14 @@ export class users {
 			localStorage.getItem('username') !=null  ;
 			
 
-  }  
+  } 
+	notloggedIn()
+	{
+		console.log (localStorage.getItem('username'));
+	return 	localStorage.getItem('id') == null && 
+			localStorage.getItem('email') == null &&
+			localStorage.getItem('username') ==null  ;
+	}
 
   
  

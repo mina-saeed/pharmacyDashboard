@@ -16,15 +16,18 @@ import {bar} from '../products/bar.component';
 import {pie} from '../products/pie.component';
 import {test} from '../products/test'; 
 import {AuthGuard} from '../guards/auth.guard';
+import {AuthGuard1} from '../guards/auth1.guard';
 const componentRoutes: Routes =[
 	
 			{
 				path:'login',
-				component:login
+				component:login,
+				canActivate: [AuthGuard1],
 			},
 			{
 				path:'',
-				component:login
+				component:login,
+				canActivate: [AuthGuard1],
 			},
 			{
 				path:'orders',
@@ -47,7 +50,8 @@ const componentRoutes: Routes =[
 			},
 			{
 				path: 'logout',
-				component: logout
+				component: logout,
+				canActivate: [AuthGuard],
 			},
 
 			{
