@@ -27,7 +27,7 @@ const componentRoutes: Routes =[
 			{
 				path:'',
 				component:login,
-			//	canActivate: [AuthGuard1],
+				canActivate: [AuthGuard1],
 			},
 			{
 				path:'orders',
@@ -50,7 +50,8 @@ const componentRoutes: Routes =[
 			},
 			{
 				path: 'logout',
-				component: logout
+				component: logout,
+				canActivate: [AuthGuard],
 			},
 
 			{
