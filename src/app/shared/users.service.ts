@@ -58,13 +58,10 @@ export class users {
           }          
 	logout():any {
 
-		let headers = new Headers();
-			headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
-			localStorage.removeItem('id');
-			localStorage.removeItem('email');
-			localStorage.removeItem('username');
-    		this.http.get(this.url+'/logout', new RequestOptions({  headers: headers})).map(res=>res.json).subscribe(data=>{ if(data){ return this.router.navigate([''])}})
-
+			this.authId = null;
+			this.email=null;
+			this.username=null;
+			localStorage.clear();
     	
 		  }
 	storeUserData(id, email, username) {
