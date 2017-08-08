@@ -51,7 +51,7 @@
                   <div class="x_content">
     
 
-                    <form class="form-horizontal form-label-left" #productForm ="ngForm" (ngSubmit)="addProduct(productForm.value)" novalidate >
+                    <form class="form-horizontal form-label-left" #productForm ="ngForm" (ngSubmit)="addProduct()" novalidate >
                       <input type="hidden" id="creator" name="creator" value="admin"/>
 
                       <span class="section">Product Barcode</span>                    
@@ -59,7 +59,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Barcode <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="barcode" name="barcode" #barcodeRef ="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2"  placeholder="ex: 6546498499847" required ngModel>
+                          <input type="text" id="barcode" name="barcode" #barcodeRef ="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2"  placeholder="ex: 6546498499847" required [(ngModel)]="barcode">
                         </div>
 
                       </div>
@@ -74,7 +74,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Name (English)<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="name_english" name="name_english" #nameEngRef ="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" placeholder="ex : new medicine" required ngModel>
+                          <input type="text" id="name_english" name="name_english" #nameEngRef ="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" placeholder="ex : new medicine" required [(ngModel)]="englishName">
                         </div>
                       </div>
                           <div [hidden]="nameEngRef.valid || nameEngRef.untouched " class="alert alert-danger">
@@ -84,7 +84,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Name (Arabic)<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name_ar" name="name_ar" #nameArRef ="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" placeholder="مثال : دواء جديد" required  ngModel type="text">
+                          <input id="name_ar" name="name_ar" #nameArRef ="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" placeholder="مثال : دواء جديد" required [(ngModel)]="arabicName" type="text">
                         </div>
                       </div>
                           <div [hidden]="nameArRef.valid || nameArRef.untouched " class="alert alert-danger">
@@ -97,7 +97,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description (English)<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="english_description" name="english_description" #descEn ="ngModel" required ngModel class="form-control col-md-7 col-xs-12"></textarea>
+                          <textarea id="english_description" name="english_description" #descEn ="ngModel" required [(ngModel)]="englishDesc" class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                       </div>
                           <div [hidden]="descEn.valid || descEn.untouched " class="alert alert-danger">
@@ -107,7 +107,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description (Arabic)<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea id="arabic_description" name="arabic_description" #descAr ="ngModel" required ngModel class="form-control col-md-7 col-xs-12"></textarea>
+                          <textarea id="arabic_description" name="arabic_description" #descAr ="ngModel" required [(ngModel)]="arabicDesc" class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                       </div> 
                         <div [hidden]="descAr.valid || descAr.untouched " class="alert alert-danger">
@@ -119,7 +119,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Price <span class="required">*</span>
                         </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                          <input type="text" id="price" name="price" #priceRef="ngModel" ngModel required class="form-control"/>
+                          <input type="text" id="price" name="price" #priceRef="ngModel"  required [(ngModel)]="price" class="form-control"/>
                         </div>
                       </div>
                           <div [hidden]="priceRef.valid || priceRef.untouched " class="alert alert-danger">
@@ -132,7 +132,7 @@
                         </label>
                     <div class="btn-group">
                     <ul>
-                    <select class="form-control" name="category" ngModel>
+                    <select [(ngModel)]="category"  class="form-control" name="category">
                         <option value="one">One</option>
                         <option value="two">Two</option>
                         <option value="three">Three</option>
@@ -148,7 +148,7 @@
                         </label>
                     <div class="btn-group">
                     <ul>
-                    <select class="form-control" name="category" ngModel>
+                    <select [(ngModel)]="sub" class="form-control" name="category" >
                         <option value="one">One</option>
                         <option value="two">Two</option>
                         <option value="three">Three</option>
@@ -165,7 +165,7 @@
                         </label>
                     <div class="btn-group">
                     <ul>
-                    <select class="form-control" name="sub" ngModel>
+                    <select class="form-control" name="sub" (ngModel)]="pharmacyID">
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
@@ -175,6 +175,14 @@
                     </ul>
                     </div>
                     </div>
+                    
+                    span class="section">Product Image</span>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image <span class="required">*</span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <input type="file" id="image" name="image"  class="form-control" (change)="fileChange($event)" accept="image/*" required >                        </div>
+                      </div>
                   
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
