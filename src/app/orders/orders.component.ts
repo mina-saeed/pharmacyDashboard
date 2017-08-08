@@ -1,12 +1,8 @@
-<<<<<<< HEAD
+
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { orderService }       from '../shared/orders.service';
-=======
-import {Component} from '@angular/core'
 import {sidebar} from '../sidebar/sidebar.component'
 
-
->>>>>>> a22b16a7a176e067a6487df75b33376ecc05a6b1
 
  @Component({
 
@@ -14,7 +10,7 @@ import {sidebar} from '../sidebar/sidebar.component'
  	providers: [orderService]
 
  })
-<<<<<<< HEAD
+
  export class orders implements OnInit, OnDestroy {
   messages = [];
   connection;
@@ -44,8 +40,3 @@ import {sidebar} from '../sidebar/sidebar.component'
     this.connection.unsubscribe();
   }
 }
-=======
- export class orders{
-	 
- }
->>>>>>> a22b16a7a176e067a6487df75b33376ecc05a6b1
