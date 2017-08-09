@@ -3,7 +3,7 @@ import {NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {AppComponent } from './app.component';
-import { FlashMessagesModule } from 'angular2-flash-messages';
+import {FlashMessagesModule } from 'angular2-flash-messages';
 import {login} from './pharmacy/login.component';
 import {orders} from './orders/orders.component';
 import {products} from './products/products.component';
@@ -16,7 +16,11 @@ import {pharmacysignupComponent} from './pharmacySignUp.component';
 import {routes, RoutingComponents} from './Routes/app.routing';
 import {RouterModule ,Routes} from '@angular/router'
 import {sidebar} from './sidebar/sidebar.component';
+import {topbar} from './topbar/topbar.component';
 import {users} from './shared/users.service';
+import {orderService} from './shared/orders.service';
+import {productService} from './shared/products.service';
+import {medicineService} from './shared/medicines.service';
 import {ValidateService} from './shared/validate.service';
 import {AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 import {ChartsModule } from 'ng2-charts';
@@ -27,6 +31,7 @@ import {AuthGuard1} from './guards/auth1.guard';
 @NgModule({
   declarations: [
     sidebar,
+    topbar,
     AppComponent,
     products,
     orders,
@@ -53,9 +58,8 @@ import {AuthGuard1} from './guards/auth1.guard';
     AngularMultiSelectModule,
     ChartsModule,
     QRCodeModule,
-    
     ],
-  providers: [users,ValidateService,AuthGuard,AuthGuard1],
+  providers: [users,orderService,medicineService,productService,ValidateService,AuthGuard,AuthGuard1],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
