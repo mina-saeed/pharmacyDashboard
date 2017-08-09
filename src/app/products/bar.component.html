@@ -34,7 +34,18 @@
 </div>
 <script src="node_modules/chart.js/src/chart.js"></script>
 
-</div>
+
+<div style="display: block">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHoveredPie($event)"
+          (chartClick)="chartClickedPie($event)"></canvas>
+</div>     
+<script src="node_modules/chart.js/src/chart.js"></script>
+
+ </div>
         <footer>
 
           <div class="clearfix"></div>
