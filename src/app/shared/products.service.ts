@@ -19,8 +19,7 @@ export class productService{
 
 			let headers = new Headers();
     			headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
-    			headers.append('Content-Type', 'application/json')
-    return this.http.post(this.url+'new', JSON.stringify(product), new RequestOptions({headers: headers})).map(res=>{return res.status})
+    return this.http.post(this.url+'new',product, new RequestOptions({headers: headers})).map(res=>{return res.status})
 
 	}
 

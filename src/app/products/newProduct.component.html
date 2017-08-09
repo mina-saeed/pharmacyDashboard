@@ -142,46 +142,32 @@
                     </ul>
                     </div>
                     </div>
-                    <span class="section">Product Sub-Category</span>
-                    <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sub-Category <span class="required">*</span>
-                        </label>
-                    <div class="btn-group">
-                    <ul>
-                    <select [(ngModel)]="sub" class="form-control" name="category" >
-                        <option value="one">One</option>
-                        <option value="two">Two</option>
-                        <option value="three">Three</option>
-                        <option value="four">Four</option>
-                        <option value="five">Five</option>
-                    </select>
-                    </ul>
-                    </div>
-                    </div>
-
-                    <span class="section" name="pharmacyID">Pharmacy</span>
-                    <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Pharmacy <span class="required">*</span>
-                        </label>
-                    <div class="btn-group">
-                    <ul>
-                    <select class="form-control" name="sub" (ngModel)]="pharmacyID">
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
-                        <option value="5">Five</option>
-                    </select>
-                    </ul>
-                    </div>
-                    </div>
+        
+<!
+                    <span class="section" name="pharmacyID"><!Pharmacy</span>
+                 <!   <div class="form-group">
+                <!    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"><!Pharmacy <span class="required"><!*</span>
+                 <!       </label>
+                  <!  <div class="btn-group">
+                <!    <ul>
+                <!    <select class="form-control" name="sub" [(ngModel)]="pharmacyID">
+                 <!       <option value="1"><!One</option>
+                  <!      <option value="2"><!Two</option>
+                  <!      <option value="3"><!Three</option>
+                   <!     <option value="4"><!Four</option>
+                   <!     <option value="5"><!Five</option>
+                   <! </select>
+                  <!  </ul>
+                  <!  </div>
+                  <!  </div>
                     
-                    span class="section">Product Image</span>
+                    <span class="section">Product Image</span>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image <span class="required">*</span>
                         </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
-                        <input type="file" id="image" name="image"  class="form-control" (change)="fileChange($event)" accept="image/*" required >                        </div>
+                        <input type="file" id="image" name="image"  class="form-control" (change)="fileChange($event)" accept="image/*" required>                        
+                      </div>
                       </div>
                   
                       <div class="form-group">
