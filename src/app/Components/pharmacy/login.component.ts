@@ -38,6 +38,7 @@ export class login implements OnInit {
   street:String;
   regions = [];
   locations = [];
+  deliverTo =[];
 	dropdownListLocation = [];
   selectedItemsLocation = [];
   dropdownSettingsLocation = {};
@@ -57,9 +58,6 @@ export class login implements OnInit {
 
 		 ngOnInit()
 {
-
-  //console.log(this.city);
-  console.log(settings.public.cities);
 	this.regions = settings.public.cities;
 		/*this.dropdownListLocation = [
                               {"id":1,"itemName":"Abbassia"},
@@ -162,35 +160,40 @@ export class login implements OnInit {
 	onChange(newValue) {
    // console.log(newValue);
     this.city= newValue;
+     console.log(settings.public.gizaList); 
     switch (this.city) {
-            case "Cairo": this.locations = settings.public.cairoList;break;
-            case "Giza": this.locations = settings.public.gizaList;break;
-            case "Alexandria": this.locations = settings.public.alexandriaList;break;
-            case "Suez": this.locations = settings.public.suezList;break;
-            case "Ismailia": this.locations = settings.public.ismailiaList;break;
-            case "Port Said": this.locations = settings.public.portsaidList;break;
-            case "Damietta": this.locations = settings.public.damiettaList;break;
-            case "Sharqia": this.locations = settings.public.sharqiaList;break;
-            case "Qaliubiya": this.locations = settings.public.qaliubiyaList;break;
-            case "El-Beheira": this.locations = settings.public.ElBeheiraList;break;
-            case "Kafr El-Shaeikh": this.locations = settings.public.KafrElShaeikhList;break;
-            case "Gharbia": this.locations = settings.public.GharbiaList;break;
-            case "Monofia": this.locations = settings.public.MonofiaList;break;
-            case "Qena": this.locations = settings.public.QenaList;break;
-            case "Menia": this.locations = settings.public.MeniaList;break;
-            case "Fayoum": this.locations = settings.public.FayoumList;break;
-            case "Beni Swaif": this.locations = settings.public.BeniSwaifList;break;
-            case "Sohag": this.locations = settings.public.SohagList;break;
-            case "Assiut": this.locations = settings.public.AssiutList;break;
-            case "Marsa Matrouh": this.locations = settings.public.MarsaMatrouhList;break;
-            case "New Valley": this.locations = settings.public.NewValleyList;break;
-            case "Red Sea": this.locations = settings.public.RedSeaList;break;
-            case "Luxor": this.locations = settings.public.LuxorList;break;
-            case "Aswan": this.locations = settings.public.AswanList;break;
-            case "North Sinai": this.locations = settings.public.NorthSinaiList;break;
-            case "South Sinai": this.locations = settings.public.SouthSinaiList;break;
-
+            case "Cairo": this.locations = settings.public.cairoList;this.deliverTo = settings.public.cairoList;break;
+            case "Giza": this.locations = settings.public.gizaList; this.deliverTo =  settings.public.gizaList;break;
+            case "Alexandria": this.locations = settings.public.alexandriaList;this.deliverTo= settings.public.alexandriaList; break;
+            case "Suez": this.locations = settings.public.suezList; this.deliverTo = settings.public.suezList; break;
+            case "Ismailia": this.locations = settings.public.ismailiaList;this.deliverTo = settings.public.ismailiaList; break;
+            case "Port Said": this.locations = settings.public.portsaidList;this.deliverTo= settings.public.portsaidList; break;
+            case "Damietta": this.locations = settings.public.damiettaList; this.deliverTo = settings.public.damiettaList; break;
+            case "Sharqia": this.locations = settings.public.sharqiaList; this.deliverTo = settings.public.sharqiaList; break;
+            case "Qaliubiya": this.locations = settings.public.qaliubiyaList; this. deliverTo = settings.public.qaliubiyaList; break;
+            case "El-Beheira": this.locations = settings.public.ElBeheiraList; this.deliverTo = settings.public.ElBeheiraList;break;
+            case "Kafr El-Shaeikh": this.locations = settings.public.KafrElShaeikhList;this.deliverTo = settings.public.KafrElShaeikhList; break;
+            case "Gharbia": this.locations = settings.public.GharbiaList;this.deliverTo = settings.public.GharbiaList;break;
+            case "Monofia": this.locations = settings.public.MonofiaList;this.deliverTo = settings.public.MonofiaList;break;
+            case "Qena": this.locations = settings.public.QenaList;this.deliverTo = settings.public.QenaList;break;
+            case "Menia": this.locations = settings.public.MeniaList;this.deliverTo = settings.public.MeniaList;break;
+            case "Fayoum": this.locations = settings.public.FayoumList;this.deliverTo = settings.public.FayoumList;break;
+            case "Beni Swaif": this.locations = settings.public.BeniSwaifList;this.deliverTo = settings.public.BeniSwaifList;break;
+            case "Sohag": this.locations = settings.public.SohagList;this.deliverTo = settings.public.SohagList;break;
+            case "Assiut": this.locations = settings.public.AssiutList;this.deliverTo = settings.public.Assiut;break;
+            case "Marsa Matrouh": this.locations = settings.public.MarsaMatrouhList;this.deliverTo = settings.public.MarsaMatrouhList;break;
+            case "New Valley": this.locations = settings.public.NewValleyList;this.deliverTo = settings.public.NewValleyList;break;
+            case "Red Sea": this.locations = settings.public.RedSeaList;this.deliverTo = settings.public.RedSeaList;break;
+            case "Luxor": this.locations = settings.public.LuxorList;this.deliverTo = settings.public.LuxorList;break;
+            case "Aswan": this.locations = settings.public.AswanList;this.deliverTo = settings.public.AswanList;break;
+            case "North Sinai": this.locations = settings.public.NorthSinaiList;this.deliverTo = settings.public.NorthSinaiList;break;
+            case "South Sinai": this.locations = settings.public.SouthSinaiList;this.deliverTo = settings.public.SouthSinaiList;break;
         }
+          for (var i=0; i<this.deliverTo.length; i++ )
+            {
+              this.deliverTo[i].name = this.dropdownListDeliverTo[i];
+              console.log(this.dropdownListDeliverTo[i]);
+            }
     if (this.city == 'Cairo')
 	{
 		/* this.dropdownListLocation = [
@@ -224,7 +227,7 @@ export class login implements OnInit {
                  
                             ];
                             */
-		this.dropdownListDeliverTo = [
+	/*	this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Abbassia"},
                               {"id":2,"itemName":"Abdeen"},
                               {"id":3,"itemName":"Al-Matariyyah"},
@@ -253,6 +256,8 @@ export class login implements OnInit {
                               {"id":26,"itemName":"Shubra El-Kheima"},
                               {"id":27,"itemName":"Zamalek"}
                             ];
+                            
+                            
 		/*this.selectedItemsLocation = [
                                 {"id":27,"itemName":"Zamalek"},
                                 {"id":22,"itemName":"Mokattam"},
@@ -291,7 +296,7 @@ export class login implements OnInit {
 	else if (this.city== 'Giza')
 	{
 		/*this.dropdownListLocation = [
-							  {"id":1,"itemName":"Agouza"},
+							                {"id":1,"itemName":"Agouza"},
                               {"id":2,"itemName":"Dokki"},
                               {"id":3,"itemName":"Imbaba"},
                               {"id":4,"itemName":"Mohandessin"},
@@ -301,7 +306,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Alagoza"},
                               {"id":9,"itemName":"Bien Alsaryaat"},
                               {"id":10,"itemName":"Faisal"},
-							  {"id":11,"itemName":"Alharam"},
+							                {"id":11,"itemName":"Alharam"},
                               {"id":12,"itemName":"Almonieb"},
                               {"id":13,"itemName":"Osiem"},
                               {"id":14,"itemName":"Kerdasa"},
@@ -311,12 +316,12 @@ export class login implements OnInit {
                               {"id":18,"itemName":"Albadrachine"},
                               {"id":19,"itemName":"Alayaat"},
                               {"id":20,"itemName":"Atfieh"},
-							  {"id":21,"itemName":"Alshiekh Zaied"},
+							                {"id":21,"itemName":"Alshiekh Zaied"},
                               {"id":22,"itemName":"6th of October"}
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
 							                {"id":1,"itemName":"Agouza"},
                               {"id":2,"itemName":"Dokki"},
                               {"id":3,"itemName":"Imbaba"},
@@ -340,7 +345,7 @@ export class login implements OnInit {
 							                {"id":21,"itemName":"Alshiekh Zaied"},
                               {"id":22,"itemName":"6th of October"}
 							
-		];
+		];*/
 	/*	this.selectedItemsLocation = [
                                 {"id":11,"itemName":"Alharam"},
                               	{"id":12,"itemName":"Almonieb"},
@@ -429,7 +434,7 @@ export class login implements OnInit {
                                 {"id":50,"itemName":"Burg al-Arab"}
         ];
           */
-        this.dropdownListDeliverTo = [
+    /*    this.dropdownListDeliverTo = [
 							                  {"id":1,"itemName":"AbuQir"},
                                 {"id":2,"itemName":"Maamoura"},
                                 {"id":3,"itemName":"Montaza"},
@@ -481,7 +486,7 @@ export class login implements OnInit {
                                 {"id":49,"itemName":"King Mariout"},
                                 {"id":50,"itemName":"Burg al-Arab"}
 							
-		];
+		];*/
 		/*this.selectedItemsLocation = [
                                 {"id":36,"itemName":"Anfoushi"},
                                 {"id":37,"itemName":"Al Manshiyya"},
@@ -527,7 +532,7 @@ export class login implements OnInit {
                               {"id":5,"itemName":"Attaka"}      
                             ];
       */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Arbaeen"},
                               {"id":2,"itemName":"Suez"},
                               {"id":3,"itemName":"Ganayen"},
@@ -582,7 +587,7 @@ export class login implements OnInit {
                               {"id":7,"itemName":"Al Qassassin"}       
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Ismailia"},
                               {"id":2,"itemName":"Al Tal Al-Kabeer"},
                               {"id":3,"itemName":"Fayed"},
@@ -638,7 +643,7 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Al-Arab"}  
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al-Ganoub"},
                               {"id":2,"itemName":"Al-Zohour"},
                               {"id":3,"itemName":"Al-Dawahy"},
@@ -690,7 +695,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Farskor"},
                               {"id":2,"itemName":"Al-Zarqa"},
                               {"id":3,"itemName":"Kafr Saad"},
@@ -751,7 +756,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"El-Hossaynya"},
                               {"id":2,"itemName":"Faqous"},
                               {"id":3,"itemName":"Belbis"},
@@ -821,7 +826,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Banha"},
                               {"id":2,"itemName":"Qalyoub"},
                               {"id":3,"itemName":"Al Qanater El Khayria"},
@@ -887,7 +892,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Rashid"},
                               {"id":2,"itemName":"Shabrakhit"},
                               {"id":3,"itemName":"Aytay Al Baroud"},
@@ -950,7 +955,7 @@ export class login implements OnInit {
                         
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Desouq"},
                               {"id":2,"itemName":"Fowah"},
                               {"id":3,"itemName":"Mutubas"},
@@ -1012,7 +1017,7 @@ export class login implements OnInit {
                         
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Kafr El Zayat"},
                               {"id":2,"itemName":"Al Santa"},
                               {"id":3,"itemName":"Al Mahala Al Kobra"},
@@ -1072,7 +1077,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Shebin El Kom"},
                               {"id":2,"itemName":"Menouf"},
                               {"id":3,"itemName":"Ashmoun"},
@@ -1129,7 +1134,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Abou Tesht"},
                               {"id":2,"itemName":"Farshout"},
                               {"id":3,"itemName":"Nagaa Hamady"},
@@ -1188,7 +1193,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                              {"id":1,"itemName":"Maghagha"},
                               {"id":2,"itemName":"Bany Mazar"},
                               {"id":3,"itemName":"Matay"},
@@ -1245,7 +1250,7 @@ export class login implements OnInit {
                         
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Ebshoway"},
                               {"id":2,"itemName":"Atsa"},
                               {"id":3,"itemName":"Al Fayoum"},
@@ -1304,7 +1309,7 @@ export class login implements OnInit {
                         
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al Wasty"},
                               {"id":2,"itemName":"Beni Swaif"},
                               {"id":3,"itemName":"Nasser"},
@@ -1367,7 +1372,7 @@ export class login implements OnInit {
                         
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Akhmim"},
                               {"id":2,"itemName":"Al Balina"},
                               {"id":3,"itemName":"Gerga"},
@@ -1431,7 +1436,7 @@ export class login implements OnInit {
                         
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                                {"id":1,"itemName":"Dayrout"},
                               {"id":2,"itemName":"Al Qoussya"},
                               {"id":3,"itemName":"Abnoub"},
@@ -1495,7 +1500,7 @@ export class login implements OnInit {
                         
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al Hamam"},
                               {"id":2,"itemName":"Al Alamin"},
                               {"id":3,"itemName":"Al Dabaa"},
@@ -1551,7 +1556,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al Kharga"},
                               {"id":2,"itemName":"Paris"},
                               {"id":3,"itemName":"Balat"},
@@ -1604,7 +1609,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Ras Ghareb"},
                               {"id":2,"itemName":"Hurghada"},
                               {"id":3,"itemName":"Al Quessir"},
@@ -1658,7 +1663,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Luxor"},
                               {"id":2,"itemName":"Al Bayadya"},
                               {"id":3,"itemName":"Al Zinya"},
@@ -1717,7 +1722,7 @@ export class login implements OnInit {
                               
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                              {"id":1,"itemName":"Edfo"},
                               {"id":2,"itemName":"Kom Embo"},
                               {"id":3,"itemName":"Draw"},
@@ -1776,7 +1781,7 @@ export class login implements OnInit {
                     
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Beaar AlAbd"},
                               {"id":2,"itemName":"Nakhal"},
                               {"id":3,"itemName":"Al Hasna"},
@@ -1835,7 +1840,7 @@ else if (this.city== 'South Sinai')
                     
                             ];
                             */
-		this.dropdownListDeliverTo = [
+		/*this.dropdownListDeliverTo = [
                              {"id":1,"itemName":"Abou Redis"},
                               {"id":2,"itemName":"Abou Zanima"},
                               {"id":3,"itemName":"Newibaa"},
