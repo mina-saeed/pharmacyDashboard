@@ -1,16 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {users} from '../shared/users.service';
+import {users} from '../../shared/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import {ValidateService} from '../shared/validate.service';
+import {ValidateService} from '../../shared/validate.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import 'rxjs/add/operator/map'
-import {orderService} from '../shared/orders.service'
+import {orderService} from '../../shared/orders.service'
 import { NG_VALIDATORS,Validator,
              Validators,AbstractControl,ValidatorFn } from '@angular/forms';
-import {EqualValidator} from '../password.match.directive';
+import {EqualValidator} from '../../password.match.directive';
+var settings = JSON.parse(JSON.stringify(require('../../settings.json')));
 
 @Component({
 	moduleId:module.id,
@@ -33,7 +34,9 @@ export class login implements OnInit {
 	mobile:String;
 	location:location;
 	city:String = " ";
-	street:String;
+  street:String;
+  private regions = [];
+  private locations = [];
 	dropdownListLocation = [];
   selectedItemsLocation = [];
   dropdownSettingsLocation = {};
@@ -51,10 +54,11 @@ export class login implements OnInit {
 
 		 ngOnInit()
 {
-
+        console.log(settings.public.cities)
+        this.regions = settings.public.cities;
 	//console.log(this.city);
 	
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
                               {"id":1,"itemName":"Abbassia"},
                               {"id":2,"itemName":"Abdeen"},
                               {"id":3,"itemName":"Al-Matariyyah"},
@@ -84,6 +88,7 @@ export class login implements OnInit {
                               {"id":27,"itemName":"Zamalek"}
                  
                             ];
+    */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Abbassia"},
                               {"id":2,"itemName":"Abdeen"},
@@ -113,14 +118,14 @@ export class login implements OnInit {
                               {"id":26,"itemName":"Shubra El-Kheima"},
                               {"id":27,"itemName":"Zamalek"}
                             ];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                                 {"id":27,"itemName":"Zamalek"},
                                 {"id":22,"itemName":"Mokattam"},
                                 {"id":21,"itemName":"Maadi"},
                                 {"id":4,"itemName":"Ain Shams"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                                 {"id":27,"itemName":"Zamalek"},
                                 {"id":22,"itemName":"Mokattam"},
@@ -128,7 +133,7 @@ export class login implements OnInit {
                                 {"id":4,"itemName":"Ain Shams"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -136,7 +141,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+      */
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -156,7 +161,7 @@ export class login implements OnInit {
     this.city= newValue;
     if (this.city == 'Cairo')
 	{
-		 this.dropdownListLocation = [
+		/* this.dropdownListLocation = [
                               {"id":1,"itemName":"Abbassia"},
                               {"id":2,"itemName":"Abdeen"},
                               {"id":3,"itemName":"Al-Matariyyah"},
@@ -167,7 +172,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Daher"},
                               {"id":9,"itemName":"Downtown"},
                               {"id":10,"itemName":"El-Manial"},
-							  {"id":11,"itemName":"El-Marg"},
+							                {"id":11,"itemName":"El-Marg"},
                               {"id":12,"itemName":"El-Quba"},
                               {"id":13,"itemName":"El-Sakakini"},
                               {"id":14,"itemName":"El-Tagamu El-Khames"},
@@ -177,7 +182,7 @@ export class login implements OnInit {
                               {"id":18,"itemName":"Fustat"},
                               {"id":19,"itemName":"Garden City"},
                               {"id":20,"itemName":"Heliopolis"},
-							  {"id":21,"itemName":"Maadi"},
+							                {"id":21,"itemName":"Maadi"},
                               {"id":22,"itemName":"Mokattam"},
                               {"id":23,"itemName":"Old cairo"},
                               {"id":24,"itemName":"Rhoda"},
@@ -186,6 +191,7 @@ export class login implements OnInit {
                               {"id":27,"itemName":"Zamalek"}
                  
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Abbassia"},
                               {"id":2,"itemName":"Abdeen"},
@@ -197,7 +203,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Daher"},
                               {"id":9,"itemName":"Downtown"},
                               {"id":10,"itemName":"El-Manial"},
-							  {"id":11,"itemName":"El-Marg"},
+							                {"id":11,"itemName":"El-Marg"},
                               {"id":12,"itemName":"El-Quba"},
                               {"id":13,"itemName":"El-Sakakini"},
                               {"id":14,"itemName":"El-Tagamu El-Khames"},
@@ -207,7 +213,7 @@ export class login implements OnInit {
                               {"id":18,"itemName":"Fustat"},
                               {"id":19,"itemName":"Garden City"},
                               {"id":20,"itemName":"Heliopolis"},
-							  {"id":21,"itemName":"Maadi"},
+							                {"id":21,"itemName":"Maadi"},
                               {"id":22,"itemName":"Mokattam"},
                               {"id":23,"itemName":"Old cairo"},
                               {"id":24,"itemName":"Rhoda"},
@@ -215,13 +221,13 @@ export class login implements OnInit {
                               {"id":26,"itemName":"Shubra El-Kheima"},
                               {"id":27,"itemName":"Zamalek"}
                             ];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                                 {"id":27,"itemName":"Zamalek"},
                                 {"id":22,"itemName":"Mokattam"},
                                 {"id":21,"itemName":"Maadi"},
                                 {"id":4,"itemName":"Ain Shams"}
                             ];
-		
+		*/
 		
 		this.selectedItemsDeliverTo = [
                                 {"id":27,"itemName":"Zamalek"},
@@ -230,14 +236,15 @@ export class login implements OnInit {
                                 {"id":4,"itemName":"Ain Shams"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+    /*this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
                                   unSelectAllText:'UnSelect All',
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
-                                }; 
+                                };
+    */ 
 		
         
         this.dropdownSettingsDeliverTo = { 
@@ -251,7 +258,7 @@ export class login implements OnInit {
 	}
 	else if (this.city== 'Giza')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Agouza"},
                               {"id":2,"itemName":"Dokki"},
                               {"id":3,"itemName":"Imbaba"},
@@ -276,8 +283,9 @@ export class login implements OnInit {
                               {"id":22,"itemName":"6th of October"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
-							  {"id":1,"itemName":"Agouza"},
+							                {"id":1,"itemName":"Agouza"},
                               {"id":2,"itemName":"Dokki"},
                               {"id":3,"itemName":"Imbaba"},
                               {"id":4,"itemName":"Mohandessin"},
@@ -287,7 +295,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Alagoza"},
                               {"id":9,"itemName":"Bien Alsaryaat"},
                               {"id":10,"itemName":"Faisal"},
-							  {"id":11,"itemName":"Alharam"},
+							                {"id":11,"itemName":"Alharam"},
                               {"id":12,"itemName":"Almonieb"},
                               {"id":13,"itemName":"Osiem"},
                               {"id":14,"itemName":"Kerdasa"},
@@ -297,16 +305,16 @@ export class login implements OnInit {
                               {"id":18,"itemName":"Albadrachine"},
                               {"id":19,"itemName":"Alayaat"},
                               {"id":20,"itemName":"Atfieh"},
-							  {"id":21,"itemName":"Alshiekh Zaied"},
+							                {"id":21,"itemName":"Alshiekh Zaied"},
                               {"id":22,"itemName":"6th of October"}
 							
 		];
-		this.selectedItemsLocation = [
+	/*	this.selectedItemsLocation = [
                                 {"id":11,"itemName":"Alharam"},
                               	{"id":12,"itemName":"Almonieb"},
                               	{"id":13,"itemName":"Osiem"},
                             ];
-		
+		*/
 		
 		this.selectedItemsDeliverTo = [
                                 {"id":11,"itemName":"Alharam"},
@@ -314,7 +322,7 @@ export class login implements OnInit {
                               	{"id":13,"itemName":"Osiem"},
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -322,7 +330,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -336,7 +344,7 @@ export class login implements OnInit {
 	}
     else if (this.city== 'Alexandria')
     {
-        this.dropdownListLocation = [
+      /*  this.dropdownListLocation = [
                                 {"id":1,"itemName":"AbuQir"},
                                 {"id":2,"itemName":"Maamoura"},
                                 {"id":3,"itemName":"Montaza"},
@@ -388,8 +396,9 @@ export class login implements OnInit {
                                 {"id":49,"itemName":"King Mariout"},
                                 {"id":50,"itemName":"Burg al-Arab"}
         ];
+          */
         this.dropdownListDeliverTo = [
-							      {"id":1,"itemName":"AbuQir"},
+							                  {"id":1,"itemName":"AbuQir"},
                                 {"id":2,"itemName":"Maamoura"},
                                 {"id":3,"itemName":"Montaza"},
                                 {"id":4,"itemName":"Mandara"},
@@ -441,14 +450,14 @@ export class login implements OnInit {
                                 {"id":50,"itemName":"Burg al-Arab"}
 							
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                                 {"id":36,"itemName":"Anfoushi"},
                                 {"id":37,"itemName":"Al Manshiyya"},
                                 {"id":38,"itemName":"Al Attarin"},
                                 {"id":39,"itemName":"Karmouz"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                                 {"id":36,"itemName":"Anfoushi"},
                                 {"id":37,"itemName":"Al Manshiyya"},
@@ -456,7 +465,7 @@ export class login implements OnInit {
                                 {"id":39,"itemName":"Karmouz"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -465,7 +474,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -478,13 +487,14 @@ export class login implements OnInit {
     }
     else if (this.city== 'Suez')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Arbaeen"},
                               {"id":2,"itemName":"Suez"},
                               {"id":3,"itemName":"Ganayen"},
                               {"id":4,"itemName":"Faisal"},
                               {"id":5,"itemName":"Attaka"}      
                             ];
+      */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Arbaeen"},
                               {"id":2,"itemName":"Suez"},
@@ -492,21 +502,22 @@ export class login implements OnInit {
                               {"id":4,"itemName":"Faisal"},
                               {"id":5,"itemName":"Attaka"} 
 							  
-		];
+    ];
+                            /*
 		this.selectedItemsLocation = [
                                 {"id":1,"itemName":"Arbaeen"},
                               {"id":2,"itemName":"Suez"},
                               {"id":3,"itemName":"Ganayen"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
-                                {"id":1,"itemName":"Arbaeen"},
+                              {"id":1,"itemName":"Arbaeen"},
                               {"id":2,"itemName":"Suez"},
                               {"id":3,"itemName":"Ganayen"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+       /* this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -515,7 +526,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -529,7 +540,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Ismailia')
 	{
-		this.dropdownListLocation = [
+	/*	this.dropdownListLocation = [
 							  {"id":1,"itemName":"Ismailia"},
                               {"id":2,"itemName":"Al Tal Al-Kabeer"},
                               {"id":3,"itemName":"Fayed"},
@@ -538,6 +549,7 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Abou Sweir"},
                               {"id":7,"itemName":"Al Qassassin"}       
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Ismailia"},
                               {"id":2,"itemName":"Al Tal Al-Kabeer"},
@@ -548,14 +560,14 @@ export class login implements OnInit {
                               {"id":7,"itemName":"Al Qassassin"} 
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":3,"itemName":"Fayed"},
                               {"id":4,"itemName":"Al-Qantara"},
                               {"id":5,"itemName":"Al-Qantara Gharb"}, 
                               {"id":6,"itemName":"Abou Sweir"},
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":3,"itemName":"Fayed"},
                               {"id":4,"itemName":"Al-Qantara"},
@@ -563,7 +575,7 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Abou Sweir"},
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -572,7 +584,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -585,14 +597,15 @@ export class login implements OnInit {
 	}
     else if (this.city== 'Port Said')
 	{
-		this.dropdownListLocation = [
-							  {"id":1,"itemName":"Al-Ganoub"},
+		/*this.dropdownListLocation = [
+							                {"id":1,"itemName":"Al-Ganoub"},
                               {"id":2,"itemName":"Al-Zohour"},
                               {"id":3,"itemName":"Al-Dawahy"},
                               {"id":4,"itemName":"Al-Sharq"},
                               {"id":5,"itemName":"Al-Manakh"}, 
                               {"id":6,"itemName":"Al-Arab"}  
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al-Ganoub"},
                               {"id":2,"itemName":"Al-Zohour"},
@@ -602,20 +615,20 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Al-Arab"}
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":3,"itemName":"Al-Dawahy"},
                               {"id":4,"itemName":"Al-Sharq"},
                               {"id":5,"itemName":"Al-Manakh"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":3,"itemName":"Al-Dawahy"},
                               {"id":4,"itemName":"Al-Sharq"},
                               {"id":5,"itemName":"Al-Manakh"},
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -624,7 +637,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -637,13 +650,14 @@ export class login implements OnInit {
 	}
     else if (this.city== 'Damietta')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Farskor"},
                               {"id":2,"itemName":"Al-Zarqa"},
                               {"id":3,"itemName":"Kafr Saad"},
                               {"id":4,"itemName":"Kafr Batikh"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Farskor"},
                               {"id":2,"itemName":"Al-Zarqa"},
@@ -651,18 +665,18 @@ export class login implements OnInit {
                               {"id":4,"itemName":"Kafr Batikh"}
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":2,"itemName":"Al-Zarqa"},
                               {"id":3,"itemName":"Kafr Saad"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":2,"itemName":"Al-Zarqa"},
                               {"id":3,"itemName":"Kafr Saad"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -670,7 +684,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -684,7 +698,7 @@ export class login implements OnInit {
 	}
     else if (this.city== 'Sharqia')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"El-Hossaynya"},
                               {"id":2,"itemName":"Faqous"},
                               {"id":3,"itemName":"Belbis"},
@@ -704,6 +718,7 @@ export class login implements OnInit {
                               {"id":17,"itemName":"San Al-Hagar"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"El-Hossaynya"},
                               {"id":2,"itemName":"Faqous"},
@@ -724,18 +739,18 @@ export class login implements OnInit {
                               {"id":17,"itemName":"San Al-Hagar"}
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":1,"itemName":"El-Hossaynya"},
                               {"id":2,"itemName":"Faqous"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":1,"itemName":"El-Hossaynya"},
                               {"id":2,"itemName":"Faqous"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -744,7 +759,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -757,7 +772,7 @@ export class login implements OnInit {
 	}
     else if (this.city== 'Qaliubiya')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Banha"},
                               {"id":2,"itemName":"Qalyoub"},
                               {"id":3,"itemName":"Al Qanater El Khayria"},
@@ -773,6 +788,7 @@ export class login implements OnInit {
                               
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Banha"},
                               {"id":2,"itemName":"Qalyoub"},
@@ -788,18 +804,18 @@ export class login implements OnInit {
                               {"id":12,"itemName":"Kafr Sheikh Ebrahim"}
 							  
 		];
-		this.selectedItemsLocation = [
+	/*	this.selectedItemsLocation = [
                               {"id":11,"itemName":"Al Khosous"},
                               {"id":12,"itemName":"Kafr Sheikh Ebrahim"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":11,"itemName":"Al Khosous"},
                               {"id":12,"itemName":"Kafr Sheikh Ebrahim"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -808,7 +824,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -821,7 +837,7 @@ export class login implements OnInit {
 	}
     else if (this.city== 'El-Beheira')
 	{
-		this.dropdownListLocation = [
+	/*	this.dropdownListLocation = [
 							  {"id":1,"itemName":"Rashid"},
                               {"id":2,"itemName":"Shabrakhit"},
                               {"id":3,"itemName":"Aytay Al Baroud"},
@@ -838,6 +854,7 @@ export class login implements OnInit {
                               
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Rashid"},
                               {"id":2,"itemName":"Shabrakhit"},
@@ -854,18 +871,18 @@ export class login implements OnInit {
                               {"id":12,"itemName":"Badr"}
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                                {"id":12,"itemName":"Wady Natroun"},
                                {"id":12,"itemName":"Badr"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                                {"id":12,"itemName":"Wady Natroun"},
                                {"id":12,"itemName":"Badr"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -874,7 +891,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -888,8 +905,8 @@ export class login implements OnInit {
 
      else if (this.city== 'Kafr El-Shaeikh')
 	{
-		this.dropdownListLocation = [
-							  {"id":1,"itemName":"Desouq"},
+		/*this.dropdownListLocation = [
+							                {"id":1,"itemName":"Desouq"},
                               {"id":2,"itemName":"Fowah"},
                               {"id":3,"itemName":"Mutubas"},
                               {"id":4,"itemName":"Qalin"},
@@ -900,6 +917,7 @@ export class login implements OnInit {
                               {"id":9,"itemName":"Al Brolos"}
                         
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Desouq"},
                               {"id":2,"itemName":"Fowah"},
@@ -913,20 +931,20 @@ export class login implements OnInit {
                         
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":7,"itemName":"Beila"},
                               {"id":8,"itemName":"Al Hamoul"},
                               {"id":9,"itemName":"Al Brolos"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":7,"itemName":"Beila"},
                               {"id":8,"itemName":"Al Hamoul"},
                               {"id":9,"itemName":"Al Brolos"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -935,7 +953,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -949,7 +967,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Gharbia')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Kafr El Zayat"},
                               {"id":2,"itemName":"Al Santa"},
                               {"id":3,"itemName":"Al Mahala Al Kobra"},
@@ -961,6 +979,7 @@ export class login implements OnInit {
                               
                         
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Kafr El Zayat"},
                               {"id":2,"itemName":"Al Santa"},
@@ -974,14 +993,14 @@ export class login implements OnInit {
                         
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":6,"itemName":"Samanoud"},
                               {"id":7,"itemName":"Tanta"},
                               {"id":8,"itemName":"Qotor"}
                               
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":6,"itemName":"Samanoud"},
                               {"id":7,"itemName":"Tanta"},
@@ -989,7 +1008,7 @@ export class login implements OnInit {
                               
                             ];
 
-        this.dropdownSettingsLocation = { 
+     /*   this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -998,7 +1017,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+       */ 
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -1012,7 +1031,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Monofia')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Shebin El Kom"},
                               {"id":2,"itemName":"Menouf"},
                               {"id":3,"itemName":"Ashmoun"},
@@ -1020,6 +1039,7 @@ export class login implements OnInit {
                               {"id":5,"itemName":"Tela"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Shebin El Kom"},
                               {"id":2,"itemName":"Menouf"},
@@ -1028,13 +1048,13 @@ export class login implements OnInit {
                               {"id":5,"itemName":"Tela"}
 							  
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":3,"itemName":"Ashmoun"},
                               {"id":4,"itemName":"Qouisna"},
                               {"id":5,"itemName":"Tela"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":3,"itemName":"Ashmoun"},
                               {"id":4,"itemName":"Qouisna"},
@@ -1042,7 +1062,7 @@ export class login implements OnInit {
                               
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1051,7 +1071,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -1065,7 +1085,7 @@ export class login implements OnInit {
 
      else if (this.city== 'Qena')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Abou Tesht"},
                               {"id":2,"itemName":"Farshout"},
                               {"id":3,"itemName":"Nagaa Hamady"},
@@ -1076,6 +1096,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Neqada"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Abou Tesht"},
                               {"id":2,"itemName":"Farshout"},
@@ -1087,20 +1108,20 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Neqada"}
                              
 		];
-		this.selectedItemsLocation = [
+	/*	this.selectedItemsLocation = [
                               {"id":6,"itemName":"Qeft"},
                               {"id":7,"itemName":"Qous"},
                               {"id":8,"itemName":"Neqada"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":6,"itemName":"Qeft"},
                               {"id":7,"itemName":"Qous"},
                               {"id":8,"itemName":"Neqada"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1109,7 +1130,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -1123,7 +1144,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Menia')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Maghagha"},
                               {"id":2,"itemName":"Bany Mazar"},
                               {"id":3,"itemName":"Matay"},
@@ -1134,6 +1155,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Al Adwa"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                              {"id":1,"itemName":"Maghagha"},
                               {"id":2,"itemName":"Bany Mazar"},
@@ -1145,20 +1167,20 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Al Adwa"}
                              
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":6,"itemName":"Malawy"},
                               {"id":7,"itemName":"Deir Mowas"},
                               {"id":8,"itemName":"Al Adwa"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":6,"itemName":"Malawy"},
                               {"id":7,"itemName":"Deir Mowas"},
                               {"id":8,"itemName":"Al Adwa"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1166,7 +1188,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1181,7 +1203,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Fayoum')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Ebshoway"},
                               {"id":2,"itemName":"Atsa"},
                               {"id":3,"itemName":"Al Fayoum"},
@@ -1190,6 +1212,7 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Youssef El Sadiq"}
                         
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Ebshoway"},
                               {"id":2,"itemName":"Atsa"},
@@ -1199,14 +1222,14 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Youssef El Sadiq"}
                              
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":4,"itemName":"Senouras"},
                               {"id":5,"itemName":"Tameya"},
                               {"id":6,"itemName":"Youssef El Sadiq"}
                              
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":4,"itemName":"Senouras"},
                               {"id":5,"itemName":"Tameya"},
@@ -1214,7 +1237,7 @@ export class login implements OnInit {
                              
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1223,7 +1246,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -1237,7 +1260,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Beni Swaif')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Al Wasty"},
                               {"id":2,"itemName":"Beni Swaif"},
                               {"id":3,"itemName":"Nasser"},
@@ -1248,6 +1271,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Beni Swaif Al Gadida"}
                         
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al Wasty"},
                               {"id":2,"itemName":"Beni Swaif"},
@@ -1259,14 +1283,14 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Beni Swaif Al Gadida"}
                              
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":6,"itemName":"Samasta"},
                               {"id":7,"itemName":"Al Fashn"},
                               {"id":8,"itemName":"Beni Swaif Al Gadida"}
                              
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":6,"itemName":"Samasta"},
                               {"id":7,"itemName":"Al Fashn"},
@@ -1274,7 +1298,7 @@ export class login implements OnInit {
                              
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1283,7 +1307,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -1297,7 +1321,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Sohag')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Akhmim"},
                               {"id":2,"itemName":"Al Balina"},
                               {"id":3,"itemName":"Gerga"},
@@ -1310,6 +1334,7 @@ export class login implements OnInit {
                               {"id":10,"itemName":"Al Monshah"}
                         
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Akhmim"},
                               {"id":2,"itemName":"Al Balina"},
@@ -1323,21 +1348,21 @@ export class login implements OnInit {
                               {"id":10,"itemName":"Al Monshah"}
                     
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":8,"itemName":"Tahta"},
                               {"id":9,"itemName":"Al Maragha"},
                               {"id":10,"itemName":"Al Monshah"}
                              
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":8,"itemName":"Tahta"},
                               {"id":9,"itemName":"Al Maragha"},
                               {"id":10,"itemName":"Al Monshah"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1346,7 +1371,7 @@ export class login implements OnInit {
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",
@@ -1359,8 +1384,8 @@ export class login implements OnInit {
 	}
      else if (this.city== 'Assiut')
 	{
-		this.dropdownListLocation = [
-							  {"id":1,"itemName":"Dayrout"},
+		/*this.dropdownListLocation = [
+							                {"id":1,"itemName":"Dayrout"},
                               {"id":2,"itemName":"Al Qoussya"},
                               {"id":3,"itemName":"Abnoub"},
                               {"id":4,"itemName":"Manfalout"},
@@ -1373,6 +1398,7 @@ export class login implements OnInit {
                               {"id":11,"itemName":"Al Sadfa"}
                         
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                                {"id":1,"itemName":"Dayrout"},
                               {"id":2,"itemName":"Al Qoussya"},
@@ -1388,21 +1414,21 @@ export class login implements OnInit {
                         
                     
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":7,"itemName":"Abou Ti"},
                               {"id":8,"itemName":"Al Ghanayem"},
                               {"id":9,"itemName":"Sahel Selim"}
                              
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":7,"itemName":"Abou Ti"},
                               {"id":8,"itemName":"Al Ghanayem"},
                               {"id":9,"itemName":"Sahel Selim"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1410,7 +1436,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1425,7 +1451,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Marsa Matrouh')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Al Hamam"},
                               {"id":2,"itemName":"Al Alamin"},
                               {"id":3,"itemName":"Al Dabaa"},
@@ -1436,6 +1462,7 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Siwa"}
                         
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al Hamam"},
                               {"id":2,"itemName":"Al Alamin"},
@@ -1447,20 +1474,20 @@ export class login implements OnInit {
                               {"id":8,"itemName":"Siwa"}
                     
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":6,"itemName":"Barany"},
                               {"id":7,"itemName":"Al Saloum"},
                               {"id":8,"itemName":"Siwa"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":6,"itemName":"Barany"},
                               {"id":7,"itemName":"Al Saloum"},
                               {"id":8,"itemName":"Siwa"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1468,7 +1495,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1483,7 +1510,7 @@ export class login implements OnInit {
 
      else if (this.city== 'New Valley')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Al Kharga"},
                               {"id":2,"itemName":"Paris"},
                               {"id":3,"itemName":"Balat"},
@@ -1491,6 +1518,7 @@ export class login implements OnInit {
                               {"id":5,"itemName":"Al Farafra"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Al Kharga"},
                               {"id":2,"itemName":"Paris"},
@@ -1498,20 +1526,20 @@ export class login implements OnInit {
                               {"id":4,"itemName":"Al Dakhla"},
                               {"id":5,"itemName":"Al Farafra"}
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":3,"itemName":"Balat"},
                               {"id":4,"itemName":"Al Dakhla"},
                               {"id":5,"itemName":"Al Farafra"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":3,"itemName":"Balat"},
                               {"id":4,"itemName":"Al Dakhla"},
                               {"id":5,"itemName":"Al Farafra"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1519,7 +1547,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1534,7 +1562,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Red Sea')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Ras Ghareb"},
                               {"id":2,"itemName":"Hurghada"},
                               {"id":3,"itemName":"Al Quessir"},
@@ -1543,6 +1571,7 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Shalatin"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Ras Ghareb"},
                               {"id":2,"itemName":"Hurghada"},
@@ -1551,20 +1580,20 @@ export class login implements OnInit {
                               {"id":5,"itemName":"Marsa Alam"},
                               {"id":6,"itemName":"Shalatin"}
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":4,"itemName":"Safaga"},
                               {"id":5,"itemName":"Marsa Alam"},
                               {"id":6,"itemName":"Shalatin"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":4,"itemName":"Safaga"},
                               {"id":5,"itemName":"Marsa Alam"},
                               {"id":6,"itemName":"Shalatin"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1572,7 +1601,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1586,8 +1615,8 @@ export class login implements OnInit {
     }
     else if (this.city== 'Luxor')
 	{
-		this.dropdownListLocation = [
-							  {"id":1,"itemName":"Luxor"},
+		/*this.dropdownListLocation = [
+							                {"id":1,"itemName":"Luxor"},
                               {"id":2,"itemName":"Al Bayadya"},
                               {"id":3,"itemName":"Al Zinya"},
                               {"id":4,"itemName":"Al Toud"},
@@ -1596,6 +1625,7 @@ export class login implements OnInit {
                               {"id":7,"itemName":"Esna"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Luxor"},
                               {"id":2,"itemName":"Al Bayadya"},
@@ -1605,12 +1635,12 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Armant"},
                               {"id":7,"itemName":"Esna"}
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":5,"itemName":"Al Qarna"},
                               {"id":6,"itemName":"Armant"},
                               {"id":7,"itemName":"Esna"}
                             ];
-		
+		*/
 		
 		this.selectedItemsDeliverTo = [
                               {"id":5,"itemName":"Al Qarna"},
@@ -1618,7 +1648,7 @@ export class login implements OnInit {
                               {"id":7,"itemName":"Esna"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1626,7 +1656,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1641,7 +1671,7 @@ export class login implements OnInit {
 
     else if (this.city== 'Aswan')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Edfo"},
                               {"id":2,"itemName":"Kom Embo"},
                               {"id":3,"itemName":"Draw"},
@@ -1654,6 +1684,7 @@ export class login implements OnInit {
                               {"id":7,"itemName":"Al Sobaaya"}
                               
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                              {"id":1,"itemName":"Edfo"},
                               {"id":2,"itemName":"Kom Embo"},
@@ -1667,20 +1698,20 @@ export class login implements OnInit {
                               {"id":7,"itemName":"Al Sobaaya"}
                               
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":6,"itemName":"Abu Simble"},
                               {"id":7,"itemName":"Klabsha"},
                               {"id":5,"itemName":"Al Radissiar"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":6,"itemName":"Abu Simble"},
                               {"id":7,"itemName":"Klabsha"},
                               {"id":5,"itemName":"Al Radissiar"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1688,7 +1719,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1703,7 +1734,7 @@ export class login implements OnInit {
 
     else if (this.city== 'North Sinai')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Beaar AlAbd"},
                               {"id":2,"itemName":"Nakhal"},
                               {"id":3,"itemName":"Al Hasna"},
@@ -1712,6 +1743,7 @@ export class login implements OnInit {
                               {"id":6,"itemName":"Rafah"}
                     
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                               {"id":1,"itemName":"Beaar AlAbd"},
                               {"id":2,"itemName":"Nakhal"},
@@ -1722,20 +1754,20 @@ export class login implements OnInit {
                     
                               
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":3,"itemName":"Al Hasna"},
                               {"id":4,"itemName":"Al Areesh"},
                               {"id":5,"itemName":"Al Sheikh Zowayed"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":3,"itemName":"Al Hasna"},
                               {"id":4,"itemName":"Al Areesh"},
                               {"id":5,"itemName":"Al Sheikh Zowayed"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+        /*this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1743,7 +1775,7 @@ export class login implements OnInit {
                                   enableSearchFilter: true,
                                   classes:"myclass custom-class"
                                 }; 
-		
+		*/
         
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
@@ -1758,7 +1790,7 @@ export class login implements OnInit {
 
 else if (this.city== 'South Sinai')
 	{
-		this.dropdownListLocation = [
+		/*this.dropdownListLocation = [
 							  {"id":1,"itemName":"Abou Redis"},
                               {"id":2,"itemName":"Abou Zanima"},
                               {"id":3,"itemName":"Newibaa"},
@@ -1770,6 +1802,7 @@ else if (this.city== 'South Sinai')
                               {"id":9,"itemName":"Taba"},
                     
                             ];
+                            */
 		this.dropdownListDeliverTo = [
                              {"id":1,"itemName":"Abou Redis"},
                               {"id":2,"itemName":"Abou Zanima"},
@@ -1783,20 +1816,20 @@ else if (this.city== 'South Sinai')
                     
                               
 		];
-		this.selectedItemsLocation = [
+		/*this.selectedItemsLocation = [
                               {"id":4,"itemName":"Dahab"},
                               {"id":5,"itemName":"Ras Sedr"},
                               {"id":6,"itemName":"Sharm El Sheikh"}
                             ];
 		
-		
+		*/
 		this.selectedItemsDeliverTo = [
                               {"id":4,"itemName":"Dahab"},
                               {"id":5,"itemName":"Ras Sedr"},
                               {"id":6,"itemName":"Sharm El Sheikh"}
                             ];
 
-        this.dropdownSettingsLocation = { 
+      /*  this.dropdownSettingsLocation = { 
                                   singleSelection: false, 
                                   text:"Select Locations",
                                   selectAllText:'Select All',
@@ -1805,7 +1838,7 @@ else if (this.city== 'South Sinai')
                                   classes:"myclass custom-class"
                                 }; 
 		
-        
+        */
         this.dropdownSettingsDeliverTo = { 
                                   singleSelection: false, 
                                   text:"Select Deliver to",

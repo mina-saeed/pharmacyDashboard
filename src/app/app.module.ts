@@ -2,21 +2,21 @@ import {BrowserModule } from '@angular/platform-browser';
 import {NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {AppComponent } from './app.component';
+import {AppComponent } from './Components/app/app.component';
 import {FlashMessagesModule } from 'angular2-flash-messages';
-import {login} from './pharmacy/login.component';
-import {orders} from './orders/orders.component';
-import {products} from './products/products.component';
-import {newProduct} from './products/newProduct.component';
-import {test} from './products/test'; 
-import {logout} from './pharmacy/logout.component';
-import {bar} from './products/bar.component';
-import {pie} from './products/pie.component'
+import {login} from './Components/pharmacy/login.component';
+import {orders} from './Components/orders/orders.component';
+import {products} from './Components/products/products.component';
+import {newProduct} from './Components/products/newProduct.component';
+import {test} from './Components/products/test'; 
+import {logout} from './Components/pharmacy/logout.component';
+import {bar} from './Components/products/bar.component';
+import {pie} from './Components/products/pie.component'
 import {pharmacysignupComponent} from './pharmacySignUp.component';
 import {routes, RoutingComponents} from './Routes/app.routing';
 import {RouterModule ,Routes} from '@angular/router'
-import {sidebar} from './sidebar/sidebar.component';
-import {topbar} from './topbar/topbar.component';
+import {sidebar} from './Components/sidebar/sidebar.component';
+import {topbar} from './Components/topbar/topbar.component';
 import {users} from './shared/users.service';
 import {orderService} from './shared/orders.service';
 import {productService} from './shared/products.service';

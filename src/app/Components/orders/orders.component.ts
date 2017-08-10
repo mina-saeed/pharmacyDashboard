@@ -1,6 +1,6 @@
 
 import { Component, OnInit,OnDestroy } from '@angular/core';
-import { orderService }       from '../shared/orders.service';
+import { orderService }       from '../../shared/orders.service';
 import {sidebar} from '../sidebar/sidebar.component'
 
 

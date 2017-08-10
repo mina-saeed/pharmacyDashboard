@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 import {Router} from '@angular/router'
-import {productService} from '../shared/products.service'
-import {users} from '../shared/users.service'
+import {productService} from '../../shared/products.service'
+import {users} from '../../shared/users.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
 
