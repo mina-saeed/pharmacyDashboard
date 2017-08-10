@@ -122,15 +122,9 @@
                                 <div class="form-group">
                                         <label for="name">Location <span class="required">*</span></label>
                                         <div class="btn-group">
-                                                <div class="controls" style ="display: inline-block; width: 340px;">
-                                                        <angular2-multiselect [data]="dropdownListLocation" [(ngModel)]="selectedItemsLocation" [ngModelOptions]="{standalone: true}"
-                                                        [settings]="dropdownSettingsLocation" 
-                                                        (onSelect)="onItemSelectLocation($event)" 
-                                                        (onDeSelect)="OnItemDeSelectLocation($event)"
-                                                        (onSelectAll)="onSelectAllLocation($event)"
-                                                        (onDeSelectAll)="onDeSelectAllLocation($event)"></angular2-multiselect>
-                                                        
-                                                </div>
+                                                <select required class="form-control" id="locations" style ="display: inline-block; width: 340px;" name="singleLocation" id="singleLocation" [(ngModel)]="singleLocation">
+                                                 <option *ngFor="let x of locations" [value]="x.name">{{x.name}}</option>
+                                                </select>
                                         </div>
                                        
                                 </div>

@@ -11,6 +11,7 @@ import {orderService} from '../../shared/orders.service'
 import { NG_VALIDATORS,Validator,
              Validators,AbstractControl,ValidatorFn } from '@angular/forms';
 import {EqualValidator} from '../../password.match.directive';
+declare var require: any;
 var settings = JSON.parse(JSON.stringify(require('../../settings.json')));
 
 @Component({
@@ -35,14 +36,16 @@ export class login implements OnInit {
 	location:location;
 	city:String = " ";
   street:String;
-  private regions = [];
-  private locations = [];
+  regions = [];
+  locations = [];
 	dropdownListLocation = [];
   selectedItemsLocation = [];
   dropdownSettingsLocation = {};
 	dropdownListDeliverTo = [];
   selectedItemsDeliverTo = [];
   dropdownSettingsDeliverTo = {};
+  singleLocation : String;
+ 
 
 	constructor(
 		private user: users,
@@ -54,10 +57,10 @@ export class login implements OnInit {
 
 		 ngOnInit()
 {
-        console.log(settings.public.cities)
-        this.regions = settings.public.cities;
-	//console.log(this.city);
-	
+
+  //console.log(this.city);
+  console.log(settings.public.cities);
+	this.regions = settings.public.cities;
 		/*this.dropdownListLocation = [
                               {"id":1,"itemName":"Abbassia"},
                               {"id":2,"itemName":"Abdeen"},
@@ -159,6 +162,35 @@ export class login implements OnInit {
 	onChange(newValue) {
    // console.log(newValue);
     this.city= newValue;
+    switch (this.city) {
+            case "Cairo": this.locations = settings.public.cairoList;break;
+            case "Giza": this.locations = settings.public.gizaList;break;
+            case "Alexandria": this.locations = settings.public.alexandriaList;break;
+            case "Suez": this.locations = settings.public.suezList;break;
+            case "Ismailia": this.locations = settings.public.ismailiaList;break;
+            case "Port Said": this.locations = settings.public.portsaidList;break;
+            case "Damietta": this.locations = settings.public.damiettaList;break;
+            case "Sharqia": this.locations = settings.public.sharqiaList;break;
+            case "Qaliubiya": this.locations = settings.public.qaliubiyaList;break;
+            case "El-Beheira": this.locations = settings.public.ElBeheiraList;break;
+            case "Kafr El-Shaeikh": this.locations = settings.public.KafrElShaeikhList;break;
+            case "Gharbia": this.locations = settings.public.GharbiaList;break;
+            case "Monofia": this.locations = settings.public.MonofiaList;break;
+            case "Qena": this.locations = settings.public.QenaList;break;
+            case "Menia": this.locations = settings.public.MeniaList;break;
+            case "Fayoum": this.locations = settings.public.FayoumList;break;
+            case "Beni Swaif": this.locations = settings.public.BeniSwaifList;break;
+            case "Sohag": this.locations = settings.public.SohagList;break;
+            case "Assiut": this.locations = settings.public.AssiutList;break;
+            case "Marsa Matrouh": this.locations = settings.public.MarsaMatrouhList;break;
+            case "New Valley": this.locations = settings.public.NewValleyList;break;
+            case "Red Sea": this.locations = settings.public.RedSeaList;break;
+            case "Luxor": this.locations = settings.public.LuxorList;break;
+            case "Aswan": this.locations = settings.public.AswanList;break;
+            case "North Sinai": this.locations = settings.public.NorthSinaiList;break;
+            case "South Sinai": this.locations = settings.public.SouthSinaiList;break;
+
+        }
     if (this.city == 'Cairo')
 	{
 		/* this.dropdownListLocation = [
@@ -1853,8 +1885,9 @@ else if (this.city== 'South Sinai')
 
     }
     }
+    
 
- 	onItemSelectLocation(item:any){
+ 	/*onItemSelectLocation(item:any){
        // console.log(item);
       //  console.log(this.selectedItemsLocation);
     }
@@ -1868,7 +1901,7 @@ else if (this.city== 'South Sinai')
     onDeSelectAllLocation(items: any){
     //    console.log(items);
     }
-
+*/
 
 	onItemSelectDeliverTo(item:any){
     //    console.log(item);
@@ -1884,7 +1917,7 @@ else if (this.city== 'South Sinai')
     onDeSelectAllDeliverTo(items: any){
     //    console.log(items);
     }
-
+  
 fileChange(event) 
 	{
     	this.logo = event.target.files;
@@ -2084,7 +2117,7 @@ var deliver = JSON.stringify(requestDeliverTo)
       email:data.email,
       password: data.password,
       city:data.address.city,
-      location: pharmaLoaction,
+      location: data.address.singleLocation,
       street: data.address.street,
       deliverTo: deliver,
       deliverTime: data.time,

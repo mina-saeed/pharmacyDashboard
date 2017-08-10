@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core'
 import {RouterModule ,Routes} from '@angular/router'
-
 import {login} from '../Components/pharmacy/login.component';
 import {orders} from '../Components/orders/orders.component';
 import {products} from '../Components/products/products.component';
@@ -9,7 +8,6 @@ import {logout} from '../Components/pharmacy/logout.component';
 import {users} from '../shared/users.service';
 import {medicineService} from '../shared/medicines.service';
 import {productService} from '../shared/products.service';
-
 import {ValidateService} from '../shared/validate.service';
 import {pharmacysignupComponent} from '../pharmacySignUp.component';
 import {bar} from '../Components/products/bar.component'; 
@@ -68,7 +66,7 @@ const componentRoutes: Routes =[
 				path: 'test',
 				component: test
 			}
-
+			
 		]
 
 
