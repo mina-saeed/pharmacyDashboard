@@ -122,7 +122,7 @@
                                 <div class="form-group">
                                         <label for="name">Location <span class="required">*</span></label>
                                         <div class="btn-group">
-                                                <select required class="form-control" id="locations" style ="display: inline-block; width: 340px;" name="singleLocation" id="singleLocation" [(ngModel)]="singleLocation">
+                                                <select required class="form-control" id="locations" style ="display: inline-block; width: 340px;" name="locations"  [(ngModel)]="singleLocation">
                                                  <option *ngFor="let x of locations" [value]="x.name">{{x.name}}</option>
                                                 </select>
                                         </div>
