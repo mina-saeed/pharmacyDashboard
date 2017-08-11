@@ -1,29 +1,27 @@
 import { Directive, forwardRef, Attribute } from '@angular/core';
 import { NG_VALIDATORS,Validator,
              Validators,AbstractControl,ValidatorFn } from '@angular/forms';
+import {Input} from '@angular/core';
  
     @Directive({
-        selector: '[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]',
+        selector: '[validateEqualTo][formControlName],[validateEqualTo][formControl],[validateEqual][ngModel]',
         providers: [
                     { provide: NG_VALIDATORS, 
-                      useExisting: forwardRef(() => EqualValidator),
+                      useExisting: forwardRef(() => EqualTextValidator),
                       multi: true }
                    ]
     })
-    export class EqualValidator implements Validator {
-        constructor( @Attribute('validateEqual') public validateEqual: string) {}
- 
-        validate(c: AbstractControl): { [key: string]: any } {
-            // self value (e.g. retype password)
-            let v = c.value;
- 
-            // control value (e.g. password)
-            let e = c.root.get(this.validateEqual);
- 
-            // value not equal
-            if (e && v !== e.value) return {
-                validateEqual: false
+    export class EqualTextValidator implements Validator {
+        @Input() validateEqualTo : string;
+        validate(c: AbstractControl) {
+             let passwordVal = c.value; 
+             let repeatEle = c.root.get(this.validateEqualTo);
+             return this.checkEquality(passwordVal,repeatEle);
+            }
+        checkEquality(passwordVal: string, repeatEle: any){
+            if ( repeatEle && passwordVal != repeatEle.value) return  {
+                validateEqual:true
             }
             return null;
-        }
+        } 
     }

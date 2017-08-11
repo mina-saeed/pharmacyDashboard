@@ -27,11 +27,14 @@ import {ChartsModule } from 'ng2-charts';
 import {QRCodeModule } from 'angular2-qrcode';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthGuard1} from './guards/auth1.guard';
+import { EqualTextValidator } from "angular2-text-equality-validator";
+//import {EqualTextValidator} from './password.match.directive';
 
 @NgModule({
   declarations: [
     sidebar,
     topbar,
+    EqualTextValidator,
     AppComponent,
     products,
     orders,

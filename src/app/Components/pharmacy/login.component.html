@@ -64,15 +64,18 @@
                                 </div>
 
                                 <div>
-                                        <input type="password" class="form-control" #password="ngModel" id="password" name="password" placeholder="Password" style ="display: inline-block; width: 340px;" required ngModel />
-                                        <div [hidden]="password.valid || (password.pristine && !registerForm.submitted)"
+                                        <input type="password" class="form-control" #password="ngModel" id="password" name="password" placeholder="Password" style ="display: inline-block; width: 340px;" required minlength="8" maxlength="15" ngModel />
+                                        <div *ngIf ="!password.pristine && password.errors?.required"
                                              class="alert alert-danger">   Password is required
+                                        </div>
+                                        <div *ngIf ="!password.pristine && password.errors?.minlength"
+                                             class="alert alert-danger">   Password is shorter than 8 characters
                                         </div>
                                         
                                 </div>
 
                                 <div>
-                                        <input type="password" class="form-control" #password2="ngModel" id="password2" name="password2" placeholder=" Re- enter the Password again" style ="display: inline-block; width: 340px;" required validateEqual="password" ngModel />
+                                        <input type="password" class="form-control" #password2="ngModel" id="password2" name="password2" placeholder=" Re- enter the Password again" style ="display: inline-block; width: 340px;" required validateEqualTo="password" ngModel />
                                        
                                         <div [hidden]="password2.valid || (password2.pristine && !registerForm.submitted)"
                                                 class="alert alert-danger">  Password mismatch
@@ -122,7 +125,7 @@
                                 <div class="form-group">
                                         <label for="name">Location <span class="required">*</span></label>
                                         <div class="btn-group">
-                                                <select required class="form-control" id="locations" style ="display: inline-block; width: 340px;" name="locations"  [(ngModel)]="singleLocation">
+                                                <select required class="form-control" id="locations" style ="display: inline-block; width: 340px;" name="singleLocation"  [(ngModel)]="singleLocation">
                                                  <option *ngFor="let x of locations" [value]="x.name">{{x.name}}</option>
                                                 </select>
                                         </div>

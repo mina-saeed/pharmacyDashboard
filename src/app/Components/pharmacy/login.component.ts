@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map'
 import {orderService} from '../../shared/orders.service'
 import { NG_VALIDATORS,Validator,
              Validators,AbstractControl,ValidatorFn } from '@angular/forms';
-import {EqualValidator} from '../../password.match.directive';
+//import {EqualValidator} from '../../password.match.directive';
 declare var require: any;
 var settings = JSON.parse(JSON.stringify(require('../../settings.json')));
 
