@@ -100,7 +100,28 @@ export class users {
 			localStorage.getItem('email') == null &&
 			localStorage.getItem('username') ==null  ;
 	}
+	resetPassword(info)
+	{
+		let headers = new Headers();
+        //this.loadToken();
+        headers.append('Content-Type', 'application/json');
+        let ep = this.prepEndpoint('resetPasswordDoc');
+        return this.http.post(ep, info, { headers: headers })
+            .map(res => res.json());
+	}
+	forgetPassword(email)
+	 {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        let ep = this.prepEndpoint('forgetPasswordDoc');
+        return this.http.post(ep, { email: email }, { headers: headers })
+            .map(res => res.json());
+	}
+	prepEndpoint(ep) {
+            return '146.185.148.66' + ep;
+           
+        }
+    }
 
   
  
-}

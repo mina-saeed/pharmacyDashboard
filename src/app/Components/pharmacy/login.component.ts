@@ -46,6 +46,7 @@ export class login implements OnInit {
   selectedItemsDeliverTo = [];
   dropdownSettingsDeliverTo = {};
   singleLocation : String;
+  forget: Boolean;
  
 
 	constructor(
@@ -2147,7 +2148,11 @@ var deliver = JSON.stringify(requestDeliverTo)
 	createNewAccount()
 	{
 		this.router.navigate(['/pharmacysignup']);
-	}	
+  }
+  forgetPass()	
+  {
+    this.router.navigate(['/forgotPass']);
+  }
 }
 
 interface location
