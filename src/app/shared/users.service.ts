@@ -29,6 +29,7 @@ export class users {
     		let body = {
     			email:user_email,
 				password:user_password,
+				
 				token: request_token,
 		};
 		 return this.http.post(this.url + '/login', JSON.stringify(body), new RequestOptions({  headers: headers})).map(res => res.json())

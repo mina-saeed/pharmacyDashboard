@@ -12,9 +12,9 @@
             <app-sidebar> </app-sidebar>
             <!-- /sidebar menu -->
 
-
           </div>
         </div>
+
 
         <!-- top navigation -->
         <div class="top_nav">
@@ -84,6 +84,7 @@
                       <thead>
                         <tr>
                           <th>Order </th>
+                          <th>Location</th>
                      <!--      <th>Location</th> -->
 <!--                           <th>Description</th>
                           <th>Category</th>
@@ -91,34 +92,28 @@
                           <th>Action</th>
                         </tr>
                       </thead>
-
-
-
-                      <tbody *ngFor=" let message of messages">
+                      <tbody *ngFor=" let firstOrder of firstOrders">
                       
                         <tr>
-
-
-                          <td>  {{message}}</td>
-                          <td><a href="#"> <button>Confirm </button></a></td>
-
-                          <td>{{medicine.barcode}}</td>
-                          <td>{{medicine.name.name_english}}</td>
-                          <td>{{medicine.description.english_description}}</td>
-                          <td>{{medicine.category}}</td>
-                          <td>{{medicine.milligrams}}</td>
-                          <td>{{medicine.price}}</td>
+                          <td>  {{firstOrder.order}}</td>
+                          <td>  {{firstOrder.location}}</td>
+                          <td><button (click)="confirm(firstOrder._id)">Confirm </button></td>
 
                         </tr>
                       </tbody>
-                      <tbody *ngFor=" let ord of newOrders">
+
+                      <tbody *ngFor=" let secondOrder of secondOrders ">
                       
                         <tr>
-                        <td>{{ord}}</td>
-                        <td><a href="#"> <button>Confirm </button></a></td>
-                        </tr>
+                          <td>  {{secondOrder.order}}</td>
+                          <td>  {{secondOrder.location}}</td>
+                          <td><button (click)="confirm(secondOrder._id)">Confirm </button></td>
 
-                      </tbody>                      
+                        </tr>
+                      </tbody>
+
+
+                     
                     </table>
                   </div>
                 </div>

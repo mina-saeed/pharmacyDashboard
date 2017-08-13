@@ -1,51 +1,427 @@
-<<<<<<< HEAD
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { orderService }       from '../shared/orders.service';
-=======
-import {Component} from '@angular/core'
 import {sidebar} from '../sidebar/sidebar.component'
+import 'rxjs/Rx';
+import {Observable} from 'rxjs/Rx';
+import {Http , RequestOptions, Headers} from '@angular/http';
 
 
->>>>>>> a22b16a7a176e067a6487df75b33376ecc05a6b1
 
  @Component({
 
- 	templateUrl:'orders.component.html',
- 	providers: [orderService]
+   templateUrl:'orders.component.html',
+   providers: [orderService]
 
  })
-<<<<<<< HEAD
- export class orders implements OnInit, OnDestroy {
-  messages = [];
+ export class orders implements OnInit {
+  
+  private firstOrders =[]
+  private  secondOrders =[];
+  private thirdOrders =[];  
+  private fourthorders =[]
+  private fifthOrders = []
   connection;
   message;
   ordr;
-  newOrders={};
 
-  constructor(private order:orderService) {}
-
-/*  sendMessage(){
-    this.chatService.sendMessage(this.message);
-    this.message = '';
-  }*/
+  constructor(private order:orderService ,private http:Http) { }
 
   ngOnInit() {
-    this.connection = this.order.getMessages().subscribe(message => {
-      this.messages.push(message);
+    this.secondOrders=[]
+     let firstTempOrders =[]
+    this.order.onStart().subscribe(message => {
+            let temp = []
+      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+            var cookieValue = orders.getCookie('pharmacy');
+    var allPharma = message.allPharmacies
+
+/*    allPharma.forEach(function(it){
+      console.log(it.email)
+    })*/
+    for(let i = 0;i < allPharma.length;i++){
+
+    if(cookieValue == allPharma[i].email){
+
+
+      var allOrders = message.allOrders
+      allOrders.forEach(function(order){
+                        
+        let orderDestination = order.location
+
+      if(cookieDeliver.includes(orderDestination)){
+        var deliverArray = cookieDeliver.split(',')
+        for (var s = 0 ; s < deliverArray.length;s++){
+                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
+            var element = deliverArray[s].split(':')
+
+            var key = element[0]
+            var val = element[1]
+            if(key.trim() === orderDestination.trim()){
+              if(val== 1){
+                 firstTempOrders.push(order)
+                }
+
+                 
+            }
+
+        }
+      }      
+
+
     })
-    this.connection = this.order.secondPriority().subscribe(ordr => {
-      console.log(ordr)
-      this.newOrders= ordr
-    })    
+      return this.firstOrders = firstTempOrders 
+    }
+  }
+
+  })
+
+
+ this.order.getMessages().subscribe(message => {
+       this.firstOrders.push(message);
+
+    })
+
+this.secondOrders=[]
+
+
+this.order.secondPackage().subscribe((data) => {
+
+            this.secondOrders=[]
+          let secondPriorityTemp = []
+          let firstPriorityTemp =[]
+      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var cookieValue = orders.getCookie('pharmacy');
+    var allPharma = data.allPharmacies
+    for(let i = 0;i < allPharma.length;i++){
+
+    if(cookieValue == allPharma[i].email){
+
+      var allOrders = data.allOrders
+      allOrders.forEach(function(order){
+        let orderDestination = order.location
+      if(cookieDeliver.includes(orderDestination)){
+ 
+        var deliverArray = cookieDeliver.split(',')
+        for (var s = 0 ; s < deliverArray.length;s++){
+                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
+            var element = deliverArray[s].split(':')
+
+            var key = element[0]
+            var val = element[1]
+            if(key.trim() === orderDestination.trim()){
+
+              if(val== 2){
+                        secondPriorityTemp.push(order)
+                          
+              }
+              if(val== 1){
+                        firstPriorityTemp.push(order)
+                          
+              }              
+
+            }
+
+        }
+      }    
+
+     
+      })
+            console.log("Temp "+ secondPriorityTemp)
+      this.secondOrders = secondPriorityTemp
+this.firstOrders = firstPriorityTemp
+      console.log("All Orders" + this.secondOrders)
+}
+}
+        });
+
+
+        this.order.thirdPackage().subscribe((data) => {
+            this.thirdOrders =[];
+          let thirdPriorityTemp = []
+      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var allOrders = data.allOrders
+      allOrders.forEach(function(order){
+        let orderDestination = order.location
+      if(cookieDeliver.includes(orderDestination)){
+ 
+        var deliverArray = cookieDeliver.split(',')
+        for (var s = 0 ; s < deliverArray.length;s++){
+                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
+            var element = deliverArray[s].split(':')
+
+            var key = element[0]
+            var val = element[1]
+            if(key.trim() === orderDestination.trim()){
+
+              console.log("matched")
+              console.log(orderDestination+" -> "+key+'-- '+val)
+
+              if(val== 3){
+                console.log("pushed")
+                        thirdPriorityTemp.push(order)
+                          
+              }
+
+            }
+
+        }
+      }    
+
+     
+      })
+      return this.thirdOrders = thirdPriorityTemp
+        }); 
+
+
+
+     this.order.fourthPackage().subscribe((data) => {
+            this.fourthorders =[];
+          let fourthPriorityTemp = []
+      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var allOrders = data.allOrders
+      allOrders.forEach(function(order){
+        let orderDestination = order.location
+      if(cookieDeliver.includes(orderDestination)){
+ 
+        var deliverArray = cookieDeliver.split(',')
+        for (var s = 0 ; s < deliverArray.length;s++){
+                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
+            var element = deliverArray[s].split(':')
+
+            var key = element[0]
+            var val = element[1]
+            if(key.trim() === orderDestination.trim()){
+
+              console.log("Forth")
+              console.log(orderDestination+" -> "+key+'-- '+val)
+
+              if(val== 4){
+                console.log("Forth")
+                        fourthPriorityTemp.push(order)
+                          
+              }
+
+            }
+
+        }
+      }    
+
+     
+      })
+      return this.fourthorders = fourthPriorityTemp
+        });
+
+     this.order.fifthPackage().subscribe((data) => {
+
+var cookieValue = orders.getCookie('pharmacy');
+    var allPharma = data.allPharmacies
+    for(let i = 0;i < allPharma.length;i++){
+    if(cookieValue == allPharma[i]){
+            //  console.log(data.data[0])
+
+            this.fifthOrders =[];
+          let fifthhPriorityTemp = []
+      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var allOrders = data.allOrders
+      allOrders.forEach(function(order){
+        let orderDestination = order.location
+      if(cookieDeliver.includes(orderDestination)){
+ 
+        var deliverArray = cookieDeliver.split(',')
+        for (var s = 0 ; s < deliverArray.length;s++){
+                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
+            var element = deliverArray[s].split(':')
+
+            var key = element[0]
+            var val = element[1]
+            if(key.trim() === orderDestination.trim()){
+
+              console.log("Forth")
+              console.log(orderDestination+" -> "+key+'-- '+val)
+
+              if(val== 5){
+                console.log("Forth")
+                        fifthhPriorityTemp.push(order)
+                          
+              }
+
+            }
+
+        }
+      }    
+
+     
+      })
+      return this.fifthOrders = fifthhPriorityTemp
+            }
+            
+    }
+
+      
+        });
+
+/*this.order.secondPackage().subscribe(message=>{
+
+
+
+
+  console.log("Second Orders  : ")
+      let secondPriorityTemp = []
+
+      let cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var allOrders = orders.messages
+      allOrders.forEach(function(order){
+        let orderDestination = order.location
+      if(cookieDeliver.includes(orderDestination)){
+ 
+        var deliverArray = cookieDeliver.split(',')
+        for (var s = 0 ; s < deliverArray.length;s++){
+                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
+            var element = deliverArray[s].split(':')
+
+            var key = element[0]
+            var val = element[1]
+            if(key.trim() === orderDestination.trim()){
+
+              console.log("matched")
+              console.log(orderDestination+" -> "+key+'-- '+val)
+              if(val== 2){
+                console.log("pushed")
+                        secondPriorityTemp.push(order)
+                          
+              }
+
+            }
+
+        }
+      }    
+
+     
+      })
+      this.secondOrders = secondPriorityTemp
+
+})*/
+/*
+    let headers = new Headers();
+        headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+
+        Observable.timer(0,30000)
+    .switchMap(() => this.http.get(this.url+'/allOrders' ,new RequestOptions({headers: headers}))).map((data) => data.json())
+        .subscribe((data) => {
+
+          let secondPriorityTemp = []
+      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var allOrders = data.allOrders
+      allOrders.forEach(function(order){
+        let orderDestination = order.location
+      if(cookieDeliver.includes(orderDestination)){
+ 
+        var deliverArray = cookieDeliver.split(',')
+        for (var s = 0 ; s < deliverArray.length;s++){
+                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
+            var element = deliverArray[s].split(':')
+
+            var key = element[0]
+            var val = element[1]
+            if(key.trim() === orderDestination.trim()){
+
+              console.log("matched")
+              console.log(orderDestination+" -> "+key+'-- '+val)
+              if(val== 1){
+                console.log("pushed")
+                        secondPriorityTemp.push(order)
+                          
+              }
+              if(val== 2){
+                console.log("pushed")
+                        secondPriorityTemp.push(order)
+                          
+              }
+
+            }
+
+        }
+      }    
+
+     
+      })
+      return this.messages = secondPriorityTemp
+        }); */
+
+
+
     
   }
-  
-  ngOnDestroy() {
-    this.connection.unsubscribe();
-  }
+
+
+confirm(orderID){
+
+
+  return this.order.confirmOrder(orderID).subscribe(result=>{
+    
+    if(this.firstOrders.length>0){
+    for(let i= 0; i<this.firstOrders.length;i++){
+
+          if(this.firstOrders[i]._id == result.allOrders){
+
+                this.firstOrders.splice(i,1)
+
+
+          }
+
+
+    }
 }
-=======
- export class orders{
-	 
- }
->>>>>>> a22b16a7a176e067a6487df75b33376ecc05a6b1
+
+    if(this.secondOrders.length>0){
+    for(let i= 0; i<this.secondOrders.length;i++){
+
+          if(this.secondOrders[i]._id == result.allOrders){
+
+                this.secondOrders.splice(i,1)
+                //this.firstOrders = orders.secondOrdersShared
+          }
+
+
+    }
+    
+}
+
+
+    if(this.thirdOrders.length>0){
+    for(let i= 0; i<this.thirdOrders.length;i++){
+
+          if(this.thirdOrders[i]._id == result.allOrders){
+
+                this.thirdOrders.splice(i,1)
+               // this.firstOrders = this.thirdOrders
+
+          }
+
+
+    }
+}
+
+
+   })
+
+} 
+
+
+
+     public static  getCookie(name: string) {
+        let ca: Array<string> = document.cookie.split(';');
+        let caLen: number = ca.length;
+        let cookieName = `${name}=`;
+        let c: string;
+
+        for (let i: number = 0; i < caLen; i += 1) {
+            c = ca[i].replace(/^\s+/g, '');
+            if (c.indexOf(cookieName) == 0) {
+                return c.substring(cookieName.length, c.length);
+            }
+        }
+        return '';
+    }
+  
+}
