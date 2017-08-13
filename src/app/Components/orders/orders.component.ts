@@ -1,10 +1,14 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
+
 import { orderService }       from '../shared/orders.service';
+
+
+import { Component, OnInit,OnDestroy } from '@angular/core';
+import { orderService }       from '../../shared/orders.service';
+
 import {sidebar} from '../sidebar/sidebar.component'
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Rx';
 import {Http , RequestOptions, Headers} from '@angular/http';
-
 
 
  @Component({
@@ -13,6 +17,7 @@ import {Http , RequestOptions, Headers} from '@angular/http';
    providers: [orderService]
 
  })
+
  export class orders implements OnInit {
   
   private firstOrders =[]
@@ -20,6 +25,7 @@ import {Http , RequestOptions, Headers} from '@angular/http';
   private thirdOrders =[];  
   private fourthorders =[]
   private fifthOrders = []
+
   connection;
   message;
   ordr;

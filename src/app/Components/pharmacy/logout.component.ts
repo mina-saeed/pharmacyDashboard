@@ -1,5 +1,5 @@
 import {Component , OnInit} from '@angular/core';
-import {users} from '../shared/users.service';
+import {users} from '../../shared/users.service';
 import {Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 @Component({

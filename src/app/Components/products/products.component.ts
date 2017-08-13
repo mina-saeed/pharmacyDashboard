@@ -1,5 +1,5 @@
 import {Component , OnInit} from '@angular/core'
-import {productService} from '../shared/products.service'
+import {productService} from '../../shared/products.service'
 
 @Component({
 	templateUrl:'products.component.html',

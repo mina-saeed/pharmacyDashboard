@@ -33,8 +33,13 @@
                                                 
                                                         <p class="change_link">New to site?
                                                               <a href="#signup" class="to_register">Create Account </a>
-                                                              <!   <a href="javascript:void(0)" (click)="createNewAccount()" style="color:#fcab0e"><! Create Account</a>
+                                                              <!  <a href="javascript:void(0)" (click)="createNewAccount()" style="color:#fcab0e"><! Create Account</a>
                                                         </p>
+                                                        <p class="change_link">Forgot password
+                                                                        
+                                                          <a href="javascript:void(0)" (click)="forgetPass()" style="color:#fcab0e"> reset it</a>
+                                                        </p>
+                                                       
 
                                                         <div class="clearfix"></div>
                                                         <br />
@@ -42,6 +47,7 @@
                                         </form>
                                 </section>
                         </div>
+                        
 
                 <div id="register" class="animate form registration_form">
                         <section class="login_content">
@@ -64,15 +70,18 @@
                                 </div>
 
                                 <div>
-                                        <input type="password" class="form-control" #password="ngModel" id="password" name="password" placeholder="Password" style ="display: inline-block; width: 340px;" required ngModel />
-                                        <div [hidden]="password.valid || (password.pristine && !registerForm.submitted)"
+                                        <input type="password" class="form-control" #password="ngModel" id="password" name="password" placeholder="Password" style ="display: inline-block; width: 340px;" required minlength="8" maxlength="15" ngModel />
+                                        <div *ngIf ="!password.pristine && password.errors?.required"
                                              class="alert alert-danger">   Password is required
+                                        </div>
+                                        <div *ngIf ="!password.pristine && password.errors?.minlength"
+                                             class="alert alert-danger">   Password is shorter than 8 characters
                                         </div>
                                         
                                 </div>
 
                                 <div>
-                                        <input type="password" class="form-control" #password2="ngModel" id="password2" name="password2" placeholder=" Re- enter the Password again" style ="display: inline-block; width: 340px;" required validateEqual="password" ngModel />
+                                        <input type="password" class="form-control" #password2="ngModel" id="password2" name="password2" placeholder=" Re- enter the Password again" style ="display: inline-block; width: 340px;" required validateEqualTo="password" ngModel />
                                        
                                         <div [hidden]="password2.valid || (password2.pristine && !registerForm.submitted)"
                                                 class="alert alert-danger">  Password mismatch
@@ -122,15 +131,9 @@
                                 <div class="form-group">
                                         <label for="name">Location <span class="required">*</span></label>
                                         <div class="btn-group">
-                                                <div class="controls" style ="display: inline-block; width: 340px;">
-                                                        <angular2-multiselect [data]="dropdownListLocation" [(ngModel)]="selectedItemsLocation" [ngModelOptions]="{standalone: true}"
-                                                        [settings]="dropdownSettingsLocation" 
-                                                        (onSelect)="onItemSelectLocation($event)" 
-                                                        (onDeSelect)="OnItemDeSelectLocation($event)"
-                                                        (onSelectAll)="onSelectAllLocation($event)"
-                                                        (onDeSelectAll)="onDeSelectAllLocation($event)"></angular2-multiselect>
-                                                        
-                                                </div>
+                                                <select required class="form-control" id="locations" style ="display: inline-block; width: 340px;" name="singleLocation"  [(ngModel)]="singleLocation">
+                                                 <option *ngFor="let x of locations" [value]="x.name">{{x.name}}</option>
+                                                </select>
                                         </div>
                                        
                                 </div>

@@ -3,8 +3,10 @@ import {Router} from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
  
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html'
+  selector: 'app-topbar',
+  templateUrl: './topbar.component.html'
 })
-export class sidebar {
+export class topbar
+{
+    
 }

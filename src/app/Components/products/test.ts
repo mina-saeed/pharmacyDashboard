@@ -1,6 +1,6 @@
 import {Component } from '@angular/core'
 import {Router} from '@angular/router'
-import {productService} from '../shared/products.service'
+import {productService} from '../../shared/products.service'
 @Component({
 
 	templateUrl: 'test.html',

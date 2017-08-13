@@ -13,11 +13,11 @@ export class pie {
   public pieChartType:string = 'pie';
  
   // events
-  public chartClicked(e:any):void {
+  public chartClickedPie(e:any):void {
     console.log(e);
   }
  
-  public chartHovered(e:any):void {
+  public chartHoveredPie(e:any):void {
     console.log(e);
   }
 }
