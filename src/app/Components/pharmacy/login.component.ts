@@ -47,6 +47,8 @@ export class login implements OnInit {
   dropdownSettingsDeliverTo = {};
   singleLocation : String;
   forget: Boolean;
+  type: String = "pharmacy";
+  token: String;
  
 
 	constructor(
@@ -2153,6 +2155,7 @@ var deliver = JSON.stringify(requestDeliverTo)
   {
     this.router.navigate(['/forgotPass']);
   }
+  
 }
 
 interface location

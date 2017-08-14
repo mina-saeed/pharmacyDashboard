@@ -103,25 +103,22 @@ export class users {
 	resetPassword(info)
 	{
 		let headers = new Headers();
-        //this.loadToken();
-        headers.append('Content-Type', 'application/json');
-        let ep = this.prepEndpoint('resetPasswordDoc');
-        return this.http.post(ep, info, { headers: headers })
-            .map(res => res.json());
+		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+		headers.append('Content-Type', 'application/json');
+		return this.http.post(this.url + '/changePassword', info, new RequestOptions({  headers: headers}))
+		 .map(res => {return res.status})
 	}
-	forgetPassword(email)
+	forgetPassword(body)
 	 {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        let ep = this.prepEndpoint('forgetPasswordDoc');
-        return this.http.post(ep, { email: email }, { headers: headers })
-            .map(res => res.json());
+		let headers = new Headers();
+		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+		headers.append('Content-Type', 'application/json');
+		return this.http.put(this.url+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
+		
+        
+	
 	}
-	prepEndpoint(ep) {
-            return '146.185.148.66' + ep;
-           
-        }
-    }
+}
 
   
  

@@ -13,6 +13,8 @@ import {ValidateService} from '../../shared/validate.service';
 export class forgotPass implements OnInit {
     email:String;
     forget: Boolean;
+    type: String = "pharmacy";
+    token: String;
     constructor(
 		private user: users,
 		private router: Router,
@@ -25,22 +27,31 @@ export class forgotPass implements OnInit {
 {}
 forgotPassword()
 {
- 
-  this.user.forgetPassword(this.email).subscribe(resp =>
+  const body =
   {
-    
-    if(resp.success == true){
-      this.flashMessage.show(resp.message , {
-        cssClass : 'alert-success',
-        timeout : 5000
-      });
-    }
-    else {
-      this.flashMessage.show(resp.message ,{
-        cssClass : 'alert-danger',
-        timeout : 5000
-      });
-    }
-  });
-}
+    type:"pharmacy",
+    email:this.email,
+    token: this.token
+
+  }
+ 
+  this.user.forgetPassword(body).subscribe(resp =>
+    {
+      
+      if(resp == 200){
+        console.log("user found");
+       /* this.flashMessage.show(resp.message , {
+          cssClass : 'alert-success',
+          timeout : 5000
+        });*/
+      }
+      else {
+        console.log("user not found");
+       /* this.flashMessage.show(resp.message ,{
+          cssClass : 'alert-danger',
+          timeout : 5000
+        });*/
+      }
+    });
+  }
 }
