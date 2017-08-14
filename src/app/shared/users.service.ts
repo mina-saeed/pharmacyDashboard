@@ -102,18 +102,20 @@ export class users {
 	}
 	resetPassword(info)
 	{
+		console.log("hello");
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
-		return this.http.post(this.url + '/changePassword', info, new RequestOptions({  headers: headers}))
+		return this.http.put(this.url + '/changePassword', info, new RequestOptions({  headers: headers}))
 		 .map(res => {return res.status})
 	}
 	forgetPassword(body)
 	 {
+		console.log("hello");
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
-		return this.http.put(this.url+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
+		return this.http.get(this.url+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
 		
         
 	
