@@ -40,6 +40,9 @@ forgotPassword()
       
       if(resp == 200){
         console.log("user found");
+        console.log(body.email);
+        this.user.storeUserDataEmail(body.email);
+        return this.router.navigate(['login']);
        /* this.flashMessage.show(resp.message , {
           cssClass : 'alert-success',
           timeout : 5000

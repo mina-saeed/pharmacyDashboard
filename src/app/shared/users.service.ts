@@ -81,6 +81,12 @@ export class users {
 	localStorage.setItem('username', this.username);
     
   }
+  storeUserDataEmail(email)
+  {
+	this.email = email;
+	console.log("this.email" + this.email);
+	localStorage.setItem('email', this.email);
+  }
   
 	loggedIn() {
 	//return tokenNotExpired() && this.user != null;
@@ -115,7 +121,7 @@ export class users {
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
-		return this.http.get(this.url+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
+		return this.http.post(this.url+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
 		
         
 	

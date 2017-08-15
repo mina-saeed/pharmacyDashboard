@@ -2151,10 +2151,42 @@ var deliver = JSON.stringify(requestDeliverTo)
 	{
 		this.router.navigate(['/pharmacysignup']);
   }
-  forgetPass()	
+ /* forgetPass()	
   {
     this.router.navigate(['/forgotPass']);
-  }
+  }*/
+  forgotPassword()
+  {
+    const body =
+    {
+      type:"pharmacy",
+      email:this.email,
+      token: this.token
+  
+    }
+   
+    this.user.forgetPassword(body).subscribe(resp =>
+      {
+        
+        if(resp == 200){
+          console.log("user found");
+          console.log(body.email);
+          this.user.storeUserDataEmail(body.email);
+          return this.router.navigate(['login']);
+         /* this.flashMessage.show(resp.message , {
+            cssClass : 'alert-success',
+            timeout : 5000
+          });*/
+        }
+        else {
+          console.log("user not found");
+         /* this.flashMessage.show(resp.message ,{
+            cssClass : 'alert-danger',
+            timeout : 5000
+          });*/
+        }
+      });
+    }
   
 }
 

@@ -34,7 +34,7 @@ import { ValidateService } from '../../shared/validate.service';
   
       const info = {
         type:"pharmacy",
-        email:this.email,
+        email:localStorage.getItem('email'),
         token: this.token,
         password: this.password
       }
