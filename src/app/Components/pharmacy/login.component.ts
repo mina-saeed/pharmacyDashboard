@@ -2151,10 +2151,10 @@ var deliver = JSON.stringify(requestDeliverTo)
 	{
 		this.router.navigate(['/pharmacysignup']);
   }
- /* forgetPass()	
+  forgetPass()	
   {
     this.router.navigate(['/forgotPass']);
-  }*/
+  }
   forgotPassword()
   {
     const body =
@@ -2164,6 +2164,7 @@ var deliver = JSON.stringify(requestDeliverTo)
       token: this.token
   
     }
+    this.user.storeUserDataEmail(body.email);
    
     this.user.forgetPassword(body).subscribe(resp =>
       {
@@ -2171,8 +2172,6 @@ var deliver = JSON.stringify(requestDeliverTo)
         if(resp == 200){
           console.log("user found");
           console.log(body.email);
-          this.user.storeUserDataEmail(body.email);
-          return this.router.navigate(['login']);
          /* this.flashMessage.show(resp.message , {
             cssClass : 'alert-success',
             timeout : 5000
@@ -2185,6 +2184,7 @@ var deliver = JSON.stringify(requestDeliverTo)
             timeout : 5000
           });*/
         }
+        return this.router.navigate(['login']);
       });
     }
   

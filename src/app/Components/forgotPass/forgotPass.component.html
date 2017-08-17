@@ -1,5 +1,66 @@
-
+<style>
+  .signupSection {
+    position: relative;
+    left: 30%;
+    width: 700px;
+    height: auto;
+    text-align: center;
+    color: white;
+  }
+  
+  .signupForm {
+    width: 70%;
+    padding: 30px 0;
+    background: #fcab0e;
+    transition: .2s;
+  }
+  
+  .signupForm h2 {
+      font-weight: 300;
+    }
+  
+  .inputFields {
+    margin: 15px 0;
+    font-size: 16px;
+    padding: 10px;
+    width: 250px;
+    border: 1px solid rgba(10, 180, 180, 1);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: rgba(20, 20, 20, .2);
+    color: white;
+    outline: none;
+  }
+  
+  .noBullet {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #join-btn {
+    border: 1px solid rgba(10, 180, 180, 1);
+    background: rgba(20, 20, 20, .6);
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+    padding: 10px 50px;
+    cursor: pointer;
+    transition: .4s;
+  }
+  
+  #join-btn:hover {
+      background: rgba(20, 20, 20, .8);
+      padding: 10px 80px;
+    }
+    
+  </style>
 <div class="signupSection">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
                 <form (submit)="forgotPassword()" class="signupForm">
                     <div align="center">
                       <font size = "50">Enter Your Email</font>
@@ -7,14 +68,14 @@
                     <ul class="noBullet">
                       <li>
                         <div align="center">
-                        <input type="text" class="inputFields" [(ngModel)]="email" name="email" placeholder="                                      please enter the Email of yours" 
-                        style ="display: inline-block; width: 340px; height: 30px ">
+                        <input type="text" class="inputFields" [(ngModel)]="email" name="email" placeholder="please enter the Email of yours" 
+                        style ="display: inline-block; width: 340px; height: 50px ">
                         </div>
                       </li>
                       <br/>
                       <br/>
                       <div align="center">
-                        <input type="submit" id="join-btn" value="Reset" style ="display: inline-block; width: 340px; height: 30px">
+                        <input type="submit" id="join-btn" value="Reset" style ="display: inline-block; width: 340px; height: 50px">
                       </div>
                     </ul>
                 </form>
