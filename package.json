@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 146.185.148.66 --port 4200 --live-reload-port 49153 ",
+    "start": "ng serve --host localhost --port 4200 --live-reload-port 49153 ",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "angular-md5": "^0.1.10",
     "angular2-cookie": "^1.2.6",
     "angular2-flash-messages": "^1.0.8",
     "angular2-multiselect-dropdown": "^1.1.4",

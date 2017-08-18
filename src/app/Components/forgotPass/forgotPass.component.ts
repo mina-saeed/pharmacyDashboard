@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {users} from '../../shared/users.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {ValidateService} from '../../shared/validate.service';
+import {Md5} from 'ts-md5/dist/md5';
 @Component({
 	
 	selector: 'app-forgotPAss',
@@ -12,7 +13,6 @@ import {ValidateService} from '../../shared/validate.service';
 })
 export class forgotPass implements OnInit {
     email:String;
-    forget: Boolean;
     type: String = "pharmacy";
     token: String;
     constructor(
@@ -42,7 +42,7 @@ forgotPassword()
         console.log("user found");
         console.log(body.email);
         this.user.storeUserDataEmail(body.email);
-        return this.router.navigate(['login']);
+        return this.router.navigate(['forgetPassword']);
        /* this.flashMessage.show(resp.message , {
           cssClass : 'alert-success',
           timeout : 5000
