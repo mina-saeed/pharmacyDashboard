@@ -47,6 +47,8 @@ export class login implements OnInit {
   dropdownSettingsDeliverTo = {};
   singleLocation : String;
   forget: Boolean;
+  type: String = "pharmacy";
+  token: String;
  
 
 	constructor(
@@ -2154,6 +2156,39 @@ var deliver = JSON.stringify(requestDeliverTo)
   {
     this.router.navigate(['/forgotPass']);
   }
+  forgotPassword()
+  {
+    const body =
+    {
+      type:"pharmacy",
+      email:this.email,
+      token: this.token
+  
+    }
+    this.user.storeUserDataEmail(body.email);
+   
+    this.user.forgetPassword(body).subscribe(resp =>
+      {
+        
+        if(resp == 200){
+          console.log("user found");
+          console.log(body.email);
+         /* this.flashMessage.show(resp.message , {
+            cssClass : 'alert-success',
+            timeout : 5000
+          });*/
+        }
+        else {
+          console.log("user not found");
+         /* this.flashMessage.show(resp.message ,{
+            cssClass : 'alert-danger',
+            timeout : 5000
+          });*/
+        }
+        return this.router.navigate(['login']);
+      });
+    }
+  
 }
 
 interface location

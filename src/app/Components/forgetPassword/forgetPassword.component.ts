@@ -13,6 +13,7 @@ import { ValidateService } from '../../shared/validate.service';
   {
     token: String;
     password: String;
+    email:String;
     constructor(private authService: users,
         private router: Router,
         private flashMessage: FlashMessagesService,
@@ -32,22 +33,19 @@ import { ValidateService } from '../../shared/validate.service';
       }
   
       const info = {
+        type:"pharmacy",
+        email:localStorage.getItem('email'),
         token: this.token,
-        Password: this.password
+        password: this.password
       }
       this.authService.resetPassword(info).subscribe(data =>
       {
-        if (data.success) {
-          this.flashMessage.show(data.message, {
-            cssClass: 'alert-success',
-            timeout: 5000
-          });
+        if (data == 200 ) {
+          console.log("reset done");
           this.router.navigate(['login']);
-        } else {
-          this.flashMessage.show(data.message, {
-            cssClass: 'alert-danger',
-            timeout: 5000
-          });
+        }
+        else {
+          console.log("reset  not done");
           this.router.navigate(['/']);
         }
       });

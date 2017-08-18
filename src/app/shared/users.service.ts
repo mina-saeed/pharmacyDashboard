@@ -82,6 +82,12 @@ export class users {
 	localStorage.setItem('username', this.username);
     
   }
+  storeUserDataEmail(email)
+  {
+	this.email = email;
+	console.log("this.email" + this.email);
+	localStorage.setItem('email', this.email);
+  }
   
 	loggedIn() {
 	//return tokenNotExpired() && this.user != null;
@@ -103,26 +109,25 @@ export class users {
 	}
 	resetPassword(info)
 	{
+		console.log("hello");
 		let headers = new Headers();
-        //this.loadToken();
-        headers.append('Content-Type', 'application/json');
-        let ep = this.prepEndpoint('resetPasswordDoc');
-        return this.http.post(ep, info, { headers: headers })
-            .map(res => res.json());
+		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+		headers.append('Content-Type', 'application/json');
+		return this.http.put(this.url + '/changePassword', info, new RequestOptions({  headers: headers}))
+		 .map(res => {return res.status})
 	}
-	forgetPassword(email)
+	forgetPassword(body)
 	 {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        let ep = this.prepEndpoint('forgetPasswordDoc');
-        return this.http.post(ep, { email: email }, { headers: headers })
-            .map(res => res.json());
+		console.log("hello");
+		let headers = new Headers();
+		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+		headers.append('Content-Type', 'application/json');
+		return this.http.post(this.url+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
+		
+        
+	
 	}
-	prepEndpoint(ep) {
-            return '146.185.148.66' + ep;
-           
-        }
-    }
+}
 
   
  
