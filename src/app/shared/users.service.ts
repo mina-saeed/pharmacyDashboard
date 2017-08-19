@@ -109,7 +109,7 @@ export class users {
 	}
 	resetPassword(info)
 	{
-		console.log("hello");
+		console.log("reset");
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
@@ -118,7 +118,7 @@ export class users {
 	}
 	forgetPassword(body)
 	 {
-		console.log("hello");
+		console.log("forgot");
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
