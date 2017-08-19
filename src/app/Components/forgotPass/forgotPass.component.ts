@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {users} from '../../shared/users.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
+import {FlashMessagesService } from 'angular2-flash-messages';
 import {ValidateService} from '../../shared/validate.service';
 import {Md5} from 'ts-md5/dist/md5';
 @Component({
@@ -9,7 +9,7 @@ import {Md5} from 'ts-md5/dist/md5';
 	selector: 'app-forgotPAss',
 
 	templateUrl:'./forgotPass.component.html',
-	providers:[users]
+	providers:[users, Md5] 
 })
 export class forgotPass implements OnInit {
     email:String;
@@ -19,7 +19,8 @@ export class forgotPass implements OnInit {
 		private user: users,
 		private router: Router,
 		private flashMessage: FlashMessagesService, 
-		private validateService: ValidateService
+    private validateService: ValidateService,
+    private _md5: Md5
     
 		 ){}
 
@@ -27,16 +28,18 @@ export class forgotPass implements OnInit {
 {}
 forgotPassword()
 {
+  let hash = Md5.hashStr("email");
   const body =
   {
     type:"pharmacy",
     email:this.email,
-    token: this.token
+    token: hash
 
   }
  
   this.user.forgetPassword(body).subscribe(resp =>
     {
+      console.log(body.email);
       
       if(resp == 200){
         console.log("user found");
