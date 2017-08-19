@@ -45,18 +45,18 @@ forgotPassword()
         console.log("user found");
         console.log(body.email);
         this.user.storeUserDataEmail(body.email);
-        return this.router.navigate(['forgetPassword']);
-       /* this.flashMessage.show(resp.message , {
+       this.flashMessage.show(resp.message , {
           cssClass : 'alert-success',
           timeout : 5000
-        });*/
+        });
+        return this.router.navigate(['forgetPassword']);
       }
       else {
         console.log("user not found");
-       /* this.flashMessage.show(resp.message ,{
+        this.flashMessage.show(resp.message ,{
           cssClass : 'alert-danger',
           timeout : 5000
-        });*/
+        });
       }
     });
   }
