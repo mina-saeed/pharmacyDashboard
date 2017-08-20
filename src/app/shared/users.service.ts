@@ -14,8 +14,8 @@ export class users {
 	email:any;
 	  
 
-	private url = 'http://146.185.148.66:3060'
-
+	private url = 'http://146.185.148.66:3002/';
+	private url2 = 'http://146.185.148.66:3060/';
 	constructor(private http: Http , private router: Router)
 	{
 		
@@ -92,8 +92,6 @@ export class users {
 	loggedIn() {
 	//return tokenNotExpired() && this.user != null;
 	//since we did not make any tokens yet , after making the tokens, we will undo commenting the first statement
-
-	console.log (localStorage.getItem('username'));
 	return 	localStorage.getItem('id') != null && 
 			localStorage.getItem('email') != null &&
 			localStorage.getItem('username') !=null  ;
@@ -102,7 +100,6 @@ export class users {
   } 
 	notloggedIn()
 	{
-		console.log (localStorage.getItem('username'));
 	return 	localStorage.getItem('id') == null && 
 			localStorage.getItem('email') == null &&
 			localStorage.getItem('username') ==null  ;
@@ -113,7 +110,7 @@ export class users {
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
-		return this.http.put(this.url + '/changePassword', info, new RequestOptions({  headers: headers}))
+		return this.http.put(this.url2 + '/changePassword', info, new RequestOptions({  headers: headers}))
 		 .map(res => {return res.status})
 	}
 	forgetPassword(body)
@@ -122,7 +119,7 @@ export class users {
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
-		return this.http.post(this.url+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
+		return this.http.post(this.url2+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
 		
         
 	

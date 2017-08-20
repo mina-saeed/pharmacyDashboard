@@ -59,7 +59,7 @@ forgotPassword(data:any)
           cssClass : 'alert-success',
           timeout : 5000
         });
-       this.router.navigate(['forgetPassword']);
+      return this.router.navigate(['forgetPassword']);
       }
       else {
       

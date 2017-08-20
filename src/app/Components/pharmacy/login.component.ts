@@ -419,7 +419,7 @@ export class login implements OnInit {
                                 {"id":31,"itemName":"Hadara"},
                                 {"id":32,"itemName":"Azarita"},
                                 {"id":33,"itemName":"Muharram Bek"},
-                                {"id":34,"itemName":"El Raml Station"},
+                                {"id":34,"itemName":"El Raml Station"},
                                 {"id":35,"itemName":"KoumAlDikka"},
                                 {"id":36,"itemName":"Anfoushi"},
                                 {"id":37,"itemName":"Al Manshiyya"},
@@ -472,7 +472,7 @@ export class login implements OnInit {
                                 {"id":31,"itemName":"Hadara"},
                                 {"id":32,"itemName":"Azarita"},
                                 {"id":33,"itemName":"Muharram Bek"},
-                                {"id":34,"itemName":"El Raml Station"},
+                                {"id":34,"itemName":"El Raml Station"},
                                 {"id":35,"itemName":"KoumAlDikka"},
                                 {"id":36,"itemName":"Anfoushi"},
                                 {"id":37,"itemName":"Al Manshiyya"},
@@ -2011,32 +2011,23 @@ fileChange(event)
   console.log(data.address.city);
   formData.append('street', data.street);
   console.log(data.address.street);
-
   
-
   console.log (this.selectedItemsDeliverTo.length);
   var i =0;
   for ( i; i< this.selectedItemsDeliverTo.length; i++)
   {
     formData.append('deliverTo',this.selectedItemsDeliverTo[i].itemName  + ':null' );
     console.log(this.selectedItemsDeliverTo[i].itemName  + ':null');
-
   }
-
   console.log(this.selectedItemsLocation.length);
   var j =0;
-
   for ( j; j< this.selectedItemsLocation.length; j++)
   { 
     console.log(this.selectedItemsLocation[j].itemName  + ':null');
     formData.append('location',this.selectedItemsLocation[j].itemName + ':null');
-
   }
   
  
-
-
-
     if(data.logo)
       if (data.logo.length > 0)
       {
@@ -2078,7 +2069,6 @@ fileChange(event)
 			
       
     	}
-
 */
 var location_string = JSON.stringify(this.selectedItemsLocation)
 var locationObj = JSON.parse(location_string)
@@ -2198,4 +2188,3 @@ interface location
 	street:String;
 	deliverTo: [String];
 }
- 
