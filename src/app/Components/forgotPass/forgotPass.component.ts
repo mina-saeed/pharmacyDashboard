@@ -25,33 +25,44 @@ export class forgotPass implements OnInit {
 		 ){}
 
 	ngOnInit()
-{}
-forgotPassword()
 {
-  let hash = Md5.hashStr("email");
+  var x= 'email'
+  console.log( Md5.hashStr('blah blah blah') );
+  console.log( Md5.hashStr('ph3@mail.com') );
+  console.log( 'hashing' + Md5.hashStr(x.toString()) );
+}
+forgotPassword(data:any)
+
+{
+  console.log(data);
+ 
+  var hashingToken=Md5.hashStr(data.email.toString());
   const body =
   {
     type:"pharmacy",
-    email:this.email,
-    token: hash
+    email:data.email,
+    token: hashingToken
 
   }
+  console.log(body);
  
   this.user.forgetPassword(body).subscribe(resp =>
     {
+      console.log(resp);
       console.log(body.email);
       
       if(resp == 200){
         console.log("user found");
         console.log(body.email);
-        this.user.storeUserDataEmail(body.email);
-       this.flashMessage.show(resp.message , {
+      this.user.storeUserDataEmail(body.email);
+      this.flashMessage.show(resp.message , {
           cssClass : 'alert-success',
           timeout : 5000
         });
-        return this.router.navigate(['forgetPassword']);
+       this.router.navigate(['forgetPassword']);
       }
       else {
+      
         console.log("user not found");
         this.flashMessage.show(resp.message ,{
           cssClass : 'alert-danger',

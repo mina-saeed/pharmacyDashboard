@@ -14,7 +14,7 @@ export class users {
 	email:any;
 	  
 
-	private url = 'http://146.185.148.66:3002'
+	private url = 'http://146.185.148.66:3060'
 
 	constructor(private http: Http , private router: Router)
 	{
