@@ -55,7 +55,7 @@ forgotPassword(data:any)
         console.log("user found");
         console.log(body.email);
       this.user.storeUserDataEmail(body.email);
-      this.flashMessage.show(resp.message , {
+      this.flashMessage.show(resp.toString() , {
           cssClass : 'alert-success',
           timeout : 5000
         });
@@ -64,7 +64,7 @@ forgotPassword(data:any)
       else {
       
         console.log("user not found");
-        this.flashMessage.show(resp.message ,{
+        this.flashMessage.show(resp.toString() ,{
           cssClass : 'alert-danger',
           timeout : 5000
         });

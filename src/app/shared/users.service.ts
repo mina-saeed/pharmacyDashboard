@@ -119,7 +119,7 @@ export class users {
 		let headers = new Headers();
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
-		return this.http.post(this.url2+'checkUser',body ,new RequestOptions({headers: headers})).map(res=>res.json())
+		return this.http.post(this.url2+'checkUser',JSON.stringify(body) ,new RequestOptions({headers: headers})).map(res=>res.json())
 		
         
 	
