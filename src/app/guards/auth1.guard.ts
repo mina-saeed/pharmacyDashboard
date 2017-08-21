@@ -9,7 +9,7 @@ export class AuthGuard1 implements CanActivate{
   }
 
   canActivate(){
-    if(this.user.notloggedIn()){
+    if(!(this.user.loggedIn())){
       console.log(" not logged in");
       return true;
     } else {
