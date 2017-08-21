@@ -29,9 +29,9 @@ import {Md5} from 'ts-md5/dist/md5';
       ngOnInit()
     {
     }
-    onResetSubmit()
+    onResetSubmit(data:any)
     {
-      if (!this.validateService.validatePassword(this.password)) {
+      if (!this.validateService.validatePassword(data.password)) {
         this.flashMessage.show("please insert a valid Password with at least 8 characters and not more than 15 characters", { cssClass: 'alert-warning', timeout: 5000 });
         window.scrollTo(0, 0);
       }
@@ -42,7 +42,7 @@ import {Md5} from 'ts-md5/dist/md5';
         type:"pharmacy",
         email:localStorage.getItem('email'),
         token: hash,
-        password: this.password
+        password: data.password
       }
       this.authService.resetPassword(info).subscribe(data =>
       {

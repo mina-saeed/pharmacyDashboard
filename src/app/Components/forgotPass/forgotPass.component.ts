@@ -51,20 +51,20 @@ forgotPassword(data:any)
       console.log(resp);
       console.log(body.email);
       
-      if(resp.success == 200){
+      if(resp == 200){
         console.log("user found");
         console.log(body.email);
       this.user.storeUserDataEmail(body.email);
-      this.flashMessage.show(resp.messages , {
+     /* this.flashMessage.show(resp.toString() , {
           cssClass : 'alert-success',
           timeout : 5000
-        });
+        });*/
       return this.router.navigate(['forgetPassword']);
       }
       else {
       
         console.log("user not found");
-        this.flashMessage.show(resp.messages ,{
+        this.flashMessage.show(resp.toString() ,{
           cssClass : 'alert-danger',
           timeout : 5000
         });
