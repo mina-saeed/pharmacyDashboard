@@ -49,6 +49,7 @@ export class login implements OnInit {
   forget: Boolean;
   type: String = "pharmacy";
   token: String;
+  requestDeliverTo: [DeliverTo];
  
 
 	constructor(
@@ -2081,17 +2082,17 @@ locationObj.forEach(function(item){
 })
 var deliverTo_string = JSON.stringify(this.selectedItemsDeliverTo)
 var deliverToObj = JSON.parse(deliverTo_string)
-var requestDeliverTo = []
+
 
 deliverToObj.forEach(function(item){
-  requestDeliverTo.push(item.itemName);
-  requestDeliverTo.push(item.priority);
+  this.requestDeliverTo.name.push(item.itemName);
+  this.requestDeliverTo.priority.push(item.priority);
   
 })
 
 
 var pharmaLoaction = JSON.stringify(requestLocations)
-var deliver = JSON.stringify(requestDeliverTo)
+var deliver = JSON.stringify(this.requestDeliverTo)
 
 
 	  let date = new Date();
@@ -2189,4 +2190,9 @@ interface location
 	location:[String];
 	street:String;
 	deliverTo: [String];
+}
+interface DeliverTo
+{
+  name: String;
+  priority: Number;
 }
