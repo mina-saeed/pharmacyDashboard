@@ -14,6 +14,9 @@ import {test} from './Components/products/test';
 import {logout} from './Components/pharmacy/logout.component';
 import {bar} from './Components/products/bar.component';
 import {pie} from './Components/products/pie.component'
+import {newAds} from './Components/ads/addAds.component'
+import {Ads} from './Components/ads/Ads.component'
+import {updateAds} from './Components/ads/updateAds.component'
 import {pharmacysignupComponent} from './pharmacySignUp.component';
 import {routes, RoutingComponents} from './Routes/app.routing';
 import {RouterModule ,Routes} from '@angular/router'
@@ -39,6 +42,7 @@ import { MainPipe } from './filter/filter.module'
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { productDialog } from './Components/products/dialog.component'
+import { adsDialog } from './Components/ads/adsDialog.component'
 import { TruncatePipe } from 'angular2-truncate';
 
 @NgModule({
@@ -52,6 +56,7 @@ import { TruncatePipe } from 'angular2-truncate';
     newProduct,
     TruncatePipe,
     productDialog,
+    adsDialog,
     RoutingComponents,
     [ login ,
       logout,
@@ -64,6 +69,9 @@ import { TruncatePipe } from 'angular2-truncate';
       bar,
       pie,
       test,
+      newAds,
+      Ads,
+      updateAds
     ]
 
   ],
@@ -82,7 +90,8 @@ import { TruncatePipe } from 'angular2-truncate';
     ],
 
     entryComponents: [
-      productDialog
+      productDialog,
+      adsDialog
     ],
   providers: [users,orderService,medicineService,productService,ValidateService,AuthGuard,AuthGuard1,Md5],
   bootstrap: [AppComponent]
