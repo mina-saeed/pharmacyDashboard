@@ -110,7 +110,7 @@ export class users {
 		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 		headers.append('Content-Type', 'application/json');
 		return this.http.put(this.url2 + '/changePassword', info, new RequestOptions({headers: headers}))
-		 .map(res => res.json());
+		 .map(res => res.status);
 	}
 	forgetPassword(body)
 	 {
