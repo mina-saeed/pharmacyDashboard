@@ -2078,7 +2078,6 @@ locationObj.forEach(function(item){
   
 
 })
- var requestDeliverTo: [DeliverTo] ;
 
 var deliverTo_string = JSON.stringify(this.selectedItemsDeliverTo)
 var deliverToObj = JSON.parse(deliverTo_string)
