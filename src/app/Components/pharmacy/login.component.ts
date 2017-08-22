@@ -49,7 +49,6 @@ export class login implements OnInit {
   forget: Boolean;
   type: String = "pharmacy";
   token: String;
-  requestDeliverTo: [DeliverTo];
  
 
 	constructor(
@@ -2083,16 +2082,22 @@ locationObj.forEach(function(item){
 var deliverTo_string = JSON.stringify(this.selectedItemsDeliverTo)
 var deliverToObj = JSON.parse(deliverTo_string)
 
-
+var arr = []
 deliverToObj.forEach(function(item){
-  this.requestDeliverTo.name.push(item.itemName);
-  this.requestDeliverTo.priority.push(item.priority);
+  console.log(item)
+  var n :DeliverTo 
+  n = {name: item.itemName,
+  priority : 0
+  }
+  arr.push(n);
   
 })
 
 
+
 var pharmaLoaction = JSON.stringify(requestLocations)
-var deliver = JSON.stringify(this.requestDeliverTo)
+var deliver = JSON.stringify(arr)
+console.log(deliver)
 
 
 	  let date = new Date();
