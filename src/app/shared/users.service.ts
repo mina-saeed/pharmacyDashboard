@@ -4,6 +4,7 @@ import { Http ,Headers ,RequestOptions,Response } from '@angular/http'
 //import { tokenNotExpired } from 'angular2-jwt';
 
 import 'rxjs/add/operator/map'
+var config = JSON.parse(JSON.stringify(require('../../config.json')));
 
 @Injectable()
 export class users {
@@ -24,14 +25,14 @@ export class users {
 	getUser(user_email , user_password ,request_token):any {
 
 		let headers = new Headers();
-    		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+    		headers.append('Authorization', config.auth);
     		headers.append('Content-Type', 'application/json')
     		let body = {
     			email:user_email,
 				password:user_password,
 				token: request_token,
 		};
-		 return this.http.post(this.url + '/login', JSON.stringify(body), new RequestOptions({  headers: headers})).map(res => res.json())
+		 return this.http.post(config.userIP + '/login', JSON.stringify(body), new RequestOptions({  headers: headers})).map(res => res.json())
 		  
 		  
     	
@@ -51,10 +52,10 @@ export class users {
         console.log(userData)
 
         let headers = new Headers();
-            headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+            headers.append('Authorization', config.auth);
             headers.append('Content-Type', 'application/json')
 
-         return this.http.post(this.url + '/register', userData, new RequestOptions({  headers: headers}))
+         return this.http.post(config.userIP + '/register', userData, new RequestOptions({  headers: headers}))
                 .map(res => {return res.status})
         
           }          
@@ -107,18 +108,18 @@ export class users {
 	{
 		console.log("reset");
 		let headers = new Headers();
-		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+		headers.append('Authorization', config.auth);
 		headers.append('Content-Type', 'application/json');
-		return this.http.put(this.url2 + '/changePassword', info, new RequestOptions({headers: headers}))
+		return this.http.put(config.resetIP + '/changePassword', info, new RequestOptions({headers: headers}))
 		 .map(res => res.status);
 	}
 	forgetPassword(body)
 	 {
 		console.log("forgot");
 		let headers = new Headers();
-		headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
+		headers.append('Authorization', config.auth);
 		headers.append('Content-Type', 'application/json');
-		return this.http.post(this.url2 +'/checkUser', body ,new RequestOptions({headers: headers})).map(res=>res.status);
+		return this.http.post(config.resetIP +'/checkUser', body ,new RequestOptions({headers: headers})).map(res=>res.status);
 		
         
 	

@@ -1,26 +1,50 @@
-import {Injectable} from '@angular/core'
-import {Http, RequestOptions, Headers} from '@angular/http'
+import { Injectable } from '@angular/core'
+import { Http, RequestOptions, Headers } from '@angular/http'
+var config = JSON.parse(JSON.stringify(require('../../config.json')));
 
 @Injectable()
 
-export class productService{
+export class productService {
 
-	private url ="http://146.185.148.66:3005/"
-	constructor(private http: Http){}
+	constructor(private http: Http) { }
 
-	allProducts(){
-			let headers = new Headers();
-    			headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
-    			headers.append('Content-Type', 'application/json')
+	allProducts() {
+		let headers = new Headers();
+		headers.append('Authorization', config.auth);
+		headers.append('Content-Type', 'application/json')
 
-			return this.http.get(this.url+'all', new RequestOptions({headers: headers})).map(res=>res.json())
+		return this.http.get(config.productIP + 'all', new RequestOptions({ headers: headers })).map(res => res.json())
 	}
-	addProduct(product){
+	addProduct(product) {
 
-			let headers = new Headers();
-    			headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
-    return this.http.post(this.url+'new',product, new RequestOptions({headers: headers})).map(res=>{return res.status})
+		let headers = new Headers();
+		headers.append('Authorization', config.auth);
+		return this.http.post(config.productIP + 'new', product, new RequestOptions({ headers: headers })).map(res => { return res.status })
 
 	}
+
+	getAllCategories(): any {
+
+		let headers = new Headers();
+		headers.append('Authorization', config.auth);
+		headers.append('Content-Type', 'application/json')
+		return this.http.get(config.productcategoryIP + 'all', new RequestOptions({ headers: headers })).map(res => res.json())
+	}
+
+	getAllsubCategories(catID): any {
+		let headers = new Headers();
+		headers.append('Authorization', config.auth);
+		headers.append('Content-Type', 'application/json')
+		return this.http.get(config.productcategoryIP + 'allSubCategories/' + catID, new RequestOptions({ headers: headers })).map(res => {
+			if (res.status == 404) {
+				return res.status
+			}
+			else {
+				return res.json();
+			}
+		})
+	}
+
+
 
 }

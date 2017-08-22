@@ -33,6 +33,14 @@ import { EqualTextValidator } from "angular2-text-equality-validator";
 import {Md5} from 'ts-md5/dist/md5';
 //import {EqualTextValidator} from './password.match.directive';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Pipe, PipeTransform } from '@angular/core';
+import { MainPipe } from './filter/filter.module'
+
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { productDialog } from './Components/products/dialog.component'
+import { TruncatePipe } from 'angular2-truncate';
+
 @NgModule({
   declarations: [
     sidebar,
@@ -42,6 +50,8 @@ import {Md5} from 'ts-md5/dist/md5';
     products,
     orders,
     newProduct,
+    TruncatePipe,
+    productDialog,
     RoutingComponents,
     [ login ,
       logout,
@@ -66,6 +76,13 @@ import {Md5} from 'ts-md5/dist/md5';
     AngularMultiSelectModule,
     ChartsModule,
     QRCodeModule,
+    BootstrapModalModule,
+    NgxPaginationModule, 
+    MainPipe
+    ],
+
+    entryComponents: [
+      productDialog
     ],
   providers: [users,orderService,medicineService,productService,ValidateService,AuthGuard,AuthGuard1,Md5],
   bootstrap: [AppComponent]
