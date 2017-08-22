@@ -47,8 +47,10 @@ import {Md5} from 'ts-md5/dist/md5';
       this.authService.resetPassword(info).subscribe(data =>
       {
         if (data == 200 ) {
+          localStorage.removeItem('email');
+          localStorage.clear();
           console.log("reset done");
-          this.router.navigate(['login']);
+          this.router.navigate(['']);
         }
         else {
           console.log("reset  not done");
