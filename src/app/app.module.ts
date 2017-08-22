@@ -30,6 +30,7 @@ import {QRCodeModule } from 'angular2-qrcode';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthGuard1} from './guards/auth1.guard';
 import { EqualTextValidator } from "angular2-text-equality-validator";
+import {Md5} from 'ts-md5/dist/md5';
 //import {EqualTextValidator} from './password.match.directive';
 
 @NgModule({
@@ -66,7 +67,7 @@ import { EqualTextValidator } from "angular2-text-equality-validator";
     ChartsModule,
     QRCodeModule,
     ],
-  providers: [users,orderService,medicineService,productService,ValidateService,AuthGuard,AuthGuard1],
+  providers: [users,orderService,medicineService,productService,ValidateService,AuthGuard,AuthGuard1,Md5],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

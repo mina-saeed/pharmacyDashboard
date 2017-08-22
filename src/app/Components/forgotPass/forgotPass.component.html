@@ -10,8 +10,10 @@
   
   .signupForm {
     width: 70%;
+    height: 350px;
     padding: 30px 0;
-    background: #fcab0e;
+    align-self: center;
+    background: wheat;
     transition: .2s;
   }
   
@@ -37,6 +39,9 @@
     list-style-type: none;
     padding: 0;
   }
+  #a{
+    align-self: center;
+  }
   
   #join-btn {
     border: 1px solid rgba(10, 180, 180, 1);
@@ -61,23 +66,33 @@
     <br/>
     <br/>
     <br/>
-                <form (submit)="forgotPassword()" class="signupForm">
+      <section class="login_content">
+                <form class="signupForm" #registerEmailForm="ngForm" (ngSubmit)="forgotPassword(registerEmailForm.value)" >
                     <div align="center">
                       <font size = "50">Enter Your Email</font>
                     </div>
+                    <br/>
+                    <br/>
                     <ul class="noBullet">
                       <li>
                         <div align="center">
-                        <input type="text" class="inputFields" [(ngModel)]="email" name="email" placeholder="please enter the Email of yours" 
-                        style ="display: inline-block; width: 340px; height: 50px ">
+                            <input type="text" class="form-control" id="email" name="email" #email= "ngModel" placeholder="please enter the email you forgot its password" style ="display: inline-block; width: 340px;  height: 50px " required ngModel /> 
                         </div>
                       </li>
                       <br/>
                       <br/>
                       <div align="center">
-                        <input type="submit" id="join-btn" value="Reset" style ="display: inline-block; width: 340px; height: 50px">
+                        <button type="submit" id="join-btn" value="Reset" style ="display: inline-block; width: 340px; height: 50px"> submit</button> 
                       </div>
                     </ul>
+                      <br/>
+                      <br/>
+                    <p align= "center">
+                        <a font size = "50" href="/"  style="color:#fcab0e;"> <h2> SignUp or SignIn</h2></a> 
+                       
+                    </p>
                 </form>
+      </section>
+                
         </div>
                
