@@ -36,7 +36,7 @@ import {Md5} from 'ts-md5/dist/md5';
         window.scrollTo(0, 0);
       }
       this.email= localStorage.getItem('email');
-      let hash = Md5.hashStr("email");
+      let hash = Md5.hashStr(localStorage.getItem('email'));
   
       const info = {
         type:"pharmacy",
