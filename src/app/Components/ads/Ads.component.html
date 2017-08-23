@@ -1,4 +1,15 @@
 <style>
+.center {
+    text-align: center;
+    margin-top: 35px
+}
+  .my-pagination /deep/ .ngx-pagination .current {
+    font-size: 15px;
+    color: black;
+    padding: 4px 8px;
+    text-decoration: none;
+    
+  }
   .card {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
@@ -108,9 +119,10 @@
             </div>
           </div>
         </div>
-        <div class="clearfix"></div>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
+        <div class="center">            
+            <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+          </div>
     </div>
     <!-- /page content -->
   </div>

@@ -1,4 +1,16 @@
 <style>
+
+.center {
+    text-align: center;
+    margin-top: 35px
+}
+  .my-pagination /deep/ .ngx-pagination .current {
+    font-size: 15px;
+    color: black;
+    padding: 5px 8px;
+    text-decoration: none;
+    
+  }
   .card {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
@@ -96,7 +108,7 @@
           </div>
           <div class="clearfix"></div>
         </div>
-        <div *ngFor="let product of products | searchFilter:term | paginate: { itemsPerPage: 15, currentPage: p } ; let in=index">
+        <div *ngFor="let product of products | searchFilter:term | paginate: { itemsPerPage: 12, currentPage: p } ; let in=index">
           <div class="card col-md-4 col-sm-6 col-xs-12">
             <img src={{product.ProductImage}} alt="No Image" width="100%" class="card-image img">
             <div class="card-content">
@@ -112,10 +124,11 @@
             </div>
           </div>
         </div>
-        <div class="clearfix"></div>
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-      </div>
     </div>
+    <div class="center">            
+        <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+      </div>
     <!-- /page content -->
+  </div>
   </div>
 </body>
