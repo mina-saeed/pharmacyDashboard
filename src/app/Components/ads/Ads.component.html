@@ -1,5 +1,4 @@
 <style>
-
 .center {
     text-align: center;
     margin-top: 35px
@@ -7,7 +6,7 @@
   .my-pagination /deep/ .ngx-pagination .current {
     font-size: 15px;
     color: black;
-    padding: 5px 8px;
+    padding: 4px 8px;
     text-decoration: none;
     
   }
@@ -99,36 +98,32 @@
       <!-- page content -->
       <div class="right_col" role="main">
         <div class="x_title">
-          <h2>All Products </h2>
+          <h2>All Requested Advertisements </h2>
           <div class="col-md-offset-10">
-            <a href="/newproduct" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add new Product</a>
-          </div>
-          <div class="col-xs-offset-10">
-            <input type="text" [(ngModel)]="term" class="form-control col-xs-10" placeholder="Search..">
+            <a href="/addAds" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add new Advertisement</a>
           </div>
           <div class="clearfix"></div>
         </div>
-        <div *ngFor="let product of products | searchFilter:term | paginate: { itemsPerPage: 12, currentPage: p } ; let in=index">
+        <div *ngFor="let ads of allAds  | paginate: { itemsPerPage: 15, currentPage: p } ; let in=index">
           <div class="card col-md-4 col-sm-6 col-xs-12">
-            <img src={{product.ProductImage}} alt="No Image" width="100%" class="card-image img">
+            <img src={{ads.adsImage}} alt="No Image" width="100%" class="card-image img">
             <div class="card-content">
-              <h2><strong>{{product.name_en}}</strong></h2>
-              <p>{{product.description_en | truncate : 30 }}</p>
-              <p><strong>{{product.price}} LE</strong></p>
+              <h2><strong>{{ads.name}}</strong></h2>
+              <p>{{ads.description | truncate : 30 }}</p>
             </div>
             <div class="clearfix"></div>
             <div class="card-action">
-              <button type="button" (click)="show(product)" value="show" class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
-              <button type="button" (click)="update(product)" value="Update" class="btn"><i class="fa fa-pencil w3-margin-right"></i></button>
-              <button type="button" (click)="delete(product._id,in)" value="Delete" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              <button type="button" (click)="show(ads)" value="show" class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+              <button type="button" (click)="update(ads)" value="Update" class="btn"><i class="fa fa-pencil w3-margin-right"></i></button>
+              <button type="button" (click)="delete(ads._id,in)" value="Delete" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </div>
           </div>
         </div>
-    </div>
-    <div class="center">            
-        <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
       </div>
+        <div class="center">            
+            <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+          </div>
+    </div>
     <!-- /page content -->
-  </div>
   </div>
 </body>
