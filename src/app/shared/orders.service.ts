@@ -92,15 +92,8 @@ fifthPackage() {
       
       this.socket.on('first', (data) => {
 
-var cookieValue = this.getCookie('pharmacy');
-    var allPharma = data.data
-    for(let i = 0;i < allPharma.length;i++){
-    if(cookieValue == data.data[i]){
-            //  console.log(data.data[0])
-
         observer.next(data.orders);    
-      }
-    }
+
       });
 
     })     

@@ -42,7 +42,6 @@ import {Http , RequestOptions, Headers} from '@angular/http';
 
 
 
-
     var cookieValue = orders.getCookie('pharmacy');
     var allPharma = message.allPharmacies
 
@@ -57,8 +56,10 @@ import {Http , RequestOptions, Headers} from '@angular/http';
         let orderDestination = order.location
 
 
+
       cookieDeliver.forEach(function(t){
 
+        console.log("location: "+t.name + "   order: "+orderDestination)
         if(t.name == orderDestination){
 
           if(t.priority == 1){
@@ -93,7 +94,7 @@ this.order.secondPackage().subscribe((data) => {
             this.secondOrders=[]
           let secondPriorityTemp = []
           let firstPriorityTemp =[]
-      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
       var cookieValue = orders.getCookie('pharmacy');
     var allPharma = data.allPharmacies
     for(let i = 0;i < allPharma.length;i++){
@@ -140,7 +141,7 @@ this.order.secondPackage().subscribe((data) => {
 
     this.thirdOrders =[];
     let thirdPriorityTemp = []
-    var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
     var allOrders = data.allOrders
 
     allOrders.forEach(function(order){
@@ -168,7 +169,7 @@ this.order.secondPackage().subscribe((data) => {
      this.order.fourthPackage().subscribe((data) => {
             this.fourthorders =[];
           let fourthPriorityTemp = []
-      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
+      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
       var allOrders = data.allOrders
       allOrders.forEach(function(order){
         let orderDestination = order.location

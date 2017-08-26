@@ -1957,11 +1957,10 @@ fileChange(event)
 
 		 this.user.getUser(userData.email, userData.password , token).subscribe(data => {
     				if(data){
-              
               document.cookie = "pharmacy="+data.email+"";
-              document.cookie = "pharmacyLocation="+data.deliverTo+"";
-
-              this.user.storeUserData(data.id, data.email, data.username);
+          //    document.cookie = "pharmacyLocation="+data.deliverTo+"";
+ document.cookie = "pharmacyLocation=" +JSON.stringify(data.deliverTo)
+               this.user.storeUserData(data.id, data.email, data.username);
     					return this.router.navigate(['orders'])    				
     				}else{
     					return false
