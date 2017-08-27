@@ -17,6 +17,7 @@ export class Ads implements OnInit {
     ngOnInit() {
         this.ads.getrequestedAds().subscribe(res => {
             this.allAds = res
+            console.log(res)
             return this.allAds
         })
     }

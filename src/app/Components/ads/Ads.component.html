@@ -1,4 +1,10 @@
 <style>
+.con{
+color: #00cc00;
+}
+.wat{
+  color:#ff8c00
+}
 .center {
     text-align: center;
     margin-top: 35px
@@ -110,20 +116,21 @@
             <div class="card-content">
               <h2><strong>{{ads.name}}</strong></h2>
               <p>{{ads.description | truncate : 30 }}</p>
+              <div *ngIf="ads.confirmed ==1"><p><strong class="con">Confirmed</strong></p></div>              
+              <div *ngIf="ads.confirmed ==0"><p><strong class="wat">Waiting</strong></p></div>
             </div>
-            <div class="clearfix"></div>
             <div class="card-action">
               <button type="button" (click)="show(ads)" value="show" class="btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
               <button type="button" (click)="update(ads)" value="Update" class="btn"><i class="fa fa-pencil w3-margin-right"></i></button>
               <button type="button" (click)="delete(ads._id,in)" value="Delete" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </div>
+            </div>
           </div>
         </div>
-      </div>
         <div class="center">            
             <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
           </div>
     </div>
-    <!-- /page content -->
+<!-- /page content -->
   </div>
 </body>
