@@ -62,6 +62,7 @@ export class newProduct implements OnInit {
 			formData.append('category', this.category)
 			formData.append('subCategory', this.subCategory)
 			formData.append('creator',localStorage.getItem('email'))
+			formData.append('location',localStorage.getItem('location'))			
 			this.product.addProduct(formData).subscribe(res => {
 				if (res) {
 					this.router.navigate(['/products'])

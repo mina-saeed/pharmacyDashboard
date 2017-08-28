@@ -8,16 +8,13 @@ import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import 'rxjs/add/operator/map'
 import {orderService} from '../../shared/orders.service'
-import { NG_VALIDATORS,Validator,
-             Validators,AbstractControl,ValidatorFn } from '@angular/forms';
-//import {EqualValidator} from '../../password.match.directive';
+import { NG_VALIDATORS,Validator,Validators,AbstractControl,ValidatorFn } from '@angular/forms';
 declare var require: any;
 var settings = JSON.parse(JSON.stringify(require('../../settings.json')));
 
 @Component({
 	moduleId:module.id,
 	selector: 'app-login',
-
 	templateUrl:'./login.component.html',
 	providers:[users , orderService]
 })
@@ -1957,10 +1954,11 @@ fileChange(event)
 
 		 this.user.getUser(userData.email, userData.password , token).subscribe(data => {
     				if(data){
+              console.log(data)
               document.cookie = "pharmacy="+data.email+"";
           //    document.cookie = "pharmacyLocation="+data.deliverTo+"";
  document.cookie = "pharmacyLocation=" +JSON.stringify(data.deliverTo)
-               this.user.storeUserData(data.id, data.email, data.username);
+               this.user.storeUserData(data.id, data.email, data.username,data.location);
     					return this.router.navigate(['orders'])    				
     				}else{
     					return false

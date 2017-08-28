@@ -128,27 +128,29 @@
                                                         Please Enter Email
                                                 </div>
                                 </div>
-
-                                <div>
-                                        <input type="password" class="form-control" #password="ngModel" id="password" name="password" placeholder="Password" style ="display: inline-block; width: 340px;" required minlength="8" maxlength="15" ngModel />
-                                        <div *ngIf ="!password.pristine && password.errors?.required"
-                                             class="alert alert-danger">   Password is required
+                                <div class="form-group">
+                                        <label for="name">Password</label>
+                                        <input type="password" class="form-control" id="password"
+                                               required
+                                                name="password"
+                                               #password="ngModel" style ="display: inline-block; width: 340px;" required minlength="8" maxlength="15" ngModel>
+                                        <div [hidden]="password.valid || password.pristine"
+                                             class="alert alert-danger">
+                                          Password is required between 8 and 15 characters
+                                        </div> 
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="name">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword"
+                                               required
+                                               validateEqual="password"
+                                                name="confirmPassword"
+                                               #confirmPassword="ngModel" style ="display: inline-block; width: 340px;" ngModel>
+                                        <div [hidden]="confirmPassword.valid || confirmPassword.pristine"
+                                             class="alert alert-danger">
+                                             Passwords did not match
                                         </div>
-                                        <div *ngIf ="!password.pristine && password.errors?.minlength"
-                                             class="alert alert-danger">   Password is shorter than 8 characters
-                                        </div>
-                                        
-                                </div>
-
-                                <div>
-                                        <input type="password" class="form-control" #password2="ngModel" id="password2" name="password2" placeholder=" Re- enter the Password again" style ="display: inline-block; width: 340px;" required validateEqualTo="password" ngModel />
-                                       
-                                        <div [hidden]="password2.valid || (password2.pristine && !registerForm.submitted)"
-                                                class="alert alert-danger">  Password mismatch
-                                        </div>
-
-                                        
-                                </div>
+                                      </div>
 
                                 <div ngModelGroup="address">
                                 <div class="form-group">

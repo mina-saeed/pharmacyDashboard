@@ -32,13 +32,13 @@ import {ChartsModule } from 'ng2-charts';
 import {QRCodeModule } from 'angular2-qrcode';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthGuard1} from './guards/auth1.guard';
-import { EqualTextValidator } from "angular2-text-equality-validator";
 import {Md5} from 'ts-md5/dist/md5';
 //import {EqualTextValidator} from './password.match.directive';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Pipe, PipeTransform } from '@angular/core';
 import { MainPipe } from './filter/filter.module'
+import { EqualValidator } from './Components/pharmacy/password.match.directive';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { productDialog } from './Components/products/dialog.component'
@@ -49,7 +49,6 @@ import { TruncatePipe } from 'angular2-truncate';
   declarations: [
     sidebar,
     topbar,
-    EqualTextValidator,
     AppComponent,
     products,
     orders,
@@ -57,6 +56,7 @@ import { TruncatePipe } from 'angular2-truncate';
     TruncatePipe,
     productDialog,
     adsDialog,
+    EqualValidator,
     RoutingComponents,
     [ login ,
       logout,

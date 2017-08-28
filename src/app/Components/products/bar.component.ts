@@ -1,12 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
- 
+import {users} from '../../shared/users.service';
+
 @Component({
   selector: 'bar-chart-demo',
-  templateUrl: './bar.component.html'
+  templateUrl: './bar.component.html',
+  providers:[users]
+  
 })
-export class bar {
+export class bar implements OnInit{
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -22,7 +25,13 @@ export class bar {
   public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
   public pieChartData:number[] = [300, 500, 100];
   public pieChartType:string = 'pie';
- 
+  constructor(private users:users){}
+ ngOnInit(){
+   this.users.pharmacyHistory().subscribe(res => {
+    console.log(res)
+   })
+
+ }
   // events
   public chartClickedPie(e:any):void {
     console.log(e);

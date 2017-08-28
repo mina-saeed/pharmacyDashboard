@@ -67,7 +67,7 @@ export class users {
 			localStorage.clear();
     	
 		  }
-	storeUserData(id, email, username) {
+	storeUserData(id, email, username,location) {
 	console.log('store username' + username);
 	console.log('store email'+ email);
 	console.log('store id' + id);
@@ -80,6 +80,7 @@ export class users {
 	localStorage.setItem('id', this.authId);
 	localStorage.setItem('email', this.email);
 	localStorage.setItem('username', this.username);
+	localStorage.setItem('location',location)
     
   }
   storeUserDataEmail(email)
@@ -122,6 +123,14 @@ export class users {
 		return this.http.post(config.resetIP +'/checkUser', body ,new RequestOptions({headers: headers})).map(res=>res.status);
 		
         
+	
+	}
+
+	pharmacyHistory(): any{
+			let headers = new Headers();
+			headers.append('Authorization', config.auth);
+			headers.append('Content-Type', 'application/json')
+			return this.http.get(config.userIP + '/pharmacyHistory/' + localStorage.getItem('email'), new RequestOptions({ headers: headers })).map(res => res.json());
 	
 	}
 }
