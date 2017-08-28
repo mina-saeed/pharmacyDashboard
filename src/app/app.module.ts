@@ -33,7 +33,6 @@ import {QRCodeModule } from 'angular2-qrcode';
 import {AuthGuard} from './guards/auth.guard';
 import {AuthGuard1} from './guards/auth1.guard';
 import {Md5} from 'ts-md5/dist/md5';
-//import {EqualTextValidator} from './password.match.directive';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Pipe, PipeTransform } from '@angular/core';
