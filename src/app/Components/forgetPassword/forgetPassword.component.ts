@@ -1,62 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { users } from '../../shared/users.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { users } from '../../shared/users.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router'
+import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ValidateService } from '../../shared/validate.service';
-import {Md5} from 'ts-md5/dist/md5';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
-    selector: 'app-forget-password-user',
-    templateUrl: './forgetPassword.component.html'
+  templateUrl: './forgetPassword.component.html',
+  providers: [users, Md5]
+})
 
-  })
-  export class ForgetPasswordUserComponent implements OnInit
-  {
-    token: String;
-    password: String;
-    email:String;
-    constructor(private authService: users,
-        private router: Router,
-        private flashMessage: FlashMessagesService,
-        private route: ActivatedRoute,
-        private validateService: ValidateService,
-        private _md5: Md5) {
-        this.token = route.snapshot.params['token'];
-        
-      }
-    
-      ngOnInit()
-    {
-    }
-    onResetSubmit(data:any)
-    {
-      if (!this.validateService.validatePassword(data.password)) {
-        this.flashMessage.show("please insert a valid Password with at least 8 characters and not more than 15 characters", { cssClass: 'alert-warning', timeout: 5000 });
-        window.scrollTo(0, 0);
-      }
-      this.email= localStorage.getItem('email');
-      let hash = Md5.hashStr(localStorage.getItem('email'));
-  
-      const info = {
-        type:"pharmacy",
-        email:localStorage.getItem('email'),
-        token: hash,
-        password: data.password
-      }
-      this.authService.resetPassword(info).subscribe(data =>
-      {
-        if (data == 200 ) {
-          localStorage.removeItem('email');
-          localStorage.clear();
-          console.log("reset done");
-          this.router.navigate(['']);
-        }
-        else {
-          console.log("reset  not done");
-          this.router.navigate(['forgotPass']);
-        }
-      });
-  
-    }
+export class reset {
+  private email: string
+  constructor(private _md5: Md5, private route: ActivatedRoute, private user: users, private router: Router, private flash: FlashMessagesService) {
+    this.email = route.snapshot.params['email'];
   }
+  onReset(userData) {
+    var hashingToken = Md5.hashStr(this.email.toString());
+    const body =
+      {
+        "type": "pharmacy",
+        "email": this.email,
+        "token": hashingToken,
+        "password": userData.password
+      }
+    this.user.resetPassword(body).subscribe(res => {
+      if (res == 200) {
+        //this.flash.show("Your password has been reset successfully", { cssClass: 'alert-success', timeout: 3000 })
+        this.router.navigate(['login'])
+      } else {
+        //this.flash.show("Sorry ,incorrect e-mail address", { cssClass: 'alert-danger', timeout: 3000 });
+      }
+
+    });
+  }
+
+} 

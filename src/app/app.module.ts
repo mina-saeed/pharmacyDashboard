@@ -6,7 +6,7 @@ import {AppComponent } from './Components/app/app.component';
 import {FlashMessagesModule } from 'angular2-flash-messages';
 import {login} from './Components/pharmacy/login.component';
 import {forgotPass} from './Components/forgotPass/forgotPass.component';
-import {ForgetPasswordUserComponent} from './Components/forgetPassword/forgetPassword.component';
+import {reset} from './Components/forgetPassword/forgetPassword.component';
 import {orders} from './Components/orders/orders.component';
 import {products} from './Components/products/products.component';
 import {newProduct} from './Components/products/newProduct.component';
@@ -64,7 +64,7 @@ import { TruncatePipe } from 'angular2-truncate';
       newProduct,
       pharmacysignupComponent,
       forgotPass,
-      ForgetPasswordUserComponent,
+      reset,
       bar,
       pie,
       test,

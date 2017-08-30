@@ -2160,6 +2160,7 @@ console.log(deliver)
       {
         
         if(resp == 200){
+          this.flashMessage.show("Please Check your mail",{ cssClass: 'alert-success', timeout: 3000 })
           console.log("user found");
           console.log(body.email);
          /* this.flashMessage.show(resp.message , {
@@ -2174,7 +2175,7 @@ console.log(deliver)
             timeout : 5000
           });*/
         }
-        return this.router.navigate(['login']);
+        //return this.router.navigate(['login']);
       });
     }
   
