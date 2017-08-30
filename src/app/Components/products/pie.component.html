@@ -1,43 +1,111 @@
- <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="/orders" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
-            </div>
+<style>
+  .card {
+margin-top: 10px;
+box-sizing: border-box;
+border-radius: 2px;
+background-clip: padding-box;
+}
 
-            <!-- sidebar menu -->
-             <app-sidebar> </app-sidebar>
-            <!-- /sidebar menu -->
+.card span.card-title {
+color: #fff;
+font-size: 24px;
+font-weight: 300;
+text-transform: uppercase;
+}
 
+.card .card-image {
+position: relative;
+overflow: hidden;
+width: 318px;
+height: 250px
+}
+
+.card .card-image img {
+border-radius: 2px 2px 0 0;
+background-clip: padding-box;
+position: relative;
+z-index: -1;
+}
+
+.card .card-image span.card-title {
+position: absolute;
+bottom: 0;
+left: 0;
+padding: 16px;
+}
+
+.card .card-content {
+padding: 0px;
+border-radius: 0 0 2px 2px;
+background-clip: padding-box;
+box-sizing: border-box;
+}
+
+.card .card-content p {
+margin: 0;
+color: inherit;
+}
+
+.card .card-content span.card-title {
+line-height: 48px;
+}
+
+.card .card-action {
+border-top: 1px solid rgba(160, 160, 160, 0.2);
+padding: 0px;
+}
+
+.card .card-action a {
+color: #ffab40;
+margin-right: 16px;
+transition: color 0.3s ease;
+text-transform: uppercase;
+}
+
+.card .card-action a:hover {
+color: #ffd8a6;
+text-decoration: none;
+}
+</style>
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0;">
+            <a href="/orders" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
           </div>
+
+          <!-- sidebar menu -->
+          <app-sidebar> </app-sidebar>
+          <!-- /sidebar menu -->
+
         </div>
-        <!-- top navigation -->
-        <app-topbar></app-topbar>
-        <!-- /top navigation -->
-        
-         <!-- page content -->
-<div style="display: block">
-  <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-</div>     
-<script src="node_modules/chart.js/src/chart.js"></script>
-
- </div>
-        <footer>
-
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /page content -->
-
-
       </div>
+      <!-- top navigation -->
+      <app-topbar></app-topbar>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <!--      <div class="card col-md-4 col-sm-6 col-xs-12">
+                    <div class="card-content">
+                    <h2><strong>{{history.orders}}</strong></h2>
+                    <p>{{history.cost}}</p>
+                    </div>
+               </div> -->
+      <div style="display: block">
+        <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+      </div>
+      <script src="node_modules/chart.js/src/chart.js"></script>
+
+    </div>
+    <footer>
+
+      <div class="clearfix"></div>
+    </footer>
+    <!-- /page content -->
+
+
+  </div>
 </body>
-
- 
-
