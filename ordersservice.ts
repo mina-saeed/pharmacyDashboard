@@ -9,12 +9,13 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 
 export class orderService {
-
+  public static orders:Array<any>=[]
+  public static orderPharmacies:Array<any>=[]
   private url = 'http://146.185.148.66:3008';
   private ordersUrl ='http://146.185.148.66:3009';
   private FirstReceiversUrl = 'http://146.185.148.66:3010';
 
-  private SecondReceiversUrl = 'http://146.185.148.66:3021';
+  private SecondReceiversUrl = 'http://146.185.148.66:3011';
   private ThirdReceiversUrl = 'http://146.185.148.66:3012';
   private FourthReceiversUrl = 'http://146.185.148.66:3013';
   private FifthReceiversUrl = 'http://146.185.148.66:3014';
@@ -23,32 +24,95 @@ export class orderService {
 
 private secondPackageUrl = 'http://146.185.148.66:3020';
 private thirdPackageUrl = 'http://146.185.148.66:3020';
-private cancel = 'http://146.185.148.66:3333';
 constructor(private http:Http){
   //setInterval(this.secondPackage,5000)
 
   //setInterval(this.thirdPackage,10000)
- //this.onStart()
+ this.onStart()
 
 
 }  
 
 
-/*onStart() {
+onStart() {
 
 
     let headers = new Headers();
         headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
 
      return this.http.get(this.url+'/allOrders' ,new RequestOptions({headers: headers})).map(res=>{
+       let temp = res.json()
 
+     //  orderService.orderPharmacies.push(temp.allPharmacies)
+       orderService.orders.push(temp)
 //       orderService.orders = res.json()
        return res.json()
 
      })
 
-}*/
+}
+secondPackage(){
+      return  new Observable(observer => {
+/*                    let ordersData={
+              allOrders:orderService.orders,
+              allPharmacies: orderService.orderPharmacies
+            }*/
+          setInterval(() => {
 
+              observer.next(orderService.orders);
+            
+            
+          }, 15000);
+          
+      });
+}
+
+thirdPackage(){
+
+      return  new Observable(observer => {
+            let ordersData={
+              allOrders:orderService.orders,
+              allPharmacies: orderService.orderPharmacies
+            }
+          setInterval(() => {
+
+              observer.next(JSON.parse(JSON.stringify(orderService.orders)));
+          }, 60000);
+          
+      });
+
+}
+
+fourthPackage() {
+
+      return  new Observable(observer => {
+                                let ordersData={
+              allOrders:orderService.orders,
+              allPharmacies: orderService.orderPharmacies
+            }
+          setInterval(() => {
+
+              observer.next(JSON.parse(JSON.stringify(orderService.orders)));
+          }, 90000);
+          
+      });
+
+}
+fifthPackage() {
+
+      return  new Observable(observer => {
+                                let ordersData={
+              allOrders:orderService.orders,
+              allPharmacies: orderService.orderPharmacies
+            }
+          setInterval(() => {
+
+              observer.next(JSON.parse(JSON.stringify(orderService.orders)));
+          }, 120000);
+          
+      });
+
+}
 
 
 
@@ -57,38 +121,29 @@ constructor(private http:Http){
     let observable = new Observable(observer => {
       
       this.socket.on('first', (data) => {
-
+            let ordersData={
+              allOrders:data.orders,
+              allPharmacies: data.data
+            }
+        //orderService.orderPharmacies.push(data.data)
        
-        observer.next(data);
-
-      });
-
-    })   
-
-    return observable;
-  }
-
-  second() {
-    this.socket=io(this.SecondReceiversUrl)
-    let observable = new Observable(observer => {
-      
-      this.socket.on('secondOrders', (data) => {
-        observer.next(data);
-
+        observer.next(ordersData);
+orderService.orders.push(ordersData)  
       });
 
     })   
      
     return observable;
   }
-confirmOrder(order){
+
+
+confirmOrder(orderID:any){
       let headers = new Headers();
           headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
           headers.append('Content-Type', 'application/json')
       let cookieValue = this.getCookie('pharmacy');    
           let body={
-            requestOrder:order._id,
-            order: order.order,
+            requestOrder:orderID,
             pharmacyEmail: cookieValue
           };
 
@@ -98,19 +153,6 @@ confirmOrder(order){
     })
 }
 
-  cancelOrder() {
-    this.socket=io(this.cancel)
-    let observable = new Observable(observer => {
-      
-      this.socket.on('cancelledOrder', (data) => {
-        observer.next(data.orderData);
-
-      });
-
-    })   
-     
-    return observable;
-  }
      getCookie(name: string) {
         let ca: Array<string> = document.cookie.split(';');
         let caLen: number = ca.length;

@@ -21,6 +21,12 @@ import { pie } from '../Components/products/pie.component';
 import { test } from '../Components/products/test';
 import { AuthGuard } from '../guards/auth.guard';
 import { AuthGuard1 } from '../guards/auth1.guard';
+import {requestService} from '../shared/requests.service'
+import {newMedicine} from '../Components/requests/newMedicine.component';
+import {prices} from '../Components/medicinePrices/prices.component';
+import {setPrice} from '../Components/medicinePrices/setPrice.component';
+
+import {acceptOrder} from '../Components/orders/acceptOrder.component'
 const componentRoutes: Routes = [
 
 	{
@@ -99,8 +105,31 @@ const componentRoutes: Routes = [
 		component: updateAds,
 		canActivate: [AuthGuard]
 
-	}
+	},
+	{
+		path: 'requestMedicine',
+		component: newMedicine,
+		canActivate: [AuthGuard]
 
+	},
+	{
+		path: 'prices',
+		component: prices,
+		canActivate: [AuthGuard]
+
+	},
+	{
+		path: 'setPrice',
+		component: setPrice,
+		canActivate: [AuthGuard]
+
+	},
+	{
+		path: 'orderDetails',
+		component: acceptOrder,
+		canActivate: [AuthGuard]
+
+	}				
 ]
 
 
@@ -110,11 +139,11 @@ const componentRoutes: Routes = [
 		RouterModule.forRoot(componentRoutes),FlashMessagesModule
 
 	],
-	providers: [users, ValidateService, medicineService, productService],
+	providers: [users, ValidateService, medicineService, productService , requestService],
 	exports: [
 		RouterModule
 	]
 })
 export class routes { }
 export const RoutingComponents = [login, logout, orders, products, newProduct, pharmacysignupComponent, newAds, Ads
-,updateAds,reset]
+,updateAds,reset , newMedicine, prices, setPrice , acceptOrder]

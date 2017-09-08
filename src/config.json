@@ -6,5 +6,6 @@
     "categoryIP": "http://146.185.148.66:3006/",
     "productcategoryIP": "http://146.185.148.66:3007/",
     "adsIP": "http://146.185.148.66:3050/",    
-    "auth": "Basic YWRtaW46MTIzNDU2"
+    "auth": "Basic YWRtaW46MTIzNDU2",
+    "requestMedicine": "http://146.185.148.66:3004/"  
 }

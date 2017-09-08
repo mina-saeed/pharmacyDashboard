@@ -1,7 +1,6 @@
 
 //import { orderService }       from '../shared/orders.service';
 
-
 import { Component, OnInit,OnDestroy } from '@angular/core';
 import { orderService }       from '../../shared/orders.service';
 
@@ -9,7 +8,7 @@ import {sidebar} from '../sidebar/sidebar.component'
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Rx';
 import {Http , RequestOptions, Headers} from '@angular/http';
-
+import { Router } from '@angular/router'
 
  @Component({
 
@@ -30,16 +29,17 @@ import {Http , RequestOptions, Headers} from '@angular/http';
   message;
   ordr;
 
-  constructor(private order:orderService ,private http:Http) { }
+  constructor(private order:orderService ,private http:Http, private router:Router) { }
 
   ngOnInit() {
+    document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
     this.secondOrders=[]
      let firstTempOrders =[]
 
-    this.order.onStart().subscribe(message => {
+/*    this.order.onStart().subscribe(message => {
             let temp = []
       var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
-
 
 
     var cookieValue = orders.getCookie('pharmacy');
@@ -47,19 +47,19 @@ import {Http , RequestOptions, Headers} from '@angular/http';
 
     for(let i = 0;i < allPharma.length;i++){
 
-    if(cookieValue == allPharma[i].email){
+    if(cookieValue == allPharma[i]){
 
 
       var allOrders = message.allOrders
       allOrders.forEach(function(order){
-                        
+
         let orderDestination = order.location
 
 
 
       cookieDeliver.forEach(function(t){
 
-        console.log("location: "+t.name + "   order: "+orderDestination)
+
         if(t.name == orderDestination){
 
           if(t.priority == 1){
@@ -74,34 +74,135 @@ import {Http , RequestOptions, Headers} from '@angular/http';
 
 
     })
-      return this.firstOrders = firstTempOrders 
+      let orderSFormat = []
+       firstTempOrders.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
+
+
+         }
+
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
+
+
+         }  
+         }
+
+         
+         orderSFormat.push(tempOrder)
+         
+    })
+      return this.firstOrders = orderSFormat 
+
     }
   }
 
-  })
+  })*/
 
 
  this.order.getMessages().subscribe(message => {
-       this.firstOrders.push(message);
+            let temp = []
+      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
+let dataObject =  JSON.parse(JSON.stringify(message))
+let ordersData = dataObject.orders
+let ordersPharma = dataObject.data
+    var cookieValue = orders.getCookie('pharmacy');
+
+
+    for(let i = 0;i < ordersPharma.length;i++){
+
+    if(cookieValue == ordersPharma[i]){
+
+
+        ordersData.forEach(function(order){
+/*                 console.log(order)      */ 
+        let orderDestination = order.location
+
+
+
+      cookieDeliver.forEach(function(t){
+
+/*        console.log("location: "+t.name + "   order: "+orderDestination)*/
+        if(t.name == orderDestination){
+
+          if(t.priority == 1){
+              
+              firstTempOrders.push(order)
+
+          }
+        }
+      })
+
+     
+
 
     })
+      let orderSFormat = []
+       firstTempOrders.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
 
-this.secondOrders=[]
+
+         }
+         
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
 
 
-this.order.secondPackage().subscribe((data) => {
+         }  
+         }
+
+         
+         orderSFormat.push(tempOrder)
+         
+    })
+      return this.firstOrders = orderSFormat 
+    }
+  }
+
+
+    })
+this.secondOrders=[] 
+this.order.second().subscribe(data=>{
+
+let dataObject =  JSON.parse(JSON.stringify(data))
+let ordersData = dataObject.allOrders
+let ordersPharma = dataObject.allPharmacies
 
             this.secondOrders=[]
           let secondPriorityTemp = []
-          let firstPriorityTemp =[]
+          let firstPriorityTemp = []
       var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
       var cookieValue = orders.getCookie('pharmacy');
-    var allPharma = data.allPharmacies
-    for(let i = 0;i < allPharma.length;i++){
+    
+    for(let i = 0;i < ordersPharma.length;i++){
 
-    if(cookieValue == allPharma[i].email){
+    if(cookieValue == ordersPharma[i]){
 
-      var allOrders = data.allOrders
+      var allOrders = ordersData
 
       allOrders.forEach(function(order){
                         
@@ -121,235 +222,112 @@ this.order.secondPackage().subscribe((data) => {
               
                firstPriorityTemp.push(order)
 
-          }          
-        }
+          }        
+       }
       })
 
      
 
 
     })
+      let orderSFormat = []
+       firstPriorityTemp.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
 
-      this.secondOrders = secondPriorityTemp
-      this.firstOrders = firstPriorityTemp
-}
-}
-        });
+
+         }
+         
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
 
 
-  this.order.thirdPackage().subscribe((data) => {
+         }  
+         }
 
-    this.thirdOrders =[];
-    let thirdPriorityTemp = []
-      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
-    var allOrders = data.allOrders
-
-    allOrders.forEach(function(order){
-
-      let orderDestination = order.location
-      cookieDeliver.forEach(function(t){
-
-        if(t.name == orderDestination){
-
-          if(t.priority == 3){
-              
-              thirdPriorityTemp.push(order)
-
-          }
-        
-        }
-      })
-
+         
+         orderSFormat.push(tempOrder)
+         
     })
-      return this.thirdOrders = thirdPriorityTemp
-  }); 
+      let secondorderSFormat = []
+       secondPriorityTemp.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
 
 
-
-     this.order.fourthPackage().subscribe((data) => {
-            this.fourthorders =[];
-          let fourthPriorityTemp = []
-      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
-      var allOrders = data.allOrders
-      allOrders.forEach(function(order){
-        let orderDestination = order.location
-      if(cookieDeliver.includes(orderDestination)){
- 
-        var deliverArray = cookieDeliver.split(',')
-        for (var s = 0 ; s < deliverArray.length;s++){
-                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
-            var element = deliverArray[s].split(':')
-
-            var key = element[0]
-            var val = element[1]
-            if(key.trim() === orderDestination.trim()){
-
-              console.log("Forth")
-              console.log(orderDestination+" -> "+key+'-- '+val)
-
-              if(val== 4){
-                console.log("Forth")
-                        fourthPriorityTemp.push(order)
-                          
-              }
-
-            }
-
-        }
-      }    
-
-     
-      })
-      return this.fourthorders = fourthPriorityTemp
-        });
-
-/*     this.order.fifthPackage().subscribe((data) => {
-
-var cookieValue = orders.getCookie('pharmacy');
-    var allPharma = data.allPharmacies
-    for(let i = 0;i < allPharma.length;i++){
-    if(cookieValue == allPharma[i]){
-            //  console.log(data.data[0])
-
-            this.fifthOrders =[];
-          let fifthhPriorityTemp = []
-      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
-      var allOrders = data.allOrders
-      allOrders.forEach(function(order){
-        let orderDestination = order.location
-      if(cookieDeliver.includes(orderDestination)){
- 
-        var deliverArray = cookieDeliver.split(',')
-        for (var s = 0 ; s < deliverArray.length;s++){
-                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
-            var element = deliverArray[s].split(':')
-
-            var key = element[0]
-            var val = element[1]
-            if(key.trim() === orderDestination.trim()){
-
-              console.log("Forth")
-              console.log(orderDestination+" -> "+key+'-- '+val)
-
-              if(val== 5){
-                console.log("Forth")
-                        fifthhPriorityTemp.push(order)
-                          
-              }
-
-            }
-
-        }
-      }    
-
-     
-      })
-      return this.fifthOrders = fifthhPriorityTemp
-            }
-            
-    }
-
-      
-        });*/
-
-/*this.order.secondPackage().subscribe(message=>{
+         }
+         
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
 
 
+         }  
+         }
 
+         
+         secondorderSFormat.push(tempOrder)
+         
+    })       
+      this.secondOrders = secondorderSFormat
+      this.firstOrders = orderSFormat
 
-  console.log("Second Orders  : ")
-      let secondPriorityTemp = []
+}
+}
+})
 
-      let cookieDeliver:any = orders.getCookie('pharmacyLocation')
-      var allOrders = orders.messages
-      allOrders.forEach(function(order){
-        let orderDestination = order.location
-      if(cookieDeliver.includes(orderDestination)){
- 
-        var deliverArray = cookieDeliver.split(',')
-        for (var s = 0 ; s < deliverArray.length;s++){
-                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
-            var element = deliverArray[s].split(':')
+this.order.cancelOrder().subscribe(data=>{
 
-            var key = element[0]
-            var val = element[1]
-            if(key.trim() === orderDestination.trim()){
+  let cancelOrder = JSON.parse(JSON.stringify(data))
+      var cookieValue = orders.getCookie('pharmacy');
+  cancelOrder.forEach(function(item){
 
-              console.log("matched")
-              console.log(orderDestination+" -> "+key+'-- '+val)
-              if(val== 2){
-                console.log("pushed")
-                        secondPriorityTemp.push(order)
-                          
-              }
+      if(item.pahrmacy == cookieValue){
 
-            }
+          alert("Order To : "+item.address+" In "+item.location+" cancelled ")
+      }
+  })
+})
 
-        }
-      }    
+}
+show(order){
+ document.cookie = "order=" +JSON.stringify(order)
 
-     
-      })
-      this.secondOrders = secondPriorityTemp
+this.router.navigate(['orderDetails'])
 
-})*/
-/*
-    let headers = new Headers();
-        headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
-
-        Observable.timer(0,30000)
-    .switchMap(() => this.http.get(this.url+'/allOrders' ,new RequestOptions({headers: headers}))).map((data) => data.json())
-        .subscribe((data) => {
-
-          let secondPriorityTemp = []
-      var cookieDeliver:any = orders.getCookie('pharmacyLocation')
-      var allOrders = data.allOrders
-      allOrders.forEach(function(order){
-        let orderDestination = order.location
-      if(cookieDeliver.includes(orderDestination)){
- 
-        var deliverArray = cookieDeliver.split(',')
-        for (var s = 0 ; s < deliverArray.length;s++){
-                  deliverArray[s] = deliverArray[s].replace(/[{()}]/g, '');
-            var element = deliverArray[s].split(':')
-
-            var key = element[0]
-            var val = element[1]
-            if(key.trim() === orderDestination.trim()){
-
-              console.log("matched")
-              console.log(orderDestination+" -> "+key+'-- '+val)
-              if(val== 1){
-                console.log("pushed")
-                        secondPriorityTemp.push(order)
-                          
-              }
-              if(val== 2){
-                console.log("pushed")
-                        secondPriorityTemp.push(order)
-                          
-              }
-
-            }
-
-        }
-      }    
-
-     
-      })
-      return this.messages = secondPriorityTemp
-        }); */
-
-
-
-    
-  }
-
+}
 
 /*confirm(orderID){
 
-
+console.log(orderID)
   return this.order.confirmOrder(orderID).subscribe(result=>{
+
+
+
+   if(result.status==409){
+     alert("Sorry , Another pharmacy confirmed this order")
+   }
     
     if(this.firstOrders.length>0){
     for(let i= 0; i<this.firstOrders.length;i++){
@@ -357,11 +335,7 @@ var cookieValue = orders.getCookie('pharmacy');
           if(this.firstOrders[i]._id == result.allOrders){
 
                 this.firstOrders.splice(i,1)
-
-
           }
-
-
     }
 }
 
@@ -373,8 +347,6 @@ var cookieValue = orders.getCookie('pharmacy');
                 this.secondOrders.splice(i,1)
                 //this.firstOrders = orders.secondOrdersShared
           }
-
-
     }
     
 }
