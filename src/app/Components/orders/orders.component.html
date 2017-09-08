@@ -144,6 +144,152 @@
     </div>
 
 
+    <div style="margin-left: 20%">
+
+        <div *ngFor=" let secondOrder of secondOrders   ">
+
+          <div class="card col-md-4 col-sm-6 col-xs-12">
+            <span *ngIf="secondOrder.type=='image'">
+            <img src={{secondOrder.order}} alt="No Image" width="100%" class="card-image img">
+            </span>
+            <span *ngIf="secondOrder.type=='order'">
+            <div class="card-content" *ngFor=" let item of secondOrder.order ">
+                <br/><span>Medicine name: {{item.name}}</span><br/>
+                <span *ngIf="item.price ==0">
+                  <span>Price: Not Fixed  <br/></span>
+                </span>
+                <span *ngIf="item.price!==0">
+                <span>Price: {{item.price}} L.E</span><br/>
+                </span>                
+                <span>Quantity: {{item.qty}}</span><br/>
+                <span *ngIf="item.image"><img src="item.image"></span><br/>
+            </div>
+            </span>
+            <div class="card-action">
+            <span >Location :  {{secondOrder.location}}</span>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="card-action" >
+
+              <button type="button" (click)="show(secondOrder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
+            </div>
+            
+          </div>
+   
+       </div>
+
+    </div>
+    <div style="margin-left: 20%">
+
+        <div *ngFor=" let thirdOrder of thirdOrders   ">
+
+          <div class="card col-md-4 col-sm-6 col-xs-12">
+            <span *ngIf="thirdOrder.type=='image'">
+            <img src={{thirdOrder.order}} alt="No Image" width="100%" class="card-image img">
+            </span>
+            <span *ngIf="thirdOrder.type=='order'">
+            <div class="card-content" *ngFor=" let item of thirdOrder.order ">
+                <br/><span>Medicine name: {{item.name}}</span><br/>
+                <span *ngIf="item.price ==0">
+                  <span>Price: Not Fixed  <br/></span>
+                </span>
+                <span *ngIf="item.price!==0">
+                <span>Price: {{item.price}} L.E</span><br/>
+                </span>                
+                <span>Quantity: {{item.qty}}</span><br/>
+                <span *ngIf="item.image"><img src="item.image"></span><br/>
+            </div>
+            </span>
+            <div class="card-action">
+            <span >Location :  {{thirdOrder.location}}</span>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="card-action" >
+
+              <button type="button" (click)="show(thirdOrder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
+            </div>
+            
+          </div>
+   
+       </div>
+
+    </div>
+
+    <div style="margin-left: 20%">
+
+        <div *ngFor=" let fourthorder of fourthorders   ">
+
+          <div class="card col-md-4 col-sm-6 col-xs-12">
+            <span *ngIf="fourthorder.type=='image'">
+            <img src={{fourthorder.order}} alt="No Image" width="100%" class="card-image img">
+            </span>
+            <span *ngIf="fourthorder.type=='order'">
+            <div class="card-content" *ngFor=" let item of fourthorder.order ">
+                <br/><span>Medicine name: {{item.name}}</span><br/>
+                <span *ngIf="item.price ==0">
+                  <span>Price: Not Fixed  <br/></span>
+                </span>
+                <span *ngIf="item.price!==0">
+                <span>Price: {{item.price}} L.E</span><br/>
+                </span>                
+                <span>Quantity: {{item.qty}}</span><br/>
+                <span *ngIf="item.image"><img src="item.image"></span><br/>
+            </div>
+            </span>
+            <div class="card-action">
+            <span >Location :  {{fourthorder.location}}</span>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="card-action" >
+
+              <button type="button" (click)="show(fourthorder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
+            </div>
+            
+          </div>
+   
+       </div>
+
+    </div>
+
+    <div style="margin-left: 20%">
+
+        <div *ngFor=" let fifthOrder of fifthOrders   ">
+
+          <div class="card col-md-4 col-sm-6 col-xs-12">
+            <span *ngIf="fifthOrder.type=='image'">
+            <img src={{fifthOrder.order}} alt="No Image" width="100%" class="card-image img">
+            </span>
+            <span *ngIf="fifthOrder.type=='order'">
+            <div class="card-content" *ngFor=" let item of fifthOrder.order ">
+                <br/><span>Medicine name: {{item.name}}</span><br/>
+                <span *ngIf="item.price ==0">
+                  <span>Price: Not Fixed  <br/></span>
+                </span>
+                <span *ngIf="item.price!==0">
+                <span>Price: {{item.price}} L.E</span><br/>
+                </span>                
+                <span>Quantity: {{item.qty}}</span><br/>
+                <span *ngIf="item.image"><img src="item.image"></span><br/>
+            </div>
+            </span>
+            <div class="card-action">
+            <span >Location :  {{fifthOrder.location}}</span>
+            </div>
+            
+            <div class="clearfix"></div>
+            <div class="card-action" >
+
+              <button type="button" (click)="show(fifthOrder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
+            </div>
+            
+          </div>
+   
+       </div>
+
+    </div>
 <!--   
          <div class="card col-md-4 col-sm-6 col-xs-12">
                 <form #orderForm="ngForm" (ngSubmit)="confirm(orderForm.controls)" nonvalidate>

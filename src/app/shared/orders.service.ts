@@ -15,26 +15,24 @@ export class orderService {
   private FirstReceiversUrl = 'http://146.185.148.66:3010';
 
   private SecondReceiversUrl = 'http://146.185.148.66:3021';
-  private ThirdReceiversUrl = 'http://146.185.148.66:3012';
-  private FourthReceiversUrl = 'http://146.185.148.66:3013';
-  private FifthReceiversUrl = 'http://146.185.148.66:3014';
+  private ThirdReceiversUrl = 'http://146.185.148.66:3022';
+  private FourthReceiversUrl = 'http://146.185.148.66:3023';
+  private FifthReceiversUrl = 'http://146.185.148.66:3024';
   private confirmedOrder = 'http://146.185.148.66:3015';  
   private socket;
 
-private secondPackageUrl = 'http://146.185.148.66:3020';
-private thirdPackageUrl = 'http://146.185.148.66:3020';
 private cancel = 'http://146.185.148.66:3333';
 constructor(private http:Http){
   //setInterval(this.secondPackage,5000)
 
   //setInterval(this.thirdPackage,10000)
- //this.onStart()
+ this.onStart()
 
 
 }  
 
 
-/*onStart() {
+onStart() {
 
 
     let headers = new Headers();
@@ -47,7 +45,7 @@ constructor(private http:Http){
 
      })
 
-}*/
+}
 
 
 
@@ -81,8 +79,52 @@ constructor(private http:Http){
      
     return observable;
   }
+
+  third() {
+    this.socket=io(this.ThirdReceiversUrl)
+    let observable = new Observable(observer => {
+      
+      this.socket.on('thirdOrders', (data) => {
+        observer.next(data);
+
+      });
+
+    })   
+     
+    return observable;
+  }
+
+  fourth() {
+    this.socket=io(this.FourthReceiversUrl)
+    let observable = new Observable(observer => {
+      
+      this.socket.on('fourthOrders', (data) => {
+        observer.next(data);
+
+      });
+
+    })   
+     
+    return observable;
+  }
+
+  fifth() {
+    this.socket=io(this.FifthReceiversUrl)
+    let observable = new Observable(observer => {
+      
+      this.socket.on('fifthOrders', (data) => {
+        observer.next(data);
+
+      });
+
+    })   
+     
+    return observable;
+  }
+
 confirmOrder(order){
-      let headers = new Headers();
+/*  console.log(order)
+*/      let headers = new Headers();
           headers.append('Authorization', 'Basic YWRtaW46MTIzNDU2');
           headers.append('Content-Type', 'application/json')
       let cookieValue = this.getCookie('pharmacy');    

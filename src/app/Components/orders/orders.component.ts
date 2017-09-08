@@ -37,7 +37,7 @@ import { Router } from '@angular/router'
     this.secondOrders=[]
      let firstTempOrders =[]
 
-/*    this.order.onStart().subscribe(message => {
+    this.order.onStart().subscribe(message => {
             let temp = []
       var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
 
@@ -52,14 +52,14 @@ import { Router } from '@angular/router'
 
       var allOrders = message.allOrders
       allOrders.forEach(function(order){
-
+/*                 console.log(order)      */ 
         let orderDestination = order.location
 
 
 
       cookieDeliver.forEach(function(t){
 
-
+/*        console.log("location: "+t.name + "   order: "+orderDestination)*/
         if(t.name == orderDestination){
 
           if(t.priority == 1){
@@ -109,7 +109,7 @@ import { Router } from '@angular/router'
     }
   }
 
-  })*/
+  })
 
 
  this.order.getMessages().subscribe(message => {
@@ -186,6 +186,9 @@ let ordersPharma = dataObject.data
 
     })
 this.secondOrders=[] 
+this.thirdOrders=[]
+this.fourthorders=[]
+this.fifthOrders =[]
 this.order.second().subscribe(data=>{
 
 let dataObject =  JSON.parse(JSON.stringify(data))
@@ -297,6 +300,227 @@ let ordersPharma = dataObject.allPharmacies
 }
 })
 
+
+this.order.third().subscribe(data=>{
+
+let dataObject =  JSON.parse(JSON.stringify(data))
+let ordersData = dataObject.allOrders
+let ordersPharma = dataObject.allPharmacies
+
+            this.thirdOrders=[]
+          let thirdPriorityTemp = []
+      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
+      var cookieValue = orders.getCookie('pharmacy');
+    
+    for(let i = 0;i < ordersPharma.length;i++){
+
+    if(cookieValue == ordersPharma[i]){
+
+      var allOrders = ordersData
+
+      allOrders.forEach(function(order){
+                        
+        let orderDestination = order.location
+
+
+      cookieDeliver.forEach(function(t){
+
+        if(t.name == orderDestination){
+
+          if(t.priority == 3){
+              
+               thirdPriorityTemp.push(order)
+
+          }
+/*          if(t.priority == 1){
+              
+               firstPriorityTemp.push(order)
+
+          }  */      
+       }
+      })
+
+     
+
+
+    })
+      let orderSFormat = []
+       thirdPriorityTemp.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
+
+
+         }
+         
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
+
+
+         }  
+         }
+
+         
+         orderSFormat.push(tempOrder)
+         
+    })
+      let thirdorderSFormat = []
+       thirdPriorityTemp.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
+
+
+         }
+         
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
+
+
+         }  
+         }
+
+         
+         thirdorderSFormat.push(tempOrder)
+         
+    })       
+      this.thirdOrders = thirdorderSFormat
+
+}
+}
+})
+
+this.order.fourth().subscribe(data=>{
+
+let dataObject =  JSON.parse(JSON.stringify(data))
+let ordersData = dataObject.allOrders
+let ordersPharma = dataObject.allPharmacies
+
+            this.fourthorders=[]
+          let fourthPriorityTemp = []
+      var cookieDeliver =JSON.parse(orders.getCookie('pharmacyLocation'))
+      var cookieValue = orders.getCookie('pharmacy');
+    
+    for(let i = 0;i < ordersPharma.length;i++){
+
+    if(cookieValue == ordersPharma[i]){
+
+      var allOrders = ordersData
+
+      allOrders.forEach(function(order){
+                        
+        let orderDestination = order.location
+
+
+      cookieDeliver.forEach(function(t){
+
+        if(t.name == orderDestination){
+
+          if(t.priority == 4){
+              
+               fourthPriorityTemp.push(order)
+
+          }
+/*          if(t.priority == 1){
+              
+               firstPriorityTemp.push(order)
+
+          }  */      
+       }
+      })
+
+     
+
+
+    })
+      let orderSFormat = []
+       fourthPriorityTemp.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
+
+
+         }
+         
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
+
+
+         }  
+         }
+
+         
+         orderSFormat.push(tempOrder)
+         
+    })
+      let fourthorderSFormat = []
+       fourthPriorityTemp.forEach(function(item){
+         let tempOrder
+         if(item.type=="image"){
+           tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:item.order
+
+
+         }
+         
+         }else{
+                   tempOrder = {
+           _id: item._id,
+           location: item.location,
+           address: item.address,
+           type: item.type,
+           order:JSON.parse(item.order),
+
+
+         }  
+         }
+
+         
+         fourthorderSFormat.push(tempOrder)
+         
+    })       
+      this.fourthorders = fourthorderSFormat
+
+}
+}
+})
+
+
+
 this.order.cancelOrder().subscribe(data=>{
 
   let cancelOrder = JSON.parse(JSON.stringify(data))
@@ -318,7 +542,7 @@ this.router.navigate(['orderDetails'])
 
 }
 
-/*confirm(orderID){
+confirm(orderID){
 
 console.log(orderID)
   return this.order.confirmOrder(orderID).subscribe(result=>{
@@ -369,7 +593,7 @@ console.log(orderID)
 
    })
 
-} */
+} 
 
 
 
