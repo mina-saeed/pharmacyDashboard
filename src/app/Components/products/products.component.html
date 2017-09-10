@@ -1,5 +1,7 @@
 <style>
-
+.widthar {
+  width: 98%;
+}
 .center {
     text-align: center;
     margin-top: 35px
@@ -89,22 +91,26 @@
     <div class="main_container">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="/home" class="site_title"><i class="fa fa-paw"></i> <span>MY PHARMACY</span></a>
-          </div>
+            <div class="navbar nav_title" style="border: 0;height: 150px;">
+              <a href="/orders" class="site_title" style="height: 140px;">
+                 <img style="max-width: 200px;" src="assets/images/logo.png"/>
+              </a>
+            </div>
           <app-sidebar></app-sidebar>
         </div>
       </div>
       <app-topbar></app-topbar>
       <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="x_title">
-          <h2>All Products </h2>
-          <div class="col-md-offset-10">
-            <a href="/newproduct" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add new Product</a>
+      <div dir="{{'LANG_DIR' | translate }}" class="right_col" role="main">
+        <div dir="{{'LANG_DIR' | translate }}" class="x_title">
+          <h2 style="width:99%;font-size: 21px;" dir="{{'LANG_DIR' | translate }}">{{"ALLPROD" | translate }}</h2>
+          <div dir="{{'LANG_REV' | translate }}" class="col-md-offset-10 {{'WIDTHAR' | translate}}">
+            <a href="/newproduct" class="btn btn-primary">
+              <span class="glyphicon glyphicon-plus"></span> {{"NEWPROD" | translate }}
+            </a>
           </div>
-          <div class="col-xs-offset-10">
-            <input type="text" [(ngModel)]="term" class="form-control col-xs-10" placeholder="Search..">
+          <div style="width:98%;" dir="{{'LANG_REV' | translate }}" class="col-xs-offset-10">
+            <input style="width:15%;" type="text" [(ngModel)]="term" class="form-control col-xs-10" placeholder="{{'SEARCH' | translate }}">
           </div>
           <div class="clearfix"></div>
         </div>

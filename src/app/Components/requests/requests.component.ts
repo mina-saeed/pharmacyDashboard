@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { DialogService } from "ng2-bootstrap-modal";
 import { productDialog } from './dialog.component';
+import {TranslateService} from 'ng2-translate';
 
 @Component({
 	templateUrl: 'products.component.html',
@@ -13,7 +14,8 @@ import { productDialog } from './dialog.component';
 export class products implements OnInit {
 	private products = []
 	p: number = 1;
-	constructor(private dialogService: DialogService, private prod: productService, private router: Router, private flashMessage: FlashMessagesService) { }
+	constructor(translate: TranslateService,private dialogService: DialogService, private prod: productService, private router: Router, private flashMessage: FlashMessagesService) {
+		    translate.use('en'); }
 	ngOnInit() {
 		this.prod.allProducts().subscribe(res => {
 			console.log(res)

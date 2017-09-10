@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { requestService } from '../../shared/requests.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
+import {TranslateService} from 'ng2-translate';
 
 
 @Component({
@@ -12,7 +13,9 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 
 export class newMedicine {
 
-	constructor(private request: requestService, private router: Router, private flash: FlashMessagesService) { }
+	constructor(translate: TranslateService,private request: requestService, private router: Router, private flash: FlashMessagesService) { 
+	translate.use('en');
+	}
 
 requestMedicine(requestData){
 	let medicineRequestFormat = {

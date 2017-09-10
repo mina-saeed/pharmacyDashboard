@@ -69,26 +69,26 @@
       <section class="login_content">
                 <form class="signupForm" #registerEmailForm="ngForm" (ngSubmit)="forgotPassword(registerEmailForm.value)" >
                     <div align="center">
-                      <font size = "50">Enter Your Email</font>
+                      <font size = "50">{{'ENTEREMAIL' | translate }}</font>
                     </div>
                     <br/>
                     <br/>
                     <ul class="noBullet">
                       <li>
                         <div align="center">
-                            <input type="text" class="form-control" id="email" name="email" #email= "ngModel" placeholder="please enter the email you forgot its password" style ="display: inline-block; width: 340px;  height: 50px " required ngModel /> 
+                            <input dir="{{ 'LANG_DIR' | translate }}" type="text" class="form-control" id="email" name="email" #email= "ngModel" placeholder="{{ 'PLZEMAIL' | translate }}" style ="display: inline-block; width: 340px;  height: 50px " required ngModel /> 
                         </div>
                       </li>
                       <br/>
                       <br/>
                       <div align="center">
-                        <button type="submit" id="join-btn" value="Reset" style ="display: inline-block; width: 340px; height: 50px"> submit</button> 
+                        <button type="submit" id="join-btn" value="Reset" style ="display: inline-block; width: 340px; height: 50px">{{"SUBMIT" | translate }}</button> 
                       </div>
                     </ul>
                       <br/>
                       <br/>
                     <p align= "center">
-                        <a font size = "50" href="/"  style="color:#fcab0e;"> <h2> SignUp or SignIn</h2></a> 
+                        <a font size = "50" href="/"  style="color:#fcab0e;"> <h2> {{"UPIN" | translate }}</h2></a> 
                        
                     </p>
                 </form>

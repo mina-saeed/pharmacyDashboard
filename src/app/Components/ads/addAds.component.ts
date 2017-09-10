@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AdsService } from '../../shared/ads.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
+import {TranslateService} from 'ng2-translate';
 
 @Component({
 
@@ -17,7 +18,9 @@ export class newAds {
     link: string 
 	filesToUpload: Array<File> = [];
 
-	constructor(private AdsService: AdsService, private router: Router, private flash: FlashMessagesService) { }
+	constructor(translate: TranslateService,private AdsService: AdsService, private router: Router, private flash: FlashMessagesService) { 
+		    translate.use('en');
+}
 
 	fileChange(event) {
 		this.filesToUpload = <Array<File>>event.target.files;

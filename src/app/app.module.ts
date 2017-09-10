@@ -5,8 +5,8 @@ import {HttpModule} from '@angular/http';
 import {AppComponent } from './Components/app/app.component';
 import {FlashMessagesModule } from 'angular2-flash-messages';
 import {login} from './Components/pharmacy/login.component';
-import {forgotPass} from './Components/forgotPass/forgotPass.component';
-import {reset} from './Components/forgetPassword/forgetPassword.component';
+//import {forgotPass} from './Components/forgotPass/forgotPass.component';
+//import {reset} from './Components/forgetPassword/forgetPassword.component';
 import {orders} from './Components/orders/orders.component';
 import {products} from './Components/products/products.component';
 import {newProduct} from './Components/products/newProduct.component';
@@ -38,12 +38,18 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Pipe, PipeTransform } from '@angular/core';
 import { MainPipe } from './filter/filter.module'
 import { EqualValidator } from './Components/pharmacy/password.match.directive';
+import { Http} from '@angular/http';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { productDialog } from './Components/products/dialog.component'
 import { adsDialog } from './Components/ads/adsDialog.component'
 import { TruncatePipe } from 'angular2-truncate';
+import {TranslateModule} from 'ng2-translate';
+import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
 
+export function createTranslateLoader(http: Http) {
+    return new TranslateStaticLoader(http, 'assets/i18n', '.json');
+  }
 @NgModule({
   declarations: [
     sidebar,
@@ -63,8 +69,8 @@ import { TruncatePipe } from 'angular2-truncate';
       products,
       newProduct,
       pharmacysignupComponent,
-      forgotPass,
-      reset,
+    //  forgotPass,
+    //  reset,
       bar,
       pie,
       test,
@@ -85,7 +91,12 @@ import { TruncatePipe } from 'angular2-truncate';
     QRCodeModule,
     BootstrapModalModule,
     NgxPaginationModule, 
-    MainPipe
+    MainPipe,
+    TranslateModule.forRoot({
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [Http]
+      }),
     ],
 
     entryComponents: [

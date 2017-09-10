@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { DialogService } from "ng2-bootstrap-modal";
 import { adsDialog } from './adsDialog.component';
+import {TranslateService} from 'ng2-translate';
 
 @Component({
     templateUrl: 'Ads.component.html',
@@ -13,7 +14,9 @@ import { adsDialog } from './adsDialog.component';
 export class Ads implements OnInit {
     private allAds = []
     p: number = 1;
-    constructor(private dialogService: DialogService, private ads: AdsService, private router: Router, private flashMessage: FlashMessagesService) { }
+    constructor(translate: TranslateService,private dialogService: DialogService, private ads: AdsService, private router: Router, private flashMessage: FlashMessagesService) {
+         translate.use('en');
+     }
     ngOnInit() {
         this.ads.getrequestedAds().subscribe(res => {
             this.allAds = res

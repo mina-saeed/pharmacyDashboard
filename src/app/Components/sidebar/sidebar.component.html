@@ -1,37 +1,94 @@
 
 <!-- sidebar menu -->
+<style>
+  .armarg1 {
+    margin-right: 116px;
+  }
+  .armarg2 {
+    margin-right: 113px;
+  }
+  .armarg3 {
+    margin-right: 120px;
+  }
+  .armarg4 {
+    margin-right: 122px;
+  }
+  .armarg5 {
+    margin-right: 108px;
+  }
+  .enmarg1 {
+    margin-left: 105px;
+  }
+  .enmarg2 {
+    margin-left: 75px;
+  }
+  .enmarg3 {
+    margin-left: 115px;
+
+  }
+  .enmarg4 {
+    margin-left: 105px;
+
+  }
+  .enmarg5 {
+    margin-left: 75px;
+
+  }
+</style>
+
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
   <div class="menu_section">
-    <h3>General</h3>
-    <ul class="nav side-menu">
+    <h3 dir="{{'LANG_DIR' | translate}}" style="margin-right: 5%;">{{"GENERAL" | translate }}</h3>
+    <ul dir="{{'LANG_DIR' | translate}}" class="nav side-menu">
 
-
-        <li><a><i class="fa fa-table"></i>  Products <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-                <li><a href="/products">Manage Products</a></li>
-            </ul>
+        <li dir="{{'LANG_DIR' | translate}}">
+          <a dir="{{'LANG_DIR' | translate}}">
+            <i class="fa fa-table"></i> 
+            {{"PRODUCTS" | translate }}
+            <i dir="{{'LANG_DIR' | translate}}" style="width:0px;font-size:15px;" class="fa fa-chevron-down {{'LANGMARG1' | translate }}"></i>
+          </a>
+          <ul class="nav child_menu">
+              <li>
+                <a href="/products">{{"MANAGEPROD" | translate }}</a>
+              </li>
+          </ul>
         </li>
-        <li><a><i class="fa fa-table"></i>Advertisements<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-                <li><a href="/requestedAds">Requseted Advertisements</a></li>
-            </ul>
+        <li>
+          <a>
+            <i class="fa fa-table"></i>
+            {{"ADS" | translate }}
+            <i class="fa fa-chevron-down {{'LANGMARG2' | translate }}" style="width:0px;font-size:15px;"></i>
+          </a>
+          <ul class="nav child_menu">
+            <li>
+              <a href="/requestedAds">{{"REQUESTEDADS" | translate }}</a>
+            </li>
+          </ul>
         </li>
-          <li><a><i class="fa fa-table"></i>  Charts <span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu">
-                  <li><a href="/bar">Bar and Pie chart</a></li>
+        <li>
+          <a>
+            <i class="fa fa-table"></i>
+            {{"CHARTS" | translate }}
+            <i class="fa fa-chevron-down {{'LANGMARG3' | translate }}" style="width:0px;font-size:15px;"></i>
+          </a>
+          <ul class="nav child_menu">
+            <li>
+              <a href="/bar">{{"BARPIE" | translate }}</a>
+            </li>
                  <! <li><!<a href="/pie"><!Pie chart</a><!</li>
-              </ul>
-          </li>
-        <li><a><i class="fa fa-table"></i>  Requests <span class="fa fa-chevron-down"></span></a>
+          </ul>
+        </li>
+        <li dir="{{'LANG_DIR' | translate}}"><a><i class="fa fa-table"></i>  {{"REQUESTS" | translate }}<i class="fa fa-chevron-down {{'LANGMARG4' | translate }}" style="width:0px;font-size:15px;"></i></a>
             <ul class="nav child_menu">
-                <li><a href="/requestMedicine">Request Medicine</a></li>
+                <li><a href="/requestMedicine">{{"REQMED" | translate }}</a></li>
             </ul>
         </li>
-        <li><a><i class="fa fa-table"></i> Medicine Prices <span class="fa fa-chevron-down"></span></a>
+        <li><a dir="{{'LANG_DIR' | translate}}"><i class="fa fa-table"></i> {{"MEDPRICE" | translate }}<i class="fa fa-chevron-down {{'LANGMARG5' | translate }}" style="width:0px;font-size:15px;"></i></a>
             <ul class="nav child_menu">
-                <li><a href="/prices"> Medicine Prices</a></li>
+                <li><a href="/prices"> {{"MEDPRICE" | translate }}</a></li>
             </ul>
-        </li>        
+        </li>  
+        <li><a style="font-size: 14px;text-align: center;" (click)="toLang()">{{"LANGUAGE" | translate}}</a></li>
     </ul>
   </div>
 </div>

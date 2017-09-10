@@ -1,5 +1,5 @@
-<style>
 
+<style>
 .center {
     text-align: center;
     margin-top: 35px
@@ -14,58 +14,49 @@
   .card {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   }
-
   .card {
     margin-top: 10px;
     box-sizing: border-box;
     border-radius: 2px;
     background-clip: padding-box;
   }
-
   .card span.card-title {
     color: #fff;
     font-size: 24px;
     font-weight: 300;
     text-transform: uppercase;
   }
-
   .card .card-image {
     position: relative;
     overflow: hidden;
     width: 318px;
     height: 250px
   }
-
   .card .card-image img {
     border-radius: 2px 2px 0 0;
     background-clip: padding-box;
     position: relative;
     z-index: -1;
   }
-
   .card .card-image span.card-title {
     position: absolute;
     bottom: 0;
     left: 0;
     padding: 16px;
   }
-
   .card .card-content {
     padding: 0px;
     border-radius: 0 0 2px 2px;
     background-clip: padding-box;
     box-sizing: border-box;
   }
-
   .card .card-content p {
     margin: 0;
     color: inherit;
   }
-
   .card .card-content span.card-title {
     line-height: 48px;
   }
-
   .card .card-action {
     /*border: 1px solid rgba(160, 160, 160, 0.2);*/
     padding: 0px;
@@ -73,14 +64,12 @@
     margin-bottom: 10%;
     font-size: 16px;
   }
-
   .card .card-action a {
     color: #ffab40;
     margin-right: 16px;
     transition: color 0.3s ease;
     text-transform: uppercase;
   }
-
   .card .card-action a:hover {
     color: #ffd8a6;
     text-decoration: none;
@@ -91,16 +80,18 @@
     <div class="main_container">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="/home" class="site_title"><i class="fa fa-paw"></i> <span>MY PHARMACY</span></a>
-          </div>
+            <div class="navbar nav_title" style="border: 0;height: 150px;">
+              <a href="/orders" class="site_title" style="height: 140px;">
+                 <img style="max-width: 200px;" src="assets/images/logo.png"/>
+              </a>
+            </div>
           <app-sidebar></app-sidebar>
         </div>
       </div>
       <app-topbar></app-topbar>
       <!-- page content -->
               <div  style="margin-left: 50%;font-size:20px;">
-          All Orders
+          {{"ALLORDERS" | translate }}
         
         </div>
 
@@ -108,257 +99,47 @@
 
     <div style="margin-left: 20%">
 
-        <div *ngFor=" let firstOrder of firstOrders   ">
-
-          <div class="card col-md-4 col-sm-6 col-xs-12">
-            <span *ngIf="firstOrder.type=='image'">
-            <img src={{firstOrder.order}} alt="No Image" width="100%" class="card-image img">
-            </span>
-            <span *ngIf="firstOrder.type=='order'">
-            <div class="card-content" *ngFor=" let item of firstOrder.order ">
-                <br/><span>Medicine name: {{item.name}}</span><br/>
-                <span *ngIf="item.price ==0">
-                  <span>Price: Not Fixed  <br/></span>
-                </span>
-                <span *ngIf="item.price!==0">
-                <span>Price: {{item.price}} L.E</span><br/>
-                </span>                
-                <span>Quantity: {{item.qty}}</span><br/>
-                <span *ngIf="item.image"><img src="item.image"></span><br/>
-            </div>
-            </span>
-            <div class="card-action">
-            <span >Location :  {{firstOrder.location}}</span>
-            </div>
-            
-            <div class="clearfix"></div>
-            <div class="card-action" >
-
-              <button type="button" (click)="show(firstOrder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
-            </div>
-            
-          </div>
-   
-       </div>
-
-    </div>
-
-
-    <div style="margin-left: 20%">
-
-        <div *ngFor=" let secondOrder of secondOrders   ">
-
-          <div class="card col-md-4 col-sm-6 col-xs-12">
-            <span *ngIf="secondOrder.type=='image'">
-            <img src={{secondOrder.order}} alt="No Image" width="100%" class="card-image img">
-            </span>
-            <span *ngIf="secondOrder.type=='order'">
-            <div class="card-content" *ngFor=" let item of secondOrder.order ">
-                <br/><span>Medicine name: {{item.name}}</span><br/>
-                <span *ngIf="item.price ==0">
-                  <span>Price: Not Fixed  <br/></span>
-                </span>
-                <span *ngIf="item.price!==0">
-                <span>Price: {{item.price}} L.E</span><br/>
-                </span>                
-                <span>Quantity: {{item.qty}}</span><br/>
-                <span *ngIf="item.image"><img src="item.image"></span><br/>
-            </div>
-            </span>
-            <div class="card-action">
-            <span >Location :  {{secondOrder.location}}</span>
-            </div>
-            
-            <div class="clearfix"></div>
-            <div class="card-action" >
-
-              <button type="button" (click)="show(secondOrder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
-            </div>
-            
-          </div>
-   
-       </div>
-
-    </div>
-    <div style="margin-left: 20%">
-
-        <div *ngFor=" let thirdOrder of thirdOrders   ">
-
-          <div class="card col-md-4 col-sm-6 col-xs-12">
-            <span *ngIf="thirdOrder.type=='image'">
-            <img src={{thirdOrder.order}} alt="No Image" width="100%" class="card-image img">
-            </span>
-            <span *ngIf="thirdOrder.type=='order'">
-            <div class="card-content" *ngFor=" let item of thirdOrder.order ">
-                <br/><span>Medicine name: {{item.name}}</span><br/>
-                <span *ngIf="item.price ==0">
-                  <span>Price: Not Fixed  <br/></span>
-                </span>
-                <span *ngIf="item.price!==0">
-                <span>Price: {{item.price}} L.E</span><br/>
-                </span>                
-                <span>Quantity: {{item.qty}}</span><br/>
-                <span *ngIf="item.image"><img src="item.image"></span><br/>
-            </div>
-            </span>
-            <div class="card-action">
-            <span >Location :  {{thirdOrder.location}}</span>
-            </div>
-            
-            <div class="clearfix"></div>
-            <div class="card-action" >
-
-              <button type="button" (click)="show(thirdOrder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
-            </div>
-            
-          </div>
-   
-       </div>
-
-    </div>
-
-    <div style="margin-left: 20%">
-
-        <div *ngFor=" let fourthorder of fourthorders   ">
-
-          <div class="card col-md-4 col-sm-6 col-xs-12">
-            <span *ngIf="fourthorder.type=='image'">
-            <img src={{fourthorder.order}} alt="No Image" width="100%" class="card-image img">
-            </span>
-            <span *ngIf="fourthorder.type=='order'">
-            <div class="card-content" *ngFor=" let item of fourthorder.order ">
-                <br/><span>Medicine name: {{item.name}}</span><br/>
-                <span *ngIf="item.price ==0">
-                  <span>Price: Not Fixed  <br/></span>
-                </span>
-                <span *ngIf="item.price!==0">
-                <span>Price: {{item.price}} L.E</span><br/>
-                </span>                
-                <span>Quantity: {{item.qty}}</span><br/>
-                <span *ngIf="item.image"><img src="item.image"></span><br/>
-            </div>
-            </span>
-            <div class="card-action">
-            <span >Location :  {{fourthorder.location}}</span>
-            </div>
-            
-            <div class="clearfix"></div>
-            <div class="card-action" >
-
-              <button type="button" (click)="show(fourthorder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
-            </div>
-            
-          </div>
-   
-       </div>
-
-    </div>
-
-    <div style="margin-left: 20%">
-
-        <div *ngFor=" let fifthOrder of fifthOrders   ">
-
-          <div class="card col-md-4 col-sm-6 col-xs-12">
-            <span *ngIf="fifthOrder.type=='image'">
-            <img src={{fifthOrder.order}} alt="No Image" width="100%" class="card-image img">
-            </span>
-            <span *ngIf="fifthOrder.type=='order'">
-            <div class="card-content" *ngFor=" let item of fifthOrder.order ">
-                <br/><span>Medicine name: {{item.name}}</span><br/>
-                <span *ngIf="item.price ==0">
-                  <span>Price: Not Fixed  <br/></span>
-                </span>
-                <span *ngIf="item.price!==0">
-                <span>Price: {{item.price}} L.E</span><br/>
-                </span>                
-                <span>Quantity: {{item.qty}}</span><br/>
-                <span *ngIf="item.image"><img src="item.image"></span><br/>
-            </div>
-            </span>
-            <div class="card-action">
-            <span >Location :  {{fifthOrder.location}}</span>
-            </div>
-            
-            <div class="clearfix"></div>
-            <div class="card-action" >
-
-              <button type="button" (click)="show(fifthOrder)" value="Confirm" class="btn btn-success">Details & Confirm</button>
-            </div>
-            
-          </div>
-   
-       </div>
-
-    </div>
-<!--   
          <div class="card col-md-4 col-sm-6 col-xs-12">
-                <form #orderForm="ngForm" (ngSubmit)="confirm(orderForm.controls)" nonvalidate>
-        <div *ngFor=" let firstOrder of firstOrders  ">
+                <form #orderForm="ngForm" (ngSubmit)="confirm(orderForm.value)" nonvalidate>
 
-        <input type="hidden" name="id" id="id" value="{{firstOrder._id}}" ngModel>
-            <span *ngIf="firstOrder.type=='image'">
-            <img src={{firstOrder.order}} alt="No Image" width="100%" class="card-image img">
+
+            <span *ngIf="ordderDetails.type=='image'">
+            <img src={{ordderDetails.order}} alt="No Image" width="100%" class="card-image img">
             </span>
-            <span *ngIf="firstOrder.type=='order'">
-            <div class="card-content" *ngFor=" let item of firstOrder.order">
+            <span *ngIf="ordderDetails.type=='order'">
+            <div class="card-content" *ngFor=" let item of ordderDetails.order">
+           
+                <br/><span dir="{{'LANG_DIR' | translate}}">{{"MEDNAME" | translate }}: {{item.name}}</span><br/>
                 
-                <br/><span>Medicine name: {{item.name}}</span><br/>
-                
-                <span *ngIf="item.price ==0">
-                <span>Price: <input type="text" name="newPrice" id="newPrice" placeholder="Add medicine price" ngModel> L.E</span><br/>
+                <span dir="{{'LANG_DIR' | translate}}" *ngIf="item.price ==0">
+                <span dir="{{'LANG_DIR' | translate}}">{{"PRICE" | translate }}: <input type="text" name="{{item.name}}" id="{{item.name}}" placeholder="Add medicine price" ngModel> {{"LE" | translate }}</span><br/>
                 </span>
                 <span  *ngIf="item.price!==0">
-
-                <span>Price: {{item.price}} L.E</span><br/>
+                <input type="hidden" name="medicinePrice" id="medicinePrice" value="{{item.price}}" ngModel>
+                <span dir="{{'LANG_DIR' | translate}}">{{"PRICE" | translate }}: {{item.price}} L.E</span><br/>
                 </span> 
-                <span>Quantity: {{item.qty}}</span><br/>
+
+                <span dir="{{'LANG_DIR' | translate}}">{{"QUANTITY" | translate }}: {{item.qty}}</span><br/>
                 <span *ngIf="item.image"><img src="item.image"></span><br/>
             </div>
             </span>
             <div class="card-action">
-            <span >Location :  {{firstOrder.location}}</span><br/>
-            <span >Address :  {{firstOrder.address}}</span>
+            <span dir="{{'LANG_DIR' | translate}}">{{"LOCATION" | translate }} :  {{ordderDetails.location}}</span><br/>
+            <span dir="{{'LANG_DIR' | translate}}">{{"ADDRESS" | translate }} :  {{ordderDetails.address}}</span>
             </div>
             
             <div class="clearfix"></div>
             <div class="card-action" >
 
-               <button [disabled]="!orderForm.form.valid" type="submit" class="btn btn-success submit" >Confirm</button>
+               <button [disabled]="!orderForm.form.valid" type="submit" class="btn btn-success submit" >{{ "CONFIRM" | translate }}</button>
             </div>
             
 
-       </div>
+      
 
                 </form>
           </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- -->
-    <!-- /page content -->
+    </div>
   </div>
   </div>
 </body>

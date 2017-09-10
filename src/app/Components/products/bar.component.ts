@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import {users} from '../../shared/users.service';
+import {TranslateService} from 'ng2-translate';
 
 @Component({
   selector: 'bar-chart-demo',
@@ -14,6 +15,7 @@ export class bar implements OnInit{
     scaleShowVerticalLines: false,
     responsive: true
   };
+
   public barChartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
@@ -25,7 +27,10 @@ export class bar implements OnInit{
   public pieChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
   public pieChartData:number[] = [300, 500, 100];
   public pieChartType:string = 'pie';
-  constructor(private users:users){}
+  constructor(private users:users,translate: TranslateService){
+      translate.use('en');
+
+  }
  ngOnInit(){
    this.users.pharmacyHistory().subscribe(res => {
     console.log(res)

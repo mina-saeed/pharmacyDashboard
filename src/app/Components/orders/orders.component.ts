@@ -9,6 +9,7 @@ import 'rxjs/Rx';
 import {Observable} from 'rxjs/Rx';
 import {Http , RequestOptions, Headers} from '@angular/http';
 import { Router } from '@angular/router'
+import {TranslateService} from 'ng2-translate';
 
  @Component({
 
@@ -29,7 +30,10 @@ import { Router } from '@angular/router'
   message;
   ordr;
 
-  constructor(private order:orderService ,private http:Http, private router:Router) { }
+
+  constructor(translate: TranslateService,private order:orderService ,private http:Http, private router: Router) { 
+    translate.use('en');
+  }
 
   ngOnInit() {
     document.cookie = "order=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

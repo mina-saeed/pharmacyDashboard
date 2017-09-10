@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { productService } from '../../shared/products.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
+import {TranslateService} from 'ng2-translate';
 
 
 @Component({
@@ -24,7 +25,10 @@ export class newProduct implements OnInit {
 	filesToUpload: Array<File> = [];
 
 
-	constructor(private product: productService, private router: Router, private flash: FlashMessagesService) { }
+	constructor(translate: TranslateService,private product: productService, private router: Router, private flash: FlashMessagesService) { 
+	    translate.use('en');
+
+	}
 
 	ngOnInit() {
 		this.product.getAllCategories().subscribe(res => {

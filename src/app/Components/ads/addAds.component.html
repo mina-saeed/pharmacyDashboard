@@ -1,95 +1,111 @@
+<style>
+  .ar-3 {
+    display: inline-block;
+    float: right !important;
+    margin-right: 15%;
+    width: 85px;
+}
+ .ar-6 {
+  float: left !important;
+  margin-left: 23%;
+}
+
+</style>
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="/home" class="site_title"><i class="fa fa-paw"></i> <span>MY PHARMACY</span></a>
-          </div>
+            <div class="navbar nav_title" style="border: 0;height: 150px;">
+              <a href="/orders" class="site_title" style="height: 140px;">
+                 <img style="max-width: 200px;" src="assets/images/logo.png"/>
+              </a>
+            </div>
           <app-sidebar></app-sidebar>
         </div>
       </div>
       <app-topbar></app-topbar>
       <!-- page content -->
       <div class="right_col" role="main">
-        <div class="">
           <div class="page-title">
-            <div class="title_left">
-              <h3>Add New Advertisement </h3>
+            <div class="title_left" style="width: 100%;">
+             <div  style="font-size: 21px;width:99%;" dir="{{ 'LANG_DIR' | translate }}">
+              <h3 style="width:99%;">{{"NEWADV" | translate }}</h3>
+            </div>
             </div>
           </div>
-        </div>
         <div class="clearfix"></div>
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form class="form-horizontal form-label-left" #AdsForm="ngForm" (ngSubmit)="addAds()" novalidate>
+                <form dir="{{'LANG_DIR' | translate }}" class="form-horizontal form-label-left" #AdsForm="ngForm" (ngSubmit)="addAds()" novalidate>
                   <input type="hidden" id="creator" name="creator" value="admin" />
                   <div ngModelGroup="name">
-                    <span class="section">Advertisement Name</span>
+                    <span class="section">{{ "ADVNAME" | translate }}</span>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Name (English)<span class="required">*</span>
+                      <label dir="{{'LANG_DIR' | translate}}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="name">{{"NAME" | translate }} {{ "EN" | translate }}<span class="required">*</span>
                         </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                         <input type="text" id="name_english" name="name_english" #nameEngRef="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6"
-                          data-validate-words="2" placeholder="Advertisement Title" required [(ngModel)]="engname">
+                          data-validate-words="2" placeholder="{{'ADVTITLE' | translate }}" required [(ngModel)]="engname">
                       </div>
                     </div>
-                    <div [hidden]="nameEngRef.valid || nameEngRef.untouched " class="alert alert-danger">
-                      Please Add Product name in English
+                    <div style="text-align: center;" [hidden]="nameEngRef.valid || nameEngRef.untouched " class="alert alert-danger">
+                    {{ 'ADDNAME' | translate }}
                     </div>
                   </div>
                   <div ngModelGroup="description">
-                    <span class="section">Advertisement Description</span>
+                    <span class="section">{{ "ADVDESC" | translate }}</span>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description (English)<span class="required">*</span>
+                      <label dir="{{'LANG_DIR' | translate}}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="textarea">{{"DESC" | translate }} {{ "EN" | translate }}<span class="required">*</span>
                         </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                         <textarea id="english_description" name="english_description" #descEn="ngModel" required [(ngModel)]="engdesc" class="form-control col-md-7 col-xs-12"></textarea>
                       </div>
                     </div>
-                    <div [hidden]="descEn.valid || descEn.untouched " class="alert alert-danger">
-                      Please Add Advertisement Description in English
+                    <div style="text-align: center;" [hidden]="descEn.valid || descEn.untouched " class="alert alert-danger">
+                    {{ 'ADDDESC' | translate }}
                     </div>
                   </div>
-                  <span class="section">Advertisement Image</span>
+                  <span class="section">{{ "ADVIMG" | translate }}</span>
                   <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image <span class="required">*</span>
+                    <label dir="{{'LANG_DIR' | translate}}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="image">{{"IMG" | translate }}<span class="required">*</span>
                         </label>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <input type="file" id="image" name="image" class="form-control" (change)="fileChange($event)" accept="image/*" required>                      </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
+                      <input type="file" id="image" name="image" class="form-control" (change)="fileChange($event)" accept="image/*" required>
+                     </div>
                   </div>
-                  <span class="section">Advertisement Duration</span>
+                  <span class="section">{{ "ADVDUR" | translate }}</span>
                   <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Start Date <span class="required">*</span>
+                    <label dir="{{'LANG_DIR' | translate}}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="image">{{'START' | translate }}<span class="required">*</span>
                         </label>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <input type="date" id="start" name="start" class="form-control" [(ngModel)]="start" required>
+                    <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
+                      <input dir="{{'LANG_DIR' | translate }}" type="date" id="start" name="start" class="form-control" [(ngModel)]="start" required>
                     </div>
                   </div>
                   <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">End Date <span class="required">*</span>
+                    <label dir="{{'LANG_DIR' | translate}}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="image">{{'END' | translate }}<span class="required">*</span>
                         </label>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <input type="date" id="end" name="end" class="form-control" [(ngModel)]="end" required>
+                    <div dir="{{'LANG_DIR' | translate }}" class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
+                      <input style="width:100%;" dir="{{'LANG_DIR' | translate }}" type="date" id="end" name="end" class="form-control" [(ngModel)]="end" required>
                     </div>
                   </div>
-                  <span class="section">Advertisement Link</span>
+                  <span class="section">{{ "ADVLNK" | translate }}</span>
                   <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Link <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="textarea">{{"LNK" | translate}}<span class="required">*</span>
                         </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                       <input type="url" id="link" name="link" #linkRef="ngModel" [(ngModel)]="link" required class="form-control col-md-7 col-xs-12"
                       />
                     </div>
                   </div>
-                  <div [hidden]="linkRef.valid || linkRef.untouched " class="alert alert-danger">
-                    Please Add Advertisement Link
+                  <div style="text-align: center;" [hidden]="linkRef.valid || linkRef.untouched" class="alert alert-danger">
+                    {{ 'ADDLNK' | translate }}
                   </div>
                   <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
-                      <button id="submit" type="submit" [disabled]="!AdsForm.form.valid" class="btn btn-success">Submit</button>
+                    <div class="col-md-6 col-md-offset-3 {{'AR6' | translate }}">
+                      <button id="submit" type="submit" [disabled]="!AdsForm.form.valid" class="btn btn-success">{{"SUBMIT" | translate }}</button>
                     </div>
                   </div>
                 </form>

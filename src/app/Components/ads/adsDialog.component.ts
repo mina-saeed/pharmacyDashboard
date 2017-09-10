@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
+import {TranslateService} from 'ng2-translate';
 
 export interface AdsModel {
     name_en: string;
@@ -26,7 +27,7 @@ export interface AdsModel {
               <p>EndDate: <strong>{{end}}</strong></p>
               <p>Link: <strong>{{link}}</strong></p>
                    <div class="modal-footer">
-                     <button type="button" class="btn btn-primary" (click)="close()">OK</button>
+                     <button type="button" class="btn btn-primary" (click)="close()">{{'OK' | translate }}</button>
                    </div>
                 </div>
              </div>`
@@ -39,7 +40,8 @@ export class adsDialog extends DialogComponent<AdsModel, null> implements AdsMod
     link: string
     image: string
 
-    constructor(dialogService: DialogService) {
+    constructor(translate: TranslateService, dialogService: DialogService) {
+    translate.use('en');
         super(dialogService);
     }
 }

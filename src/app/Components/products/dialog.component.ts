@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
+import {TranslateService} from 'ng2-translate';
 
 export interface productModel {
     name_en: string;
@@ -28,7 +29,7 @@ export interface productModel {
               <p>Price: <strong>{{price}}</strong></p>
               <p>Pharmacy: <strong>{{pharmacyID}}</strong></p>                   </div>
                    <div class="modal-footer">
-                     <button type="button" class="btn btn-primary" (click)="close()">OK</button>
+                     <button type="button" class="btn btn-primary" (click)="close()">{{ 'OK' | translate }}</button>
                    </div>
                 </div>
              </div>`
@@ -42,7 +43,8 @@ export class productDialog extends DialogComponent<productModel, null> implement
     pharmacyID: string
     image: string
 
-    constructor(dialogService: DialogService) {
+    constructor(translate: TranslateService, dialogService: DialogService) {
+        translate.use('en');
         super(dialogService);
     }
 }

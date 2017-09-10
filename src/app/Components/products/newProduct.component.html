@@ -1,11 +1,26 @@
+<style>
+  .ar-3 {
+    display: inline-block;
+    float: right !important;
+    margin-right: 15%;
+    width: 85px;
+}
+ .ar-6 {
+  float: left !important;
+  margin-left: 23%;
+}
+
+</style>
 <body class="nav-md">
   <div class="container body">
     <div class="main_container">
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-          <div class="navbar nav_title" style="border: 0;">
-            <a href="/orders" class="site_title"><i class="fa fa-paw"></i> <span>MY PHARMACY</span></a>
-          </div>
+            <div class="navbar nav_title" style="border: 0;height: 150px;">
+              <a href="/orders" class="site_title" style="height: 140px;">
+                 <img style="max-width: 200px;" src="assets/images/logo.png"/>
+              </a>
+            </div>
           <app-sidebar></app-sidebar>
         </div>
       </div>
@@ -14,8 +29,8 @@
       <div class="right_col" role="main">
         <div class="">
           <div class="page-title">
-            <div class="title_left">
-              <h3>Add New Product </h3>
+            <div dir= "{{'LANG_DIR' | translate }}" style="width: 99%;font-size: 23px;" class="title_left">
+              <h3>{{ "NEWPROD" | translate }}</h3>
             </div>
           </div>
         </div>
@@ -24,88 +39,89 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
               <div class="x_content">
-                <form class="form-horizontal form-label-left" #productForm="ngForm" (ngSubmit)="addProduct()" novalidate>
-                  <span class="section">Product Barcode</span>
-                  <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Barcode <span class="required">*</span>
-                        </label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                <form dir="{{'LANG_DIR' | translate }}" class="form-horizontal form-label-left" #productForm="ngForm" (ngSubmit)="addProduct()" novalidate>
+                  <p dir="{{'LANG_DIR' | translate }}" style="display: inline-block;" class="section">{{ "PRODBAR" | translate }}</p>
+                  <div dir="{{'LANG_DIR' | translate }}" class="item form-group">
+                    <label dir="{{'LANG_DIR' | translate }}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="name">    {{ "BAR" | translate }}<span class="required">*</span>
+                    </label>
+                    <div dir="{{'LANG_DIR' | translate }}" class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                       <input type="text" id="barcode" name="barcode" #barcodeRef="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6"
-                        data-validate-words="2" placeholder="ex: 6546498499847" required [(ngModel)]="bar">
+                        data-validate-words="2" placeholder="{{'EX' | translate }}: 6546498499847" required [(ngModel)]="bar">
                     </div>
                   </div>
-                  <div [hidden]="barcodeRef.valid || barcodeRef.untouched " class="alert alert-danger">
-                    Please enter Valid barcode
+                  <div style="text-align: center;" [hidden]="barcodeRef.valid || barcodeRef.untouched " class="alert alert-danger">
+                    {{ "VALIDBAR" | translate }}
                   </div>
                   <div ngModelGroup="name">
-                    <span class="section">Product Name</span>
+                    <span class="section">{{ "PRODNAME" | translate }}</span>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Name (English)<span class="required">*</span>
+                      <label dir="{{'LANG_DIR' | translate }}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="name">{{ "NAME" | translate }} {{ "EN" | translate }}<span class="required">*</span>
                         </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                         <input type="text" id="name_english" name="name_english" #nameEngRef="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6"
                           data-validate-words="2" placeholder="ex : new medicine" required [(ngModel)]="engname">
                       </div>
                     </div>
-                    <div [hidden]="nameEngRef.valid || nameEngRef.untouched " class="alert alert-danger">
-                      Please Add Product name in English
+                    <div style="text-align: center;" [hidden]="nameEngRef.valid || nameEngRef.untouched " class="alert alert-danger">
+                      {{ "NAMEINEN" | translate }}
                     </div>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Name (Arabic)<span class="required">*</span>
+                      <label dir="{{'LANG_DIR' | translate }}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="name">{{ "NAME" | translate }} {{ "AR" | translate }}<span class="required">*</span>
                         </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                         <input id="name_ar" name="name_ar" #nameArRef="ngModel" class="form-control col-md-7 col-xs-12" data-validate-length-range="6"
                           data-validate-words="2" placeholder="مثال : دواء جديد" required [(ngModel)]="arbname" type="text">
                       </div>
                     </div>
-                    <div [hidden]="nameArRef.valid || nameArRef.untouched " class="alert alert-danger">
-                      Please Add Product name in Arabic
+                    <div style="text-align: center;" style="text-align: center;" [hidden]="nameArRef.valid || nameArRef.untouched " class="alert alert-danger">
+                     {{ "NAMEINAR" | translate }}
                     </div>
                   </div>
                   <div ngModelGroup="description">
-                    <span class="section">Product Description</span>
+                    <span class="section">{{"PRODDESC" | translate }}</span>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description (English)<span class="required">*</span>
+                      <label dir="{{'LANG_DIR' | translate }}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="textarea">{{"DESC" | translate }} {{ "EN" | translate }}<span class="required">*</span>
                         </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                         <textarea id="english_description" name="english_description" #descEn="ngModel" required [(ngModel)]="engdesc" class="form-control col-md-7 col-xs-12"></textarea>
                       </div>
                     </div>
-                    <div [hidden]="descEn.valid || descEn.untouched " class="alert alert-danger">
-                      Please Add Product Description in English
+                    <div style="text-align: center;" [hidden]="descEn.valid || descEn.untouched " class="alert alert-danger">
+                      {{ "DESCINEN" | translate }}
                     </div>
                     <div class="item form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description (Arabic)<span class="required">*</span>
+                      <label dir="{{'LANG_DIR' | translate }}" class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="textarea">{{"DESC" | translate }} {{ "AR" | translate }}<span class="required">*</span>
                         </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
+                      <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
                         <textarea id="arabic_description" name="arabic_description" #descAr="ngModel" required [(ngModel)]="arbdesc" class="form-control col-md-7 col-xs-12"></textarea>
                       </div>
                     </div>
-                    <div [hidden]="descAr.valid || descAr.untouched " class="alert alert-danger">
-                      Please Add Product Description in Arabic
+                    <div style="text-align: center;" [hidden]="descAr.valid || descAr.untouched " class="alert alert-danger">
+                    {{ "DESCINAR" | translate }}
                     </div>
                   </div>
-                  <span class="section">Product Image</span>
+                  <span class="section">{{"PRODIMG" | translate }}</span>
                   <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="image">Image <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="image">{{"IMG" | translate }} <span class="required">*</span>
                         </label>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <input type="file" id="image" name="image" class="form-control" (change)="fileChange($event)" accept="image/*" required>                      </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 {{'AR6' | translate }}">
+                      <input type="file" id="image" name="image" class="form-control" (change)="fileChange($event)" accept="image/*" required>
+                    </div>
                   </div>
-                  <span class="section">Product Price</span>
+                  <span class="section">{{"PRODPRICE" | translate }}</span>
                   <div class="item form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Price <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="textarea">{{"PRICE" | translate }} <span class="required">*</span>
                         </label>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="col-md-6 col-sm-6 col-xs-12 ar-6 {{'AR6' | translate }}">
                       <input type="text" id="price" name="price" #priceRef="ngModel" [(ngModel)]="price" required class="form-control" />
                     </div>
                   </div>
                   <div [hidden]="priceRef.valid || priceRef.untouched " class="alert alert-danger">
                     Please Add Product Price
                   </div>
-                  <span class="section">Product Category</span>
+                  <span class="section">{{"PRODCATEG" | translate }}</span>
                   <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Category <span class="required">*</span>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="name">{{"CATEG" | translate }} <span class="required">*</span>
                         </label>
                     <div class="btn-group">
                       <ul>
@@ -116,9 +132,9 @@
                     </div>
                   </div>
                   <div *ngIf="subCategory!=null">
-                    <span class="section">Product Sub-Category</span>
+                    <span class="section">{{"PRODSUB" | translate }}</span>
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sub-Category <span class="required">*</span>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12 {{'AR3' | translate }}" for="name">{{"SUB" | translate }} <span class="required">*</span>
                         </label>
                       <div class="btn-group">
                         <ul>
@@ -131,7 +147,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
-                      <button id="submit" type="submit" [disabled]="!productForm.form.valid" class="btn btn-success">Submit</button>
+                      <button id="submit" type="submit" [disabled]="!productForm.form.valid" class="btn btn-success">{{"SUBMIT" | translate }}</button>
                     </div>
                   </div>
                 </form>
