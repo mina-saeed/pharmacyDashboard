@@ -43,8 +43,8 @@ export class productDialog extends DialogComponent<productModel, null> implement
     pharmacyID: string
     image: string
 
-    constructor(translate: TranslateService, dialogService: DialogService) {
-        translate.use('en');
+    constructor(private translate: TranslateService, dialogService: DialogService) {
+       // translate.use('en');
         super(dialogService);
     }
 }

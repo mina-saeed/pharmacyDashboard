@@ -9,9 +9,11 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class sidebar 
 {
-  constructor(public translate: TranslateService) { 
+public translate: TranslateService;
+  constructor(translate: TranslateService) { 
   this.translate=translate;
-    translate.use('en');
+  //alert(this.translate.currentLang);
+   this.translate.use('en');
   }
   toLang(){
   	if (this.translate.currentLang == 'ar') {

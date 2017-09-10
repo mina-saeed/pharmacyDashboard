@@ -120,7 +120,7 @@
             <div class="card-content">
               <h2><strong>{{product.name_en}}</strong></h2>
               <p>{{product.description_en | truncate : 30 }}</p>
-              <p><strong>{{product.price}} LE</strong></p>
+              <p><strong dir="{{'LANG_REV' | translate }}">{{product.price}} {{"LE" | translate }}</strong></p>
             </div>
             <div class="clearfix"></div>
             <div class="card-action">

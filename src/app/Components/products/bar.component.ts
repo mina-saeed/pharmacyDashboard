@@ -28,7 +28,7 @@ export class bar implements OnInit{
   public pieChartData:number[] = [300, 500, 100];
   public pieChartType:string = 'pie';
   constructor(private users:users,translate: TranslateService){
-      translate.use('en');
+      //translate.use('en');
 
   }
  ngOnInit(){

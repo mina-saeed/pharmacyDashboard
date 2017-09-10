@@ -103,7 +103,7 @@
       <app-topbar></app-topbar>
       <!-- page content -->
               <div  style="margin-left: 50%;font-size:20px;">
-          All Orders
+          {{"ALLORDERS" | translate }}
         
         </div>
 
@@ -121,29 +121,29 @@
             <span *ngIf="ordderDetails.type=='order'">
             <div class="card-content" *ngFor=" let item of ordderDetails.order">
            
-                <br/><span>Medicine name: {{item.name}}</span><br/>
+                <br/><span dir="{{'LANG_DIR' | translate}}">{{"MEDNAME" | translate }}: {{item.name}}</span><br/>
                 
                 <span *ngIf="item.price ==0">
-                <span>Price: <input type="text" name="{{item.name}}" id="{{item.name}}" placeholder="Add medicine price" ngModel> L.E</span><br/>
+                <span dir="{{'LANG_DIR' | translate}}">{{"PRICE" | translate }}: <input type="text" name="{{item.name}}" id="{{item.name}}" placeholder="Add medicine price" ngModel> {{"LE" | translate }} </span><br/>
                 </span>
                 <span  *ngIf="item.price!==0">
                 <input type="hidden" name="medicinePrice" id="medicinePrice" value="{{item.price}}" ngModel>
-                <span>Price: {{item.price}} L.E</span><br/>
+                <span dir="{{'LANG_DIR' | translate}}">{{"PRICE" | translate }}: {{item.price}} {{"LE" | translate }}</span><br/>
                 </span> 
 
-                <span>Quantity: {{item.qty}}</span><br/>
+                <span dir="{{'LANG_DIR' | translate}}">{{"QUANTITY" | translate }}: {{item.qty}}</span><br/>
                 <span *ngIf="item.image"><img src="item.image"></span><br/>
             </div>
             </span>
             <div class="card-action">
-            <span >Location :  {{ordderDetails.location}}</span><br/>
-            <span >Address :  {{ordderDetails.address}}</span>
+            <span >{{"LOCATION" | translate}} :  {{ordderDetails.location}}</span><br/>
+            <span >{{"ADDRESS" | translate }} :  {{ordderDetails.address}}</span>
             </div>
             
             <div class="clearfix"></div>
             <div class="card-action" >
 
-               <button [disabled]="!orderForm.form.valid" type="submit" class="btn btn-success submit" >Confirm</button>
+               <button [disabled]="!orderForm.form.valid" type="submit" class="btn btn-success submit" >{{"CONFIRM" | translate}}</button>
             </div>
             
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from 'ng2-translate';
 
 
 @Component({
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  	constructor(public translate: TranslateService) { 
+    this.translate=translate;
+    //alert(this.translate.currentLang);
+	//this.translate.use('en');
+	//alert(this.translate.currentLang);
+	}
 }

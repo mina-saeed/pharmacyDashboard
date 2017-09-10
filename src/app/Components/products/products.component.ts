@@ -15,7 +15,7 @@ export class products implements OnInit {
 	private products = []
 	p: number = 1;
 	constructor(translate: TranslateService,private dialogService: DialogService, private prod: productService, private router: Router, private flashMessage: FlashMessagesService) { 
-	    translate.use('en');
+	    //translate.use('en');
 }
 	ngOnInit() {
 		this.prod.allProducts().subscribe(res => {

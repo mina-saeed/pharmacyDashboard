@@ -36,6 +36,8 @@
   "AR": "(Arabic)",
   "EN": "(English)",
   "VALIDBAR": "Please enter Valid barcode",
+  "VALIDCATEG": "Please enter Valid category",
+  "VALIDMILLI": "Please enter Valid Milligrams",
   "NAMEINAR":"Please Add Product name in Arabic",
   "NAMEINEN":"Please Add Product name in English",
   "DESCINEN": "Please Add Product Description in English",

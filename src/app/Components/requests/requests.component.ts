@@ -14,8 +14,9 @@ import {TranslateService} from 'ng2-translate';
 export class products implements OnInit {
 	private products = []
 	p: number = 1;
-	constructor(translate: TranslateService,private dialogService: DialogService, private prod: productService, private router: Router, private flashMessage: FlashMessagesService) {
-		    translate.use('en'); }
+	constructor(public translate: TranslateService,private dialogService: DialogService, private prod: productService, private router: Router, private flashMessage: FlashMessagesService) {
+		   // translate.use('en'); 
+		    }
 	ngOnInit() {
 		this.prod.allProducts().subscribe(res => {
 			console.log(res)

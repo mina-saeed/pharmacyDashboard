@@ -5,6 +5,7 @@ import {sidebar} from '../sidebar/sidebar.component'
 import 'rxjs/Rx';
 import {Observable} from 'rxjs/Rx';
 import {Http , RequestOptions, Headers} from '@angular/http';
+import {TranslateService} from 'ng2-translate';
 
 
 @Component({
@@ -14,7 +15,10 @@ import {Http , RequestOptions, Headers} from '@angular/http';
 
 export class acceptOrder implements OnInit {
 private ordderDetails
-  constructor(private order:orderService ,private http:Http, private router: Router) { }
+  constructor(translate: TranslateService,private order:orderService ,private http:Http, private router: Router) {
+ //   translate.use('en');
+
+   }
 
   ngOnInit(){
 console.log(acceptOrder.getCookie('order'))

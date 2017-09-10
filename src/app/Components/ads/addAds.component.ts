@@ -19,7 +19,7 @@ export class newAds {
 	filesToUpload: Array<File> = [];
 
 	constructor(translate: TranslateService,private AdsService: AdsService, private router: Router, private flash: FlashMessagesService) { 
-		    translate.use('en');
+//		    translate.use('en');
 }
 
 	fileChange(event) {

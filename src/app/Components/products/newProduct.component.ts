@@ -23,10 +23,11 @@ export class newProduct implements OnInit {
 	category: string
 	subCategory: string 
 	filesToUpload: Array<File> = [];
-
+	public translate: TranslateService;
 
 	constructor(translate: TranslateService,private product: productService, private router: Router, private flash: FlashMessagesService) { 
-	    translate.use('en');
+	    this.translate=translate;
+	    //translate.use('en');
 
 	}
 

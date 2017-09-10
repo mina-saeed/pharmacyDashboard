@@ -15,7 +15,7 @@ export class Ads implements OnInit {
     private allAds = []
     p: number = 1;
     constructor(translate: TranslateService,private dialogService: DialogService, private ads: AdsService, private router: Router, private flashMessage: FlashMessagesService) {
-         translate.use('en');
+      //   translate.use('en');
      }
     ngOnInit() {
         this.ads.getrequestedAds().subscribe(res => {

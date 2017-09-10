@@ -31,8 +31,8 @@ import {TranslateService} from 'ng2-translate';
   ordr;
 
 
-  constructor(translate: TranslateService,private order:orderService ,private http:Http, private router: Router) { 
-    translate.use('en');
+  constructor(public translate: TranslateService,private order:orderService ,private http:Http, private router: Router) { 
+    //translate.use('en');
   }
 
   ngOnInit() {

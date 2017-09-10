@@ -10,6 +10,6 @@ import {TranslateService} from 'ng2-translate';
 export class topbar
 {
 constructor(translate: TranslateService) { 
-    translate.use('en');
+   // translate.use('en');
   }
 }

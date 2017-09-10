@@ -12,9 +12,11 @@ import {TranslateService} from 'ng2-translate';
 })
 
 export class newMedicine {
-
+public translate: TranslateService;
 	constructor(translate: TranslateService,private request: requestService, private router: Router, private flash: FlashMessagesService) { 
-	translate.use('en');
+		    this.translate=translate;
+
+	//translate.use('en');
 	}
 
 requestMedicine(requestData){
